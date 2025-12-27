@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>StoneAge 마쥬의 미로 네비게이션</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --bg:#050712;
+      --panel:#10131f;
+      --accent:#6aa0ff;
+      --text:#e6ecff;
+      --muted:#9aa0b5;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      min-height:100vh;
+      background:radial-gradient(circle at top,#1c2540 0,#050712 55%);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      padding:16px;
+    }
+    h1{font-size:1.1rem;margin-bottom:8px;}
+
+    .controls{
+      background:var(--panel);
+      border-radius:10px;
+      padding:10px 12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 16px;
+      align-items:center;
+      box-shadow:0 6px 18px rgba(0,0,0,.4);
+      margin-bottom:10px;
+    }
+    .controls button{
+      padding:6px 12px;
+      border-radius:8px;
+      border:none;
+      font-size:.9rem;
+      cursor:pointer;
+      background:var(--accent);
+      color:#fff;
+      font-weight:600;
+    }
+    .controls button.secondary{
+      background:#424867;
+    }
+    .controls label{
+      font-size:.75rem;
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+    .controls .spacer{flex:1;}
+    .coord-live{
+      font-size:.8rem;
+      color:#a5ffb8;
+    }
+
+    .stage-wrap{
+      padding:8px;
+      border-radius:10px;
+      background:rgba(0,0,0,.35);
+      box-shadow:0 10px 30px rgba(0,0,0,.6) inset;
+      max-width:100%;
+      overflow:auto;
+    }
+    #stage{
+      position:relative;
+      display:inline-block;
+      border-radius:10px;
+      overflow:hidden;
+      border:1px solid #262b40;
+      background:#000;
+    }
+    #screenVideo{display:block;}
+    #navCanvas{
+      position:absolute;
+      left:0;
+      top:0;
+      width:100%;
+      height:100%;
+      pointer-events:none;
+    }
+
+    .pip-overlay{
+      position:absolute;
+      inset:0;                     /* top/right/bottom/left:0 */
+      display:none;                /* 기본은 숨김 */
+      align-items:center;
+      justify-content:center;
+      background:#000;
+      color:#fff;
+      font-size:1.3rem;
+      font-weight:600;
+      z-index:10;
+      pointer-events:none;         /* 클릭 막지 않게 */
+    }
+
+
+    .hint{
+      margin-top:8px;
+      font-size:1.25rem;
+      color:#FAFAF8;
+      line-height:1.4;
+    }
+
+    .ocr-panel{
+      margin-top:10px;
+      background:var(--panel);
+      border-radius:10px;
+      padding:8px 10px;
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      font-size:.8rem;
+    }
+    #coordCanvas{
+      border:1px solid #444a66;
+      background:#000;
+    }
+    .ocr-result{
+      font-size:.8rem;
+      color:#ffe08a;
+      white-space:pre-line;
+    }
+
+    /* 관리자 전용: 기본 숨김, admin-mode일 때만 보여줌 */
+    .admin-only{display:none;}
+    body.admin-mode .admin-only{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px 12px;
+      align-items:center;
+      margin-top:8px;
+    }
+
+    /* PiP 활성화 시 메인 화면을 검은 화면 + 문구로 교체 */
+body.pip-active #stage #screenVideo,
+body.pip-active #stage #navCanvas{
+  opacity:0;
+}
+
+body.pip-active #stage #pipOverlay{
+  display:flex;
+}
+
+  </style>
+</head>
+<body>
+  <h1>StoneAge 마쥬의 미로 네비게이션</h1>
+
+  <!-- 유저용 상단 컨트롤 -->
+  <div class="controls">
+    <button id="startBtn">캡쳐 시작</button>
+
+    <label>
+      층
+      <select id="floorSelect">
+        <option value="1F">1층</option>
+        <option value="2F">2층</option>
+        <option value="3F">3층</option>
+        <option value="4F">끈돌</option>
+      </select>
+    </label>
+
+    <button id="ocrOnceBtn">좌표 OCR 1회 테스트</button>
+    <button id="autoOcrToggle">자동 추적 시작</button>
+    
+    <button id="pipBtn" class="secondary">pip모드로 보기</button>
+
+    <div class="spacer"></div>
+
+    <span id="coordLive" class="coord-live">현재 좌표: -</span>
+    <button id="adminToggle" class="secondary">관리자 모드</button>
+  </div>
+
+  <!-- 게임 캡쳐 + 네비 라인 -->
+  <div class="stage-wrap">
+    <div id="stage">
+      <video id="screenVideo" autoplay playsinline></video>
+      <canvas id="navCanvas"></canvas>
+        <div id="pipOverlay" class="pip-overlay">
+        PIP 모드에서 재생 중
+      </div>
+    </div>
+  </div>
+
+  <!-- 관리자 전용 OCR 상세 설정 -->
+  <div class="ocr-panel">
+    <div class="admin-only">
+      <label>동 X <input id="eastX"  type="number" value="880" style="width:60px;"></label>
+      <label>Y    <input id="eastY"  type="number" value="780" style="width:60px;"></label>
+      <label>W    <input id="eastW"  type="number" value="20"  style="width:60px;"></label>
+      <label>H    <input id="eastH"  type="number" value="17"  style="width:60px;"></label>
+
+      <label>남 X <input id="southX" type="number" value="930" style="width:60px;"></label>
+      <label>Y    <input id="southY" type="number" value="780" style="width:60px;"></label>
+      <label>W    <input id="southW" type="number" value="20"  style="width:60px;"></label>
+      <label>H    <input id="southH" type="number" value="17"  style="width:60px;"></label>
+
+      <canvas id="coordCanvas" width="160" height="24"></canvas>
+
+      <div class="ocr-result" id="ocrResult">OCR 결과가 여기 표시됩니다.</div>
+
+      <div style="display:flex;align-items:center;gap:4px;font-size:0.75rem;">
+        <span>학습용 동 좌표:</span>
+        <input id="learnEastValue" type="text" maxlength="3" style="width:48px;padding:2px 4px;">
+        <button id="learnEastBtn">동 템플릿 학습</button>
+        <button id="clearTemplatesBtn" class="secondary">템플릿 초기화</button>
+      </div>
+      <div class="ocr-result" id="templateStatus">템플릿 상태: 없음</div>
+    </div>
+  </div>
+
+  <div class="hint">
+    ▶ <b>사용 순서</b><br>
+    1) StoneAge를 <b>"1024x768"</b> 해상도의 창모드로 띄워둔다.<br>
+    2) 게임 내 폰트를 <b>"굴림체"</b>로 수정한다.<br>
+    3) <b>캡쳐 시작</b> 버튼을 누르고, 게임 창을 선택한다.<br>
+    4) <b>게임 화면 중 우측 하단의 좌표가 모두 노출되게 창의 위치를 조정한다.</b><br>
+    5) <b>자동 추적 시작</b>을 누르면 좌표와 네비 라인이 자동으로 갱신된다.<br>
+    6) <b>1~3층은 자동으로 층수전환이 되고, 3층 마무리 후 캡쳐를 종료한다. </b><br>
+    7) <b>끈 자르는 돌을 받은 다음, 다시 1층 진입 후 직접 수동으로 층수를 "끈돌"층으로 바꾼 후 다시 추적 시작버튼을 누른다.</b> <br>
+    <br>
+    <br>
+    ★ <b>참고 사항</b><br>
+    1) 끈 보따리의 좌표는 각각 <b>(281,48) / (163,12) / (145,54)</b> 입니다.<br>
+    <img src = "https://raw.githubusercontent.com/Kokudas/Kokudas.github.io/main/majyu_help.png" alt = "이미지를 찾지 못했습니다." ><br>
+    2) <b>캡쳐가 끝나고 윈도우 자체 렉 발생 시,<br>
+     ctrl+alt+del 작업관리자에서 windows 탐색기 혹은 explorer.exe를 다시 시작해 주세요.<br>
+     <br>
+     <b>☆ 본 유틸에 대한 문의사항은 과장(kokodas#0339)로 문의주세요.</b>
+     <b>따잇하실 경우, 미리 연락 혹은 출처라도 남겨주는 매너를 지켜주세요.</b><br>
+     <b>테스트 완료 서버 : NOVA, HAPPY</b>
+      
+
+  </div>
+
+<script>
+  // ===== 0. 기본 DOM/상태 =====
+  const startBtn = document.getElementById('startBtn');
+  const video    = document.getElementById('screenVideo');
+  const navCanvas= document.getElementById('navCanvas');
+  const navCtx   = navCanvas.getContext('2d');
+  const pipOverlay = document.getElementById('pipOverlay');
+
+
+  const floorSelect = document.getElementById('floorSelect');
+  const ocrOnceBtn  = document.getElementById('ocrOnceBtn');
+  const autoBtn     = document.getElementById('autoOcrToggle');
+  const coordLive   = document.getElementById('coordLive');
+
+  const coordCanvas = document.getElementById('coordCanvas');
+  const coordCtx    = coordCanvas.getContext('2d');
+  const ocrResultDiv= document.getElementById('ocrResult');
+
+  const learnEastInput    = document.getElementById('learnEastValue');
+  const learnEastBtn      = document.getElementById('learnEastBtn');
+  const clearTemplatesBtn = document.getElementById('clearTemplatesBtn');
+  const templateStatus    = document.getElementById('templateStatus');
+
+    // ★ PiP 관련 DOM/상태
+  const pipBtn   = document.getElementById('pipBtn');
+  let pipVideo = null;                 // PiP에 올릴 숨겨진 <video>
+  const pipCanvas = document.createElement('canvas'); // 합성용 캔버스
+  const pipCtx    = pipCanvas.getContext('2d');
+  let pipActive   = false;
+  let pipAnimating = false;
+
+  const OCR_INTERVAL = 200;
+  let currentStream  = null;
+
+function setMainOverlayForPip(active){
+  if (active){
+    // PiP ON: 바디에 상태 클래스 부여 → CSS가 영상/캔버스 숨기고 오버레이 표시
+    document.body.classList.add('pip-active');
+  } else {
+    // PiP OFF: 상태 해제 → 원래 화면 복원
+    document.body.classList.remove('pip-active');
+    updateNavigation(); // 네비 다시 그리기
+  }
+}
+
+
+
+  function cleanupCapture() {
+    if (currentStream) {
+      currentStream.getTracks().forEach(t => t.stop());
+      currentStream = null;
+    }
+    video.srcObject = null;
+    stopAutoOcr();
+    clearNavPath();
+
+    // ★ PiP도 같이 정리
+    pipAnimating = false;
+    if (document.pictureInPictureElement === pipVideo) {
+      document.exitPictureInPicture().catch(()=>{});
+    }
+    pipActive = false;
+    if (pipBtn) pipBtn.textContent = 'pip모드로 보기';
+
+    setMainOverlayForPip(false);  // ★ 혹시 남아있을 오버레이/투명도 초기화
+  }
+
+
+  startBtn.addEventListener('click', async () => {
+    try {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+        alert('이 브라우저에서는 화면 캡쳐(getDisplayMedia)를 지원하지 않습니다.');
+        return;
+      }
+
+      const stream = await navigator.mediaDevices.getDisplayMedia({
+        video: { frameRate: 30 },
+        audio: false
+      });
+
+      currentStream = stream;
+      video.srcObject = stream;
+
+      const [videoTrack] = stream.getVideoTracks();
+      if (videoTrack) {
+        videoTrack.addEventListener('ended', () => {
+          console.log('캡쳐가 시스템/브라우저에서 종료됨');
+          cleanupCapture();
+          currentEast = currentSouth = null;
+        });
+      }
+
+      video.onloadedmetadata = () => {
+        video.play().catch(()=>{});
+        console.log('video size:', video.videoWidth, video.videoHeight);
+        if (navCanvas) {
+          navCanvas.width  = video.videoWidth;
+          navCanvas.height = video.videoHeight;
+        }
+      };
+    } catch (err) {
+      console.error(err);
+      alert('화면 캡쳐 권한을 얻지 못했습니다.\n다시 시도해 주세요.');
+    }
+  });
+
+  window.addEventListener('beforeunload', cleanupCapture);
+
+  // ===== 2. 층 경로 정의 / 자동 층 전환 =====
+
+const FLOOR_PATHS = {
+  "1F": {
+    label: "미로 1층",
+    raw: [
+  {e : 4, s : 6},
+  { e: 4, s: 12 },
+  { e: 10, s: 12 },
+  { e: 10, s: 35 },
+  { e: 16, s: 35 },
+  { e: 16, s: 12 },
+  { e: 36, s: 12 },
+  { e: 36, s: 18 },
+  { e: 22, s: 18 },
+  { e: 22, s: 24 },
+  { e: 36, s: 24 },
+  { e: 36, s: 30 },
+  { e: 22, s: 30 },
+  { e: 22, s: 36 },
+  { e: 45, s: 36 },
+  { e: 45, s: 42 },
+  { e: 30, s: 42 },
+  { e: 30, s: 48 },
+  { e: 51, s: 48 },
+  { e: 51, s: 42 },
+  { e: 78, s: 42 },
+  { e: 78, s: 36 },
+  { e: 84, s: 36 },
+  { e: 84, s: 48 },
+  { e: 108, s: 48 },
+  { e: 108, s: 66 },
+  { e: 114, s: 66 },
+  { e: 114, s: 48 },
+  { e: 120, s: 48 },
+  { e: 120, s: 57 },
+  { e: 138, s: 57 },
+  { e: 138, s: 48 },
+  { e: 162, s: 48 },
+  { e: 162, s: 18 },
+  { e: 156, s: 18 },
+  { e: 156, s: 6 },
+  { e: 198, s: 6 },
+  { e: 198, s: 27 },
+  { e: 204, s: 27 },
+  { e: 204, s: 6 },
+  { e: 240, s: 6 },
+  { e: 240, s: 18 },
+  { e: 264, s: 18 },
+  { e: 264, s: 12 },
+  { e: 246, s: 12 },
+  { e: 246, s: 6 },
+  { e: 270, s: 6 },
+  { e: 270, s: 24},
+  { e: 276, s:  24},
+  { e: 276, s:  6},
+  { e: 288, s:  6},
+  { e: 288, s:  36},
+  { e: 270, s:  36},
+  { e: 270, s:  42},
+  { e: 288, s:  42},
+  { e: 288, s: 72 },
+  { e: 264, s:  72},
+  { e: 264, s:  78},
+  { e: 288, s:  78},
+  { e: 288, s:  121},
+  { e: 252, s:  121},
+  { e: 252, s:  133},
+  { e: 258, s: 133 },
+  { e: 258, s:  127},
+  { e: 288, s:  127},
+  { e: 288, s: 133 },
+  { e: 264, s:  133},
+  { e: 264, s: 139 },
+  { e: 240, s:  140},
+  { e: 240, s:  152},
+  { e: 246, s: 152 },
+  { e: 246, s:  146},
+  { e: 270, s:  146},
+  { e: 270, s: 140 },
+  { e: 288, s:  140},
+  { e: 288, s:  158},
+  { e: 282, s:  158},
+  { e: 282, s:  146},
+  { e: 276, s:  146},
+  { e: 276, s:  164},
+  { e: 288, s:  164},
+  { e: 289, s:  168}
+  ]
+},
+"2F": {
+    label: "미로 2층",
+    raw: [
+      { e: 232, s:  12},
+      { e: 231, s:  87},
+      { e: 225, s:  87},
+      { e: 225, s:  63},
+      { e: 219, s: 63 },
+      { e: 219, s:  81},
+      { e: 213, s:  81},
+      { e: 213, s:  57},
+      { e: 207, s: 57 },
+      { e: 207, s: 75 },
+      { e: 201, s: 75 },
+      { e: 201, s:  57},
+      { e: 195, s:  57},
+      { e: 195, s:  75},
+      { e: 183, s:  75},
+      { e: 183, s:  105},
+      { e: 195, s: 105},
+      { e: 195, s:  117},
+      { e: 201, s:  117},
+      { e: 201, s:  135},
+      { e: 195, s:  135},
+      { e: 195, s:  123},
+      { e: 189, s:  123},
+      { e: 189, s:  135},
+      { e: 183, s:  135},
+      { e: 183, s:  111},
+      { e: 177, s:  111},
+      { e: 177, s:  87},
+      { e: 171, s:  87},
+      { e: 171, s:  99},
+      { e: 165, s:  99},
+      { e: 165, s:  87},
+      { e: 147, s:  87},
+      { e: 147, s:  75},
+      { e: 141, s:  75},
+      { e: 141, s:  98},
+      { e: 153, s:  99},
+      { e: 153, s:  105},
+      { e: 135, s:  105},
+      { e: 135, s:  75},
+      { e: 129, s: 75 },
+      { e: 129, s:  111},
+      { e: 132, s: 111 },
+      { e: 132, s:  120},
+      { e: 126, s:  120},
+      { e: 126, s:  117},
+      { e: 123, s: 117 },
+      { e: 123, s:  93},
+      { e: 99, s: 93 },
+      { e: 99, s:  99},
+      { e:117 , s:  99},
+      { e: 117, s:  123},
+      { e: 120, s: 123},
+      { e: 120, s:  135},
+      { e:114 , s: 135 },
+      { e: 114, s:  129},
+      { e:111 , s:  129},
+      { e: 111, s:  123},
+      { e: 87, s: 123 },
+      { e: 87, s: 117 },
+      { e: 111, s:  117},
+      { e: 111, s: 105 },
+      { e: 93, s: 105 },
+      { e: 93, s:  93},
+      { e: 87, s:  93},
+      { e: 87, s: 105 },
+      { e: 81, s: 105 },
+      { e: 81, s: 87 },
+      { e: 75, s:  87},
+      { e: 75, s: 99 },
+      { e:63 , s: 99 },
+      { e:63 , s: 105 },
+      { e:75 , s: 105 },
+      { e: 75, s:  117},
+      { e: 69, s:  117},
+      { e:69 , s:  129},
+      { e: 63, s: 129 },
+      { e: 63, s: 123 },
+      { e: 51, s:  123},
+      { e: 51, s: 129 },
+      { e: 33, s: 129 },
+      { e: 33, s: 147 },
+      { e: 27, s:  147},
+      { e: 27, s: 123 },
+      { e: 45, s:  123},
+      { e: 45, s: 117 },
+      { e: 63, s:  117},
+      { e: 63, s:  111},
+      { e: 45, s: 111 },
+      { e: 45, s:  81},
+      { e: 57, s: 81 },
+      { e: 57, s: 75 },
+      { e: 33, s: 75 },
+      { e: 33, s:  69},
+      { e: 57, s:  69},
+      { e: 57, s: 63 },
+      { e: 81, s: 63 },
+      { e: 81, s: 75 },
+      { e: 87, s:  75},
+      { e: 87, s: 51 },
+      { e: 75, s: 51 },
+      { e: 75, s: 57 },
+      { e: 45, s: 57 },
+      { e: 45, s:  51},
+      { e: 69, s:  51},
+      { e: 69, s:  45},
+      { e: 81, s: 45 },
+      { e: 81, s: 39 },
+      { e: 69, s: 39 },
+      { e: 69, s: 21 },
+      { e: 57, s:  21},
+      { e: 57, s: 39 },
+      { e:51 , s: 39 },
+      { e: 51, s: 15 },
+      { e: 69, s: 15 },
+      { e: 69, s: 9 },
+      { e:45, s: 9 },
+      { e: 45, s: 18 },
+      { e: 39, s: 18 },
+      { e:39 , s: 9 },
+      { e: 13, s:  8}
+    ]
+  },
+  "3F": {
+    label: "미로 3층",
+    raw: [
+  { e: 96, s: 4 },
+  { e: 96, s:  10},
+  { e: 137, s:  11},
+  { e: 147, s:  23},
+  { e: 150, s: 27 },
+  { e: 155, s: 39 },
+  { e:150 , s: 44 },
+  { e: 154, s: 51 },
+  { e: 157, s: 61 },
+  { e: 164, s: 71 },
+  { e: 171, s: 84 },
+  { e: 176, s: 93 },
+  { e: 173, s: 101 },
+  { e: 165, s:  114},
+  { e: 170, s:  118},
+  { e: 164, s: 129 },
+  { e: 156, s: 140 },
+  { e: 144, s: 153 },
+  { e: 132, s: 165 },
+  { e: 59, s:  165},
+  { e: 64, s: 158 },
+  { e: 121, s:  158},
+  { e: 120, s:  144},
+  { e: 76, s:  144},
+  { e: 76, s: 136 },
+  { e: 74, s: 132 },
+  { e: 67, s: 122 },
+  { e: 60, s: 111 },
+  { e: 64, s: 106 },
+  { e: 59, s: 92 },
+  { e: 51, s:  82},
+  { e: 57, s: 73 },
+  { e: 63, s: 63 },
+  { e: 69, s: 52 },
+  { e: 72, s: 46 },
+  { e: 76, s:  42},
+  { e: 96, s: 42 },
+  { e: 117, s:  42},
+  { e: 122, s: 46 },
+  { e: 123, s:  53},
+  { e: 119, s: 58 },
+  { e: 121, s: 62 },
+  { e: 126, s: 70 },
+  { e: 131, s: 80 },
+  { e: 135, s: 89 },
+  { e: 126, s: 102 },
+  { e:117, s: 113 },
+  { e: 110, s: 122 },
+  { e: 91, s:  123},
+  { e: 87, s: 120 },
+  { e: 80, s: 110 },
+  { e: 73, s: 100 },
+  { e: 68, s: 92 },
+  { e: 65, s: 85 },
+  { e: 68, s: 79 },
+  { e: 72, s: 75 },
+  { e: 71, s: 73 },
+  { e: 75, s: 68 },
+  { e: 79, s: 64 },
+  { e: 106, s: 63 },
+  { e: 110, s: 75 },
+  { e: 106, s: 79 },
+  { e: 96, s: 71 },
+  { e: 90, s:  72},
+  { e: 86, s: 80 },
+  { e: 87, s: 88 },
+  { e: 95, s:  88},
+  { e: 102, s:  93}
+  ]
+  },
+  "4F": {
+    label: "끈돌",
+    raw: [
+  {e : 4, s : 6},
+  { e: 4, s: 12 },
+  { e: 10, s: 12 },
+  { e: 10, s: 35 },
+  { e: 16, s: 35 },
+  { e: 16, s: 12 },
+  { e: 36, s: 12 },
+  { e: 36, s: 18 },
+  { e: 22, s: 18 },
+  { e: 22, s: 24 },
+  { e: 36, s: 24 },
+  { e: 36, s: 30 },
+  { e: 22, s: 30 },
+  { e: 22, s: 36 },
+  { e: 45, s: 36 },
+  { e: 45, s: 42 },
+  { e: 30, s: 42 },
+  { e: 30, s: 48 },
+  { e: 51, s: 48 },
+  { e: 51, s: 42 },
+  { e: 78, s: 42 },
+  { e: 78, s: 36 },
+  { e: 84, s: 36 },
+  { e: 84, s: 48 },
+  { e: 108, s: 48 },
+  { e: 108, s: 66 },
+  { e: 114, s: 66 },
+  { e: 114, s: 48 },
+  { e: 120, s: 48 },
+  { e: 120, s: 57 },
+  { e: 138, s: 57 },
+  { e: 138, s: 48 },
+  { e: 162, s: 48 },
+  { e: 162, s: 18 },
+  { e: 156, s: 18 },
+  { e: 156, s: 6 },
+  { e: 198, s: 6 },
+  { e: 198, s: 27 },
+  { e: 204, s: 27 },
+  { e: 204, s: 6 },
+  { e: 240, s: 6 },
+  { e: 240, s: 18 },
+  { e: 264, s: 18 },
+  { e: 264, s: 12 },
+  { e: 246, s: 12 },
+  { e: 246, s: 6 },
+  { e: 270, s: 6 },
+  { e: 270, s: 24},
+  { e: 276, s:  24},
+  { e: 276, s:  6},
+  { e: 288, s:  6},
+  { e: 288, s:  36},
+  { e: 270, s:  36},
+  { e: 270, s:  42},
+  { e: 264, s:  42},
+  { e: 264, s: 30 },
+  { e: 258, s: 30 },
+  { e: 258, s: 48},
+  { e: 281, s: 48 },
+  { e: 252, s: 48 },
+  { e: 252, s: 24 },
+  { e: 234, s: 24 },
+  { e: 234, s: 14 },
+  { e: 216, s: 14 },
+  { e: 216, s: 21 },
+  { e: 210, s:  21},
+  { e: 210, s:  33},
+  { e: 180, s: 33 },
+  { e: 180, s: 48 },
+  { e: 174, s: 48 },
+  { e: 174, s:  27},
+  { e: 186, s: 27 },
+  { e: 186, s: 12 },
+  { e: 180, s: 12 },
+  { e:180 , s: 21 },
+  { e: 174, s:  21},
+  { e: 174, s: 12 },
+  { e: 163, s: 12 },
+  { e: 168, s: 12 },
+  { e: 168, s: 54 },
+  { e: 145, s: 54 }
+  ]
+}
+};
+
+
+  function expandPath(nodes) {
+    const out = [];
+    for (let i = 0; i < nodes.length - 1; i++) {
+      const a = nodes[i];
+      const b = nodes[i + 1];
+
+      let e = a.e;
+      let s = a.s;
+      const stepE = Math.sign(b.e - a.e);
+      const stepS = Math.sign(b.s - a.s);
+
+      out.push({ e, s });
+      while (e !== b.e || s !== b.s) {
+        if (e !== b.e) e += stepE;
+        if (s !== b.s) s += stepS;
+        out.push({ e, s });
+      }
+    }
+    const last = nodes[nodes.length - 1];
+    out.push({ e: last.e, s: last.s });
+    return out;
+  }
+
+  // 층별 확장 경로 캐시
+  const FLOOR_PATH_POINTS = {};
+  for (const id in FLOOR_PATHS) {
+    FLOOR_PATH_POINTS[id] = expandPath(FLOOR_PATHS[id].raw);
+  }
+
+  let currentFloorId = "1F";
+  let pathPoints     = FLOOR_PATH_POINTS[currentFloorId];
+
+  function clearNavPath() {
+    if (!navCanvas || !navCtx) return;
+    navCtx.clearRect(0, 0, navCanvas.width, navCanvas.height);
+  }
+
+  function applyFloor(newFloorId, resetHistory = true) {
+    const pts = FLOOR_PATH_POINTS[newFloorId];
+    if (!pts || !pts.length) {
+      console.warn("정의되지 않은 층:", newFloorId);
+      return;
+    }
+    currentFloorId = newFloorId;
+    pathPoints = pts;
+
+    if (floorSelect && floorSelect.value !== newFloorId) {
+      floorSelect.value = newFloorId;
+    }
+
+    if (resetHistory) {
+      eastHistory  = [];
+      southHistory = [];
+    }
+
+    clearNavPath();
+    updateNavigation();
+  }
+
+  floorSelect.addEventListener('change', () => {
+    applyFloor(floorSelect.value, true);
+  });
+
+  // 경로/네비 관련 상수
+  const PATH_SNAP_MAX_DIST  = 2;
+  const LOOK_AHEAD_SEGMENTS = 25;
+  const AUTO_FLOORS         = ["1F", "2F", "3F"];
+  const AUTO_FLOOR_MAX_DIST = 3;
+const FLOOR_CHANGE_MARGIN = 1;      // 새 층이 현재 층보다 최소 1칸 이상 더 가까워야 전환
+const FLOOR_ORDER = {               // 층 순서(직접 점프 금지용)
+  "1F": 1,
+  "2F": 2,
+  "3F": 3
+};
+  const CHAR_OFFSET_X = 0;
+  const CHAR_OFFSET_Y = 14;
+  const TILE_STEP_X   = 32;
+  const TILE_STEP_Y   = 24;
+
+  function findClosestIndexOnPath(e, s, pts) {
+    if (!pts || !pts.length) return { index:-1, dist:Infinity };
+    let bestIndex = -1, bestDist = Infinity;
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i];
+      const dist = Math.abs(p.e - e) + Math.abs(p.s - s);
+      if (dist < bestDist) {
+        bestDist  = dist;
+        bestIndex = i;
+      }
+    }
+    return { index:bestIndex, dist:bestDist };
+  }
+
+  function findClosestPathIndex(e, s) {
+    const res = findClosestIndexOnPath(e, s, pathPoints);
+    if (res.dist > PATH_SNAP_MAX_DIST) return -1;
+    return res.index;
+  }
+
+function autoDetectFloorByCoord(e, s) {
+  // 4층(끈돌)은 항상 수동
+  if (currentFloorId === "4F") return false;
+  if (e == null || s == null) return false;
+
+  // 1) 현재 층에서의 거리 계산
+  const curPts = FLOOR_PATH_POINTS[currentFloorId];
+  const curRes = findClosestIndexOnPath(e, s, curPts);
+  const curDist = curRes.dist;
+
+  // 기본값은 "지금 층 유지"
+  let bestFloor = currentFloorId;
+  let bestDist  = curDist;
+
+  // 2) 나머지 층들과 거리 비교
+  for (const floorId of AUTO_FLOORS) {
+    if (floorId === currentFloorId) continue;
+
+    const pts = FLOOR_PATH_POINTS[floorId];
+    if (!pts || !pts.length) continue;
+
+    const res = findClosestIndexOnPath(e, s, pts);
+
+    // 새 층이 현재 층보다 FLOOR_CHANGE_MARGIN 이상 더 가까울 때만 교체
+    if (res.dist + FLOOR_CHANGE_MARGIN < bestDist) {
+      bestDist  = res.dist;
+      bestFloor = floorId;
+    }
+  }
+
+  // 3) 결국 현재 층이 제일 낫다 → 전환 안 함
+  if (bestFloor === currentFloorId) return false;
+
+  // 4) 너무 멀면(오인 가능 영역) 전환 안 함
+  if (bestDist > AUTO_FLOOR_MAX_DIST) return false;
+
+  // 5) 자동 하강 금지: 새 층이 현재 층보다 낮으면 무시
+  if (FLOOR_ORDER[bestFloor] < FLOOR_ORDER[currentFloorId]) {
+    return false;
+  }
+
+  // 6) 한 번에 2층 이상 점프(예: 3F→1F)는 금지
+  if (Math.abs(FLOOR_ORDER[bestFloor] - FLOOR_ORDER[currentFloorId]) > 1) {
+    return false;
+  }
+
+  console.log(
+    `auto floor change: ${currentFloorId} → ${bestFloor} (curDist=${curDist}, bestDist=${bestDist})`
+  );
+
+  // 경로만 교체, 히스토리는 그대로 두고 연결해서 그릴 수 있게
+  applyFloor(bestFloor, false);
+  return true;
+}
+
+
+  function esToScreenOffset(dE, dS) {
+    const dx = TILE_STEP_X * (dE + dS);
+    const dy = TILE_STEP_Y * (dS - dE);
+    return { dx, dy };
+  }
+
+  function drawNavPathFrom(idxStart) {
+    if (!navCanvas || !navCtx) return;
+    clearNavPath();
+    if (currentEast == null || currentSouth == null) return;
+    if (idxStart < 0 || idxStart >= pathPoints.length) return;
+
+    const centerX = navCanvas.width  / 2 + CHAR_OFFSET_X;
+    const centerY = navCanvas.height / 2 + CHAR_OFFSET_Y;
+
+    navCtx.lineWidth   = 3;
+    navCtx.strokeStyle = 'rgba(255, 255, 0, 0.8)';
+    navCtx.lineJoin    = 'round';
+    navCtx.lineCap     = 'round';
+
+    navCtx.beginPath();
+    navCtx.moveTo(centerX, centerY);
+
+    const lastIndex = Math.min(pathPoints.length - 1,
+                               idxStart + LOOK_AHEAD_SEGMENTS);
+
+    for (let i = idxStart; i <= lastIndex; i++) {
+      const p  = pathPoints[i];
+      const dE = p.e - currentEast;
+      const dS = p.s - currentSouth;
+      const { dx, dy } = esToScreenOffset(dE, dS);
+      navCtx.lineTo(centerX + dx, centerY + dy);
+    }
+    navCtx.stroke();
+  }
+
+  function updateNavigation() {
+    if (currentEast == null || currentSouth == null || !pathPoints.length) {
+      clearNavPath();
+      return;
+    }
+    const idx = findClosestPathIndex(currentEast, currentSouth);
+    if (idx < 0) {
+      clearNavPath();
+      return;
+    }
+    drawNavPathFrom(idx);
+  }
+
+  // ===== 3. OCR 공통 및 템플릿 =====
+  let currentEast  = null;
+  let currentSouth = null;
+  let ocrLoopTimer = null;
+  let ocrBusy      = false;
+
+  const MAX_STEP     = 20;
+  const HISTORY_SIZE = 5;
+  let eastHistory  = [];
+  let southHistory = [];
+
+  function smoothCoord(prev, now) {
+    if (now == null || Number.isNaN(now)) return prev;
+    if (prev == null) return now;
+    if (Math.abs(now - prev) > MAX_STEP) {
+      console.log(`jump filtered: prev=${prev}, now=${now}`);
+      return prev;
+    }
+    return now;
+  }
+  function pushHistory(list, value) {
+    if (value == null || Number.isNaN(value)) return;
+    list.push(value);
+    if (list.length > HISTORY_SIZE) list.shift();
+  }
+  function majorityValue(list) {
+    const counts = {};
+    for (const v of list) {
+      if (v == null) continue;
+      counts[v] = (counts[v] || 0) + 1;
+    }
+    let bestVal = null, bestCnt = 0;
+    for (const [k, c] of Object.entries(counts)) {
+      if (c > bestCnt) {
+        bestCnt = c;
+        bestVal = parseInt(k, 10);
+      }
+    }
+    return { value:bestVal, count:bestCnt };
+  }
+
+  const DIGIT_W = 8;
+  const DIGIT_H = 14;
+
+  const BUILTIN_TEMPLATES = { 
+    "0":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "1":[0,0,0,0,255,255,0,0,0,0,255,255,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "2":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,255,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "3":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,255,255,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "4":[0,0,0,0,0,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,255,0,255,0,0,0,0,0,255,0,255,0,0,0,0,255,0,0,255,0,0,0,0,255,0,0,255,0,0,0,0,255,255,255,255,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "5":[0,0,255,255,255,255,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "6":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "7":[0,0,255,255,255,255,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "8":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], "9":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+   };
+
+  const digitTemplates = { 0:null,1:null,2:null,3:null,4:null,5:null,6:null,7:null,8:null,9:null };
+
+  const TEMPLATE_STORAGE_KEY = 'saDigitTemplates.v1';
+
+  function updateTemplateStatus() {
+    if (!templateStatus) return;
+    const have = [];
+    for (let d = 0; d <= 9; d++) {
+      if (digitTemplates[d]) have.push(d);
+    }
+    templateStatus.textContent =
+      '템플릿 상태: ' + (have.length ? have.join(', ') + ' 학습됨' : '없음');
+  }
+
+  function saveTemplatesToStorage() {
+    try {
+      const obj = {};
+      for (let d = 0; d <= 9; d++) {
+        const tmpl = digitTemplates[d];
+        if (tmpl) obj[d] = Array.from(tmpl);
+      }
+      localStorage.setItem(TEMPLATE_STORAGE_KEY, JSON.stringify(obj));
+    } catch (e) {
+      console.error('saveTemplatesToStorage error:', e);
+    }
+  }
+
+  function loadTemplatesFromStorage() {
+    try {
+      let source = null;
+      const text = localStorage.getItem(TEMPLATE_STORAGE_KEY);
+      if (text) {
+        source = JSON.parse(text);
+        console.log('templates loaded from localStorage');
+      } else if (BUILTIN_TEMPLATES) {
+        source = BUILTIN_TEMPLATES;
+        console.log('templates loaded from BUILTIN_TEMPLATES');
+      }
+      if (!source) return;
+      for (let d = 0; d <= 9; d++) {
+        if (source[d]) digitTemplates[d] = new Uint8Array(source[d]);
+      }
+    } catch (e) {
+      console.error('loadTemplatesFromStorage error:', e);
+    }
+  }
+
+  const ocrCanvas = document.createElement('canvas');
+  const ocrCtx    = ocrCanvas.getContext('2d');
+
+  function binarizeRegion(rect, preview=false, threshold=150) {
+    const { x, y, w, h } = rect;
+    ocrCanvas.width  = w;
+    ocrCanvas.height = h;
+
+    ocrCtx.drawImage(video, x, y, w, h, 0, 0, w, h);
+
+    const imgData = ocrCtx.getImageData(0, 0, w, h);
+    const data    = imgData.data;
+    const bin     = new Uint8Array(w * h);
+
+    for (let i = 0, j = 0; i < data.length; i += 4, j++) {
+      const r = data[i], g = data[i+1], b = data[i+2];
+      const lum = 0.2126*r + 0.7152*g + 0.0722*b;
+      const v   = lum > threshold ? 255 : 0;
+      bin[j] = v ? 1 : 0;
+      data[i] = data[i+1] = data[i+2] = v;
+    }
+    ocrCtx.putImageData(imgData, 0, 0);
+
+    if (preview && coordCanvas && coordCtx) {
+      coordCanvas.width  = w;
+      coordCanvas.height = h;
+      coordCtx.imageSmoothingEnabled = false;
+      coordCtx.drawImage(ocrCanvas, 0, 0);
+    }
+    return { bin, w, h };
+  }
+
+  function segmentColumns(info) {
+    const { bin, w, h } = info;
+    const colSums = new Array(w).fill(0);
+    for (let x = 0; x < w; x++) {
+      let s = 0;
+      for (let y = 0; y < h; y++) {
+        if (bin[y * w + x]) s++;
+      }
+      colSums[x] = s;
+    }
+    const segments = [];
+    const MIN_COL = 1;
+    let inSeg = false, start = 0;
+
+    for (let x = 0; x < w; x++) {
+      if (colSums[x] >= MIN_COL) {
+        if (!inSeg) { inSeg = true; start = x; }
+      } else if (inSeg) {
+        segments.push({ start, end:x-1 });
+        inSeg = false;
+      }
+    }
+    if (inSeg) segments.push({ start, end:w-1 });
+    return segments;
+  }
+
+  function extractDigitPatch(info, seg, marginX=1, marginY=1) {
+    const { bin, w, h } = info;
+    let sx = Math.max(seg.start - marginX, 0);
+    let ex = Math.min(seg.end   + marginX, w-1);
+    let sy = marginY;
+    let ey = h - 1 - marginY;
+
+    const sw = ex - sx + 1;
+    const sh = ey - sy + 1;
+
+    const out = new Uint8Array(DIGIT_W * DIGIT_H);
+    for (let oy = 0; oy < DIGIT_H; oy++) {
+      const srcY = sy + Math.floor(oy * sh / DIGIT_H);
+      for (let ox = 0; ox < DIGIT_W; ox++) {
+        const srcX = sx + Math.floor(ox * sw / DIGIT_W);
+        const v = bin[srcY * w + srcX] ? 255 : 0;
+        out[oy * DIGIT_W + ox] = v;
+      }
+    }
+    return out;
+  }
+
+  function diffScore(a, b) {
+    let s = 0;
+    for (let i = 0; i < a.length; i++) {
+      const d = a[i] - b[i];
+      s += d * d;
+    }
+    return s;
+  }
+
+  function classifyDigit(patch) {
+    let bestDigit = null;
+    let bestScore = Infinity;
+    for (let d = 0; d <= 9; d++) {
+      const tmpl = digitTemplates[d];
+      if (!tmpl) continue;
+      const s = diffScore(patch, tmpl);
+      if (s < bestScore) {
+        bestScore = s;
+        bestDigit = d;
+      }
+    }
+    return bestDigit;
+  }
+
+  function learnFromRect(rect, valueStr) {
+    valueStr = (valueStr || '').trim();
+    if (!valueStr) { alert('좌표 숫자를 먼저 입력해주세요 (예: 22, 105).'); return; }
+    if (!/^\d{1,3}$/.test(valueStr)) { alert('1~3자리 숫자만 입력할 수 있습니다.'); return; }
+
+    const info     = binarizeRegion(rect, true);
+    const segments = segmentColumns(info);
+    if (segments.length === 0) {
+      alert('숫자 세그먼트를 찾지 못했습니다. X/Y/W/H를 다시 확인해주세요.');
+      return;
+    }
+
+    const chars = valueStr.split('');
+    if (segments.length !== chars.length) {
+      alert(`이미지에서 찾은 숫자 조각 개수(${segments.length})와 입력한 자릿수(${chars.length})가 다릅니다.`);
+      return;
+    }
+
+    for (let i = 0; i < chars.length; i++) {
+      const d = parseInt(chars[i], 10);
+      const patch = extractDigitPatch(info, segments[i]);
+
+      if (!digitTemplates[d]) {
+        digitTemplates[d] = patch;
+      } else {
+        const tmpl = digitTemplates[d];
+        for (let k = 0; k < tmpl.length; k++) {
+          tmpl[k] = (tmpl[k] + patch[k]) >> 1;
+        }
+      }
+    }
+    updateTemplateStatus();
+    saveTemplatesToStorage();
+    alert(`숫자 ${valueStr} 에 대한 템플릿을 갱신했습니다.`);
+  }
+
+  function readNumberByTemplate(rect, preview=false) {
+    const info     = binarizeRegion(rect, preview);
+    const segments = segmentColumns(info);
+
+    if (segments.length === 0 || segments.length > 3) {
+      return { value:null, digits:[], segments };
+    }
+
+    const digits = [];
+    for (const seg of segments) {
+      const patch = extractDigitPatch(info, seg);
+      const d     = classifyDigit(patch);
+      if (d == null) return { value:null, digits, segments };
+      digits.push(d);
+    }
+
+    let value = 0;
+    for (const d of digits) value = value * 10 + d;
+    return { value, digits, segments };
+  }
+
+  // ===== 4. OCR 1회 / 자동 추적 =====
+  async function ocrOnce(doPreview = true) {
+    if (!video.srcObject) {
+      if (doPreview) alert('먼저 캡쳐를 시작해주세요.');
+      return;
+    }
+
+    const eastRect = {
+      x:Number(document.getElementById('eastX').value),
+      y:Number(document.getElementById('eastY').value),
+      w:Number(document.getElementById('eastW').value),
+      h:Number(document.getElementById('eastH').value)
+    };
+    const southRect = {
+      x:Number(document.getElementById('southX').value),
+      y:Number(document.getElementById('southY').value),
+      w:Number(document.getElementById('southW').value),
+      h:Number(document.getElementById('southH').value)
+    };
+
+    try {
+      const east  = readNumberByTemplate(eastRect,  doPreview);
+      const south = readNumberByTemplate(southRect, false);
+
+      const rawEastVal  = east.value;
+      const rawSouthVal = south.value;
+
+      pushHistory(eastHistory,  rawEastVal);
+      pushHistory(southHistory, rawSouthVal);
+
+      const eastMaj  = majorityValue(eastHistory);
+      const southMaj = majorityValue(southHistory);
+
+      const eastCandidate  = eastMaj.count  >= 2 ? eastMaj.value  : rawEastVal;
+      const southCandidate = southMaj.count >= 2 ? southMaj.value : rawSouthVal;
+
+      const floorChanged = autoDetectFloorByCoord(rawEastVal, rawSouthVal);
+
+      if (floorChanged) {
+        currentEast  = rawEastVal;
+        currentSouth = rawSouthVal;
+        eastHistory  = [rawEastVal];
+        southHistory = [rawSouthVal];
+      } else {
+        currentEast  = smoothCoord(currentEast,  eastCandidate);
+        currentSouth = smoothCoord(currentSouth, southCandidate);
+      }
+
+      ocrResultDiv.textContent =
+        `동 digits: ${east.digits.join('')} → raw=${rawEastVal}, maj=${eastMaj.value}\n` +
+        `남 digits: ${south.digits.join('')} → raw=${rawSouthVal}, maj=${southMaj.value}\n` +
+        `적용 좌표: 동 ${currentEast}, 남 ${currentSouth}`;
+
+      if (coordLive) {
+        coordLive.textContent = `현재 좌표(스무딩): 동 ${currentEast}, 남 ${currentSouth}`;
+      }
+
+      updateNavigation();
+    } catch (err) {
+      console.error(err);
+      ocrResultDiv.textContent = 'OCR 오류: ' + err.message;
+    }
+  }
+
+  ocrOnceBtn.addEventListener('click', () => ocrOnce(true));
+
+  function startAutoOcr() {
+    if (ocrLoopTimer) return;
+    if (!video.srcObject) {
+      alert('먼저 캡쳐를 시작해주세요.');
+      return;
+    }
+
+    autoBtn.textContent = '자동 추적 중지';
+
+    ocrLoopTimer = setInterval(async () => {
+      if (!video.srcObject) {
+        stopAutoOcr();
+        clearNavPath();
+        currentEast = currentSouth = null;
+        return;
+      }
+      if (ocrBusy) return;
+      ocrBusy = true;
+      try { await ocrOnce(false); }
+      finally { ocrBusy = false; }
+    }, OCR_INTERVAL);
+  }
+
+  function stopAutoOcr() {
+    if (!ocrLoopTimer) return;
+    clearInterval(ocrLoopTimer);
+    ocrLoopTimer = null;
+    autoBtn.textContent = '자동 추적 시작';
+  }
+
+  autoBtn.addEventListener('click', () => {
+    if (ocrLoopTimer) stopAutoOcr();
+    else startAutoOcr();
+  });
+
+  // 템플릿 학습/초기화
+  learnEastBtn.addEventListener('click', () => {
+    if (!video.srcObject) {
+      alert('먼저 캡쳐를 시작해주세요.');
+      return;
+    }
+    const eastRect = {
+      x:Number(document.getElementById('eastX').value),
+      y:Number(document.getElementById('eastY').value),
+      w:Number(document.getElementById('eastW').value),
+      h:Number(document.getElementById('eastH').value)
+    };
+    const valStr = learnEastInput.value;
+    learnFromRect(eastRect, valStr);
+  });
+
+  clearTemplatesBtn.addEventListener('click', () => {
+    for (let d = 0; d <= 9; d++) digitTemplates[d] = null;
+    eastHistory  = [];
+    southHistory = [];
+    currentEast  = null;
+    currentSouth = null;
+    updateTemplateStatus();
+    saveTemplatesToStorage();
+    alert('모든 숫자 템플릿을 초기화했습니다.');
+  });
+
+  loadTemplatesFromStorage();
+  updateTemplateStatus();
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'l' || e.key === 'L') {
+      if (currentEast != null && currentSouth != null) {
+        console.log(`{ e: ${currentEast}, s: ${currentSouth} },`);
+      } else {
+        console.log('현재 좌표 없음 (OCR 대기 중)');
+      }
+    }
+  });
+
+// ===== 4.y 네비게이션 Picture-in-Picture(PiP) =====
+async function enterNavPiP() {
+  if (!('pictureInPictureEnabled' in document)) {
+    alert('이 브라우저는 Picture-in-Picture 기능을 지원하지 않습니다.');
+    return;
+  }
+  if (!video.srcObject) {
+    alert('먼저 캡쳐를 시작해주세요.');
+    return;
+  }
+
+  try {
+    // 합성 렌더링 루프 시작
+    startPipRenderingLoop();
+
+    // pipCanvas 스트림을 PiP로 보내기
+    if (!pipVideo) {
+      pipVideo = document.createElement('video');
+      pipVideo.muted = true;
+      pipVideo.playsInline = true;
+      pipVideo.srcObject = pipCanvas.captureStream(30);
+
+      // ★ PiP 창을 X로 끄거나 "탭으로 돌아가기" 했을 때도 여기로 옴
+      pipVideo.addEventListener('leavepictureinpicture', () => {
+        exitNavPiP(true);   // fromEvent = true
+      });
+    }
+
+    await pipVideo.play();
+    await pipVideo.requestPictureInPicture();
+
+    pipActive = true;
+    pipBtn.textContent = '팝업 닫기';
+    setMainOverlayForPip(true);   // ★ 메인 화면을 검은 화면 + 문구로 교체
+  } catch (err) {
+    console.error(err);
+    alert('PiP 진입 중 오류가 발생했습니다.\n' + err.message);
+    stopPipRenderingLoop();
+  }
+}
+
+/**
+ * fromEvent:
+ *  - 사용자가 PiP 창에서 직접 닫았을 때 → true
+ *  - 페이지 버튼으로 닫을 때 → false
+ */
+async function exitNavPiP(fromEvent = false) {
+  try {
+    // 이벤트에서 온 경우에는 이미 PiP가 종료된 상태일 수 있으므로 재호출 금지
+    if (!fromEvent && document.pictureInPictureElement === pipVideo) {
+      await document.exitPictureInPicture();
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    pipActive = false;
+    pipBtn.textContent = 'pip모드로 보기';
+    stopPipRenderingLoop();
+    setMainOverlayForPip(false);   // ★ 메인 화면 복원
+  }
+}
+
+pipBtn.addEventListener('click', () => {
+  // 다른 요소가 PiP 중이면 우선 종료
+  if (document.pictureInPictureElement &&
+      document.pictureInPictureElement !== pipVideo) {
+    document.exitPictureInPicture().catch(()=>{});
+    return;
+  }
+
+  if (!pipActive) {
+    // 켜기
+    enterNavPiP();
+  } else {
+    // 끄기(페이지 버튼으로 끌 때)
+    exitNavPiP(false);
+  }
+});
+
+// ★ 더 이상 document 단위의 leavepictureinpicture 리스너는 필요 없음
+// document.addEventListener('leavepictureinpicture', ...) 부분은 전부 삭제
+
+
+  function handlePipLeave(event){
+  // 혹시 다른 video가 PiP를 썼을 경우 대비
+  if (event.target !== pipVideo) return;
+
+  pipActive = false;
+  pipBtn.textContent = 'pip모드로 보기';
+  stopPipRenderingLoop();
+  setMainOverlayForPip(false);   // ★ 메인 화면 복원(오버레이 숨기기)
+}
+
+  // ===== 4.x PiP용 합성 캔버스 렌더링 =====
+  function startPipRenderingLoop() {
+    if (pipAnimating) return;
+    pipAnimating = true;
+
+    const loop = () => {
+      if (!pipAnimating) return;
+      if (!video || !video.srcObject) {
+        pipAnimating = false;
+        return;
+      }
+
+      const vw = video.videoWidth;
+      const vh = video.videoHeight;
+      if (vw && vh) {
+        // 캔버스 크기 동기화
+        if (pipCanvas.width !== vw || pipCanvas.height !== vh) {
+          pipCanvas.width  = vw;
+          pipCanvas.height = vh;
+        }
+
+        // 1) 게임 화면
+        pipCtx.drawImage(video, 0, 0, pipCanvas.width, pipCanvas.height);
+        // 2) 네비 라인 캔버스
+        pipCtx.drawImage(navCanvas, 0, 0, pipCanvas.width, pipCanvas.height);
+      }
+
+      requestAnimationFrame(loop);
+    };
+
+    loop();
+  }
+
+  function stopPipRenderingLoop() {
+    pipAnimating = false;
+  }
+
+
+  // ===== 5. 관리자 모드  =====
+  const adminToggleBtn = document.getElementById('adminToggle');
+  let isAdmin = false;
+
+  const ADMIN_HASH = "4f43276989987a73f9beabd8d0fa966b326edd0d9ffc5b987f138d3481a0bec1";
+  async function sha256Hex(str){
+    if (!window.crypto || !crypto.subtle){
+      alert('이 브라우저에서는 관리자 모드를 사용할 수 없습니다 (crypto.subtle 미지원).');
+      throw new Error('crypto.subtle not supported');
+    }
+    const enc = new TextEncoder();
+    const data = enc.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray  = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function enableAdmin(){
+    const pw = prompt('관리자 비밀번호를 입력하세요.');
+    if (pw == null) return;
+    try{
+      const digest = await sha256Hex(pw);
+      if (digest === ADMIN_HASH){
+        isAdmin = true;
+        document.body.classList.add('admin-mode');
+        adminToggleBtn.textContent = '관리자 모드 해제';
+        alert('관리자 모드가 활성화되었습니다.');
+      }else{
+        alert('비밀번호가 올바르지 않습니다.');
+      }
+    }catch(e){
+      console.error(e);
+      alert('관리자 모드 활성화 중 오류가 발생했습니다.');
+    }
+  }
+
+  function disableAdmin(){
+    isAdmin = false;
+    document.body.classList.remove('admin-mode');
+    adminToggleBtn.textContent = '관리자 모드';
+  }
+
+  adminToggleBtn.addEventListener('click', () => {
+    if (isAdmin) disableAdmin();
+    else enableAdmin();
+  });
+</script>
+</body>
+</html>
+
+
+
+
+
