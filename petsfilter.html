@@ -782,6 +782,17 @@ function ensureMountAtLeastOne(e) {
   }
   render();
 }
+  function ensureGradeAtLeastOne(e) {
+  const boxes = $$(".grade");
+  const checked = boxes.filter(b => b.checked);
+
+  if (checked.length === 0) {
+    // 마지막 하나를 해제하려고 하면 다시 켜주기
+    e.target.checked = true;
+    showToast("최소 한 개 이상의 등급을 선택해야 합니다.");
+  }
+  render();
+}
 
 function render() {
   const f = getFilters();
@@ -851,8 +862,11 @@ function bindFilterEvents() {
   document.querySelector("#sortMode")?.addEventListener("change", render);
   // 주 속성 선택
   document.querySelector("#attrPick")?.addEventListener("change", render);
-  // 등급 체크박스
-  document.querySelectorAll(".grade").forEach(el => el.addEventListener("change", render));
+  // ★ 등급 체크박스: 최소 1개 유지
+  document.querySelectorAll(".grade").forEach(el => {
+    el.removeEventListener?.("change", ensureGradeAtLeastOne);
+    el.addEventListener("change", ensureGradeAtLeastOne);
+  });
   // 탑승 체크박스 (최소 1개 유지)
   document.querySelectorAll(".mount").forEach(el => {
     el.removeEventListener?.("change", ensureMountAtLeastOne);
