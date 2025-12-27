@@ -2,7 +2,7 @@
   {
     "name": "가가로스",
     "searchable": true,
-    "grade": 0,
+    "grade": "0",
     "attr": {
       "지": 0,
       "수": 2,
