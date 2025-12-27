@@ -178,7 +178,7 @@
     <div class="topbar">
       <div class="title">
         <h1>윈드 서버 페트 필터</h1>
-        <div class="muted">획득 경로 필터링은 공식 홈페이지를 이용해 주세요. </div>
+        <div class="muted">잘 부탁드립니다. </div>
       </div>
 
       <div class="topbar-actions">
@@ -263,6 +263,59 @@
             <div class="checks">
               <label class="check"><input type="checkbox" class="mount" value="가능" checked/> 탑승 가능</label>
               <label class="check"><input type="checkbox" class="mount" value="불가" checked/> 탑승 불가</label>
+            </div>
+          </div>
+          <div style="margin-top:10px;">
+            <div class="subTitle">획득 경로</div>
+            <div class="checks">
+              <label class="check">
+                <input type="radio" name="routeType" value="전체" checked>
+                <span>전체</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="포획">
+                <span>포획</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="퀘스트">
+                <span>퀘스트</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="복권">
+                <span>복권</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="코스">
+                <span>코스</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="VIP">
+                <span>VIP</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="레이드">
+                <span>레이드</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="이벤트">
+                <span>이벤트</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="듀얼보상">
+                <span>듀얼보상</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="진화">
+                <span>진화</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="환생">
+                <span>환생</span>
+              </label>
+              <label class="check">
+                <input type="radio" name="routeType" value="기타">
+                <span>기타</span>
+              </label>
             </div>
           </div>
         </div>
@@ -400,6 +453,8 @@ function isDualExactSum10(attr, high) {
 function fmt(x) { return (x==null || Number.isNaN(x)) ? "—" : (Math.round(x*100)/100).toFixed(2); }
 
 function getFilters() {
+  const routeRadio = document.querySelector('input[name="routeType"]:checked');
+  const routeType  = routeRadio ? routeRadio.value : "전체";
   const highInput = $("#dual_high");
   let high = parseInt(highInput?.value || "5", 10);
   if (Number.isNaN(high)) high = 5;
@@ -413,6 +468,7 @@ function getFilters() {
     dualLow: low,
     grades: $$(".grade").filter(el=>el.checked).map(el=>el.value),
     mounts: $$(".mount").filter(el=>el.checked).map(el=>el.value),
+    routeType,
     min_init_hp: parseFloat($("#min_init_hp").value)||0,
     min_init_atk: parseFloat($("#min_init_atk").value)||0,
     min_init_def: parseFloat($("#min_init_def").value)||0,
@@ -449,6 +505,12 @@ function match(p, f) {
 
   const mountState = p.mount ? "가능" : "불가";
   if (!f.mounts.includes(mountState)) return false;
+  
+  if (f.routeType && f.routeType !== "전체") {
+    const rt = p.routeType || "기타";   // JSON에 들어간 routeType 사용
+    if (rt !== f.routeType) return false;
+  }
+
 
   const I = p.s0 || p.init || {};
   const G = p.sg || p.grow || {};
