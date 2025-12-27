@@ -117,16 +117,6 @@
     padding:8px 12px; cursor:pointer; height:38px; display:inline-flex; align-items:center; justify-content:center;
   }
   .backBtn:hover, .adminLogin:hover{ border-color:#2a3a59; color:#c6d0e0; }
-.routeSelect{
-  width:100%;
-  padding:6px 10px;
-  border-radius:999px;
-  border:1px solid var(--line2);
-  background:var(--tab);
-  color:var(--text);
-  font-size:13px;
-  font-weight:900;
-}
 
   .dualAdv{display:none; margin-top:8px; gap:8px; grid-template-columns: 1fr 90px 1fr}
   .dualAdv.active{display:grid}
@@ -184,10 +174,6 @@
   color:var(--muted);
 }
 
-  .routeSelect{
-  width: 100%;
-}
-
 /* 모바일에서는 위아래로 자연스럽게 나눔 */
 @media (max-width: 780px){
   .filter-toolbar{
@@ -223,7 +209,7 @@
           <!-- 로그아웃 버튼 추가 -->
           <button class="btn" id="adminLogoutBtn">로그아웃</button>
         </div>
-        <a class="backBtn" id="backBtn" href="https://wind01.net/info/pet.html">공식 윈드 페트정보</a>
+        <a class="backBtn" id="wdhomeBtn" href="https://wind01.net/info/pet.html">공식 윈드 페트정보</a>
         <a class="backBtn" id="backBtn" href="https://kokudas.github.io/SAwind/">계산기로 돌아가기</a>
         <button class="adminLogin" id="adminLoginBtn">♪</button>
       </div>
@@ -296,29 +282,29 @@
               <label class="check"><input type="checkbox" class="mount" value="불가" checked/> 탑승 불가</label>
             </div>
           </div>
-          <div style="margin-top:10px;">
-<div class="filterCol">
-  <div class="filterTitle">획득 경로</div>
-  <div class="checks">
-  <select id="routeType" class="routeSelect">
-    <option value="">전체</option>
-    <option value="포획">포획</option>
-    <option value="퀘스트">퀘스트</option>
-    <option value="복권">복권</option>
-    <option value="코스">코스</option>
-    <option value="VIP">VIP</option>
-    <option value="레이드">레이드</option>
-    <option value="이벤트">이벤트</option>
-    <option value="듀얼보상">듀얼보상</option>
-    <option value="진화">진화</option>
-    <option value="환생">환생</option>
-    <option value="기타">기타</option>
-  </select>
-</div>
-  <div class="filterDesc mini">획득 경로 기준으로 필터링합니다.</div>
+<div style="margin-top:10px;">
+  <div class="filterCol">
+    <div class="filterTitle">획득 경로</div>
+    <div class="checks">
+      <select id="routeType" class="routeSelect">
+        <option value="">전체</option>
+        <option value="포획">포획</option>
+        <option value="퀘스트">퀘스트</option>
+        <option value="복권">복권</option>
+        <option value="코스">코스</option>
+        <option value="VIP">VIP</option>
+        <option value="레이드">레이드</option>
+        <option value="이벤트">이벤트</option>
+        <option value="듀얼보상">듀얼보상</option>
+        <option value="진화">진화</option>
+        <option value="환생">환생</option>
+        <option value="기타">기타</option>
+      </select>
+    </div>
+    <div class="filterDesc mini">획득 경로 기준으로 필터링합니다.</div>
+  </div>
 </div>
 
-        </div>
       </div>
       <div class="card">
         <label class="section">최소치 (이상)</label>
