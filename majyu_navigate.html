@@ -20,11 +20,7 @@
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       padding:16px;
     }
-    h1{
-      font-size:1.2rem;
-      margin-bottom:8px;
-      font-weight:700;
-    }
+    h1{font-size:1.1rem;margin-bottom:8px;}
 
     .controls{
       background:var(--panel);
@@ -61,10 +57,10 @@
     }
     .controls select{
       font-size:.8rem;
-      padding:3px 6px;
+      padding:2px 6px;
       border-radius:6px;
-      border:1px solid #2d3248;
-      background:#060812;
+      border:1px solid #23263b;
+      background:#0d1020;
       color:var(--text);
     }
     .controls .spacer{flex:1;}
@@ -108,20 +104,17 @@
       justify-content:center;
       background:#000;
       color:#fff;
-      font-size:1.1rem;
+      font-size:1.3rem;
       font-weight:600;
       z-index:10;
       pointer-events:none;
-      text-align:center;
     }
 
-    /* PiP 활성화 시 메인 화면을 검은 화면 + 문구로 교체 */
-    body.pip-active #stage #screenVideo,
-    body.pip-active #stage #navCanvas{
-      opacity:0;
-    }
-    body.pip-active #stage #pipOverlay{
-      display:flex;
+    .hint{
+      margin-top:8px;
+      font-size:0.85rem;
+      color:#FAFAF8;
+      line-height:1.5;
     }
 
     .ocr-panel{
@@ -142,7 +135,6 @@
       white-space:pre-line;
     }
 
-    /* 관리자 전용: 기본 숨김, admin-mode일 때만 보여줌 */
     .admin-only{display:none;}
     body.admin-mode .admin-only{
       display:flex;
@@ -152,52 +144,32 @@
       margin-top:8px;
     }
 
-    .hint{
-      margin-top:10px;
-      background:var(--panel);
-      border-radius:10px;
-      padding:10px 12px;
-      box-shadow:0 6px 18px rgba(0,0,0,.35);
-      font-size:.85rem;
-      color:#f5f6ff;
-      line-height:1.5;
+    .config-tools{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px 10px;
+      align-items:center;
+      font-size:0.75rem;
     }
-    .hint b{
-      color:#ffeb95;
+    .config-tools button{
+      font-size:0.75rem;
+      padding:4px 8px;
     }
-    .hint-section-title{
-      font-weight:700;
-      margin-top:4px;
-      margin-bottom:2px;
-      color:#e6ecff;
-    }
-    .hint ul{
-      padding-left:1.1rem;
-      margin:4px 0 6px;
-    }
-    .hint li{
-      margin-bottom:2px;
-    }
-    .hint img{
-      margin-top:4px;
-      max-width:100%;
-      border-radius:6px;
-      border:1px solid #30364f;
+    .config-tools input[type="file"]{
+      font-size:0.7rem;
     }
   </style>
 </head>
 <body>
   <h1>StoneAge 마쥬의 미로 네비게이션</h1>
 
-  <!-- 상단 컨트롤 -->
   <div class="controls">
     <button id="startBtn">캡쳐 시작</button>
 
     <label>
       서버
       <select id="serverSelect">
-        <option value="NOVA">NOVA</option>
-        <option value="HAPPY">HAPPY</option>
+        <option value="NOVA&HAPPY">NOVA &amp; HAPPY</option>
         <option value="WIND">WIND</option>
       </select>
     </label>
@@ -212,9 +184,9 @@
       </select>
     </label>
 
-    <button id="ocrOnceBtn">좌표 OCR 1회</button>
+    <button id="ocrOnceBtn">좌표 OCR 1회 테스트</button>
     <button id="autoOcrToggle">자동 추적 시작</button>
-    <button id="pipBtn" class="secondary">PiP 모드</button>
+    <button id="pipBtn" class="secondary">PIP 모드로 보기</button>
 
     <div class="spacer"></div>
 
@@ -222,24 +194,17 @@
     <button id="adminToggle" class="secondary">관리자 모드</button>
   </div>
 
-  <!-- 게임 캡쳐 + 네비 라인 -->
   <div class="stage-wrap">
     <div id="stage">
       <video id="screenVideo" autoplay playsinline></video>
       <canvas id="navCanvas"></canvas>
       <div id="pipOverlay" class="pip-overlay">
-        Picture-in-Picture 모드에서<br>재생 중입니다.
+        PIP 모드에서 재생 중
       </div>
     </div>
   </div>
 
-  <!-- 관리자 전용 OCR 상세 설정 -->
   <div class="ocr-panel">
-    <div style="font-size:.78rem;color:var(--muted);margin-bottom:4px;">
-      ※ NOVA & HAPPY 서버는 미니맵을 키지 않고 진행해도 됩니다.<br>
-      &nbsp;&nbsp;WIND 서버는 반드시 미니맵을 켜고 진행해 주세요.
-    </div>
-
     <div class="admin-only">
       <label>동 X <input id="eastX"  type="number" value="880" style="width:60px;"></label>
       <label>Y    <input id="eastY"  type="number" value="780" style="width:60px;"></label>
@@ -261,160 +226,129 @@
         <button id="learnEastBtn">동 템플릿 학습</button>
         <button id="clearTemplatesBtn" class="secondary">템플릿 초기화</button>
       </div>
-      <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:0.75rem;margin-top:4px;">
-        <button id="exportConfigBtn" class="secondary">설정 JSON 내보내기</button>
-        <button id="importConfigBtn" class="secondary">설정 JSON 불러오기</button>
-        <input id="configFileInput" type="file" accept="application/json" style="display:none;">
-      </div>
       <div class="ocr-result" id="templateStatus">템플릿 상태: 없음</div>
+
+      <div class="config-tools">
+        <button id="exportConfigBtn" class="secondary">서버 설정 JSON 내보내기</button>
+        <label>
+          JSON 불러오기
+          <input id="importConfigInput" type="file" accept="application/json">
+        </label>
+      </div>
     </div>
   </div>
 
-  <!-- 사용 방법 / 참고 사항 -->
   <div class="hint">
-    <div class="hint-section-title">▶ 사용 순서</div>
-    <ul>
-      <li>StoneAge를 <b>"1024x768"</b> 해상도의 창모드로 띄워둔다.</li>
-      <li>게임 내 폰트를 <b>"굴림체"</b>로 설정한다.</li>
-      <li>상단에서 <b>서버</b>를 선택한다. (NOVA / HAPPY / WIND)</li>
-      <li><b>캡쳐 시작</b> 버튼을 누르고, 게임 창을 선택한다.</li>
-      <li>게임 화면 우측 하단의 좌표가 모두 보이도록 창 위치를 조정한다.</li>
-      <li><b>자동 추적 시작</b>을 누르면 좌표와 네비 라인이 자동 갱신된다.</li>
-      <li>1~3층은 좌표에 따라 자동으로 층수 전환이 된다.</li>
-      <li>3층 클리어 후 캡쳐 종료 → 끈 자르는 돌 준비 후 1층 재입장 → 층을 <b>끈돌</b>로 바꾸고 다시 추적 시작.</li>
-    </ul>
-
-    <div class="hint-section-title">★ 참고 사항</div>
-    <ul>
-      <li>끈 보따리 좌표: <b>(281,48) / (163,12) / (145,54)</b></li>
-    </ul>
-    <img src="https://raw.githubusercontent.com/Kokudas/Kokudas.github.io/main/majyu_help.png"
-         alt="이미지를 찾지 못했습니다.">
-
-    <ul>
-      <li>캡쳐 이후 윈도우 전체가 버벅일 경우,<br>
-        <b>Ctrl+Alt+Del → 작업 관리자 → Windows 탐색기(explorer.exe) 다시 시작</b>을 권장합니다.</li>
-    </ul>
-
-    <div class="hint-section-title">☆ 문의 / 사용 매너</div>
-    <ul>
-      <li>문의: <b>과장 (kokodas#0339)</b></li>
-      <li>따잇하실 경우, <b>사전 연락 또는 출처 표기</b> 정도의 매너는 지켜주세요.</li>
-      <li>테스트 완료 서버: <b>NOVA, HAPPY</b></li>
-    </ul>
+    ▶ <b>사용 순서</b><br>
+    1) StoneAge를 <b>"1024x768"</b> 해상도의 창모드로 띄워둔다.<br>
+    2) 게임 내 폰트를 <b>"굴림체"</b>로 수정한다.<br>
+    3) <b>캡쳐 시작</b> 버튼을 누르고, 게임 창을 선택한다.<br>
+    4) <b>게임 화면 중 우측 하단의 좌표가 모두 노출되게 창의 위치를 조정한다.</b><br>
+    5) <b>자동 추적 시작</b>을 누르면 좌표와 네비 라인이 자동으로 갱신된다.<br>
+    6) <b>1~3층은 자동으로 층수전환이 되고, 3층 마무리 후 캡쳐 종료한 다음,<br>
+       끈 자르는 돌 구비 후 다시 1층 진입 후 직접 수동으로 층수를 "끈돌"층으로 바꾼 후 다시 킨다.</b> <br>
+    <br>
+    ★ <b>참고 사항</b><br>
+    1) 끈 보따리의 좌표는 각각 <b>(281,48) / (163,12) / (145,54)</b> 입니다.<br>
+    2) <b>캡쳐가 끝나고 윈도우 자체 렉 발생 시,<br>
+       ctrl+alt+del 작업관리자에서 windows 탐색기 혹은 explorer.exe를 다시 시작해 주세요.</b><br>
+    <br>
+    <b>☆ 본 유틸에 대한 문의사항은 과장(kokodas#0339)로 문의주세요.</b><br>
+    <b>따잇하실 경우, 미리 연락 혹은 출처라도 남겨주는 매너를 지켜주세요.</b><br>
+    <b>테스트 완료 서버 : NOVA, HAPPY</b>
   </div>
 
 <script>
-  // ===== 0. 기본 DOM/상태 =====
-  const startBtn   = document.getElementById('startBtn');
-  const video      = document.getElementById('screenVideo');
-  const navCanvas  = document.getElementById('navCanvas');
-  const navCtx     = navCanvas.getContext('2d');
-  const pipOverlay = document.getElementById('pipOverlay');
+  // ==========================
+  // 0. 기본 설정 / 전역 상태
+  // ==========================
+  const CONFIG_URL = "data/majyu_ocr_servers.json"; // GitHub 내 JSON 경로
 
-  const serverSelect = document.getElementById('serverSelect');
-  const floorSelect  = document.getElementById('floorSelect');
-  const ocrOnceBtn   = document.getElementById('ocrOnceBtn');
-  const autoBtn      = document.getElementById('autoOcrToggle');
-  const coordLive    = document.getElementById('coordLive');
+  let serverConfig = { version: 1, servers: {} };
+  let currentServerId = "NOVA&HAPPY";
 
-  const coordCanvas  = document.getElementById('coordCanvas');
-  const coordCtx     = coordCanvas.getContext('2d');
-  const ocrResultDiv = document.getElementById('ocrResult');
+  // 네비 경로 정의(실제 데이터는 따로 관리)
+  let FLOOR_PATHS = {};
+  /*
+  // 실제 프로젝트에서 사용할 FLOOR_PATHS 예시 (여기에 원본 데이터 붙여 넣기)
+  FLOOR_PATHS = {
+    "1F": { label: "미로 1층", raw: [ ... ] },
+    "2F": { label: "미로 2층", raw: [ ... ] },
+    "3F": { label: "미로 3층", raw: [ ... ] },
+    "4F": { label: "끈돌",    raw: [ ... ] }
+  };
+  */
+
+  // 빌트인 템플릿이 필요하면 여기에 따로 붙여 넣을 수 있음
+  const BUILTIN_TEMPLATES = {};
+  /*
+  const BUILTIN_TEMPLATES = {
+    "0": [ ... ],
+    "1": [ ... ],
+    ...
+    "9": [ ... ]
+  };
+  */
+
+  // ==========
+  // 1. DOM 참조
+  // ==========
+  const startBtn      = document.getElementById('startBtn');
+  const video         = document.getElementById('screenVideo');
+  const navCanvas     = document.getElementById('navCanvas');
+  const navCtx        = navCanvas.getContext('2d');
+  const pipOverlay    = document.getElementById('pipOverlay');
+
+  const floorSelect   = document.getElementById('floorSelect');
+  const ocrOnceBtn    = document.getElementById('ocrOnceBtn');
+  const autoBtn       = document.getElementById('autoOcrToggle');
+  const coordLive     = document.getElementById('coordLive');
+  const pipBtn        = document.getElementById('pipBtn');
+  const serverSelect  = document.getElementById('serverSelect');
+
+  const coordCanvas   = document.getElementById('coordCanvas');
+  const coordCtx      = coordCanvas.getContext('2d');
+  const ocrResultDiv  = document.getElementById('ocrResult');
+  const templateStatus= document.getElementById('templateStatus');
 
   const learnEastInput    = document.getElementById('learnEastValue');
   const learnEastBtn      = document.getElementById('learnEastBtn');
   const clearTemplatesBtn = document.getElementById('clearTemplatesBtn');
-  const templateStatus    = document.getElementById('templateStatus');
-  const exportConfigBtn = document.getElementById('exportConfigBtn');
-  const importConfigBtn = document.getElementById('importConfigBtn');
-  const configFileInput = document.getElementById('configFileInput');
+  const exportConfigBtn   = document.getElementById('exportConfigBtn');
+  const importConfigInput = document.getElementById('importConfigInput');
 
+  const eastXInput  = document.getElementById('eastX');
+  const eastYInput  = document.getElementById('eastY');
+  const eastWInput  = document.getElementById('eastW');
+  const eastHInput  = document.getElementById('eastH');
+  const southXInput = document.getElementById('southX');
+  const southYInput = document.getElementById('southY');
+  const southWInput = document.getElementById('southW');
+  const southHInput = document.getElementById('southH');
 
-  // ===== 서버별 설정 저장용 키 =====
-  const SERVER_ID_KEY           = 'saCurrentServerId.v1';
-  const TEMPLATE_STORAGE_PREFIX = 'saDigitTemplates.v1.';
-  const RECT_STORAGE_PREFIX     = 'saOcrRectConfig.v1.';
-  let currentServerId = 'NOVA';
-
-  const DEFAULT_RECT = {
-    eastX: 880, eastY: 780, eastW: 20, eastH: 17,
-    southX: 930, southY: 780, southW: 20, southH: 17
-  };
-
-  const rectInputIds = ['eastX','eastY','eastW','eastH','southX','southY','southW','southH'];
-  const rectInputs   = rectInputIds.map(id => document.getElementById(id));
-
-  function applyRectConfigToInputs(cfg){
-    const c = Object.assign({}, DEFAULT_RECT, cfg || {});
-    if (document.getElementById('eastX'))  document.getElementById('eastX').value  = c.eastX;
-    if (document.getElementById('eastY'))  document.getElementById('eastY').value  = c.eastY;
-    if (document.getElementById('eastW'))  document.getElementById('eastW').value  = c.eastW;
-    if (document.getElementById('eastH'))  document.getElementById('eastH').value  = c.eastH;
-    if (document.getElementById('southX')) document.getElementById('southX').value = c.southX;
-    if (document.getElementById('southY')) document.getElementById('southY').value = c.southY;
-    if (document.getElementById('southW')) document.getElementById('southW').value = c.southW;
-    if (document.getElementById('southH')) document.getElementById('southH').value = c.southH;
-  }
-
-  function loadRectsFromStorage(serverId){
-    try{
-      const text = localStorage.getItem(RECT_STORAGE_PREFIX + serverId);
-      if (text){
-        const cfg = JSON.parse(text);
-        applyRectConfigToInputs(cfg);
-        console.log('rect config loaded for server:', serverId);
-      }else{
-        applyRectConfigToInputs(DEFAULT_RECT);
-        console.log('rect config default used for server:', serverId);
-      }
-    }catch(e){
-      console.error('loadRectsFromStorage error:', e);
-      applyRectConfigToInputs(DEFAULT_RECT);
-    }
-  }
-
-  function saveRectsToStorage(serverId){
-    try{
-      const cfg = {
-        eastX:  Number(document.getElementById('eastX').value)  || DEFAULT_RECT.eastX,
-        eastY:  Number(document.getElementById('eastY').value)  || DEFAULT_RECT.eastY,
-        eastW:  Number(document.getElementById('eastW').value)  || DEFAULT_RECT.eastW,
-        eastH:  Number(document.getElementById('eastH').value)  || DEFAULT_RECT.eastH,
-        southX: Number(document.getElementById('southX').value) || DEFAULT_RECT.southX,
-        southY: Number(document.getElementById('southY').value) || DEFAULT_RECT.southY,
-        southW: Number(document.getElementById('southW').value) || DEFAULT_RECT.southW,
-        southH: Number(document.getElementById('southH').value) || DEFAULT_RECT.southH
-      };
-      localStorage.setItem(RECT_STORAGE_PREFIX + serverId, JSON.stringify(cfg));
-    }catch(e){
-      console.error('saveRectsToStorage error:', e);
-    }
-  }
-
-  rectInputs.forEach(input => {
-    if (!input) return;
-    input.addEventListener('change', () => {
-      saveRectsToStorage(currentServerId);
-    });
-  });
-
-  // ----- PiP 관련 DOM/상태 -----
-  const pipBtn    = document.getElementById('pipBtn');
-  let pipVideo    = null;
-  const pipCanvas = document.createElement('canvas');
-  const pipCtx    = pipCanvas.getContext('2d');
-  let pipActive   = false;
+  // PiP 관련
+  let pipVideo   = null;
+  const pipCanvas= document.createElement('canvas');
+  const pipCtx   = pipCanvas.getContext('2d');
+  let pipActive  = false;
   let pipAnimating = false;
 
+  // OCR / 캡쳐 상태
   const OCR_INTERVAL = 200;
   let currentStream  = null;
 
+  // ============
+  // 2. 캡쳐 제어
+  // ============
   function setMainOverlayForPip(active){
     if (active){
-      document.body.classList.add('pip-active');
+      if (video)     video.style.opacity = '0';
+      if (navCanvas) navCanvas.style.opacity = '0';
+      if (pipOverlay) pipOverlay.style.display = 'flex';
     }else{
-      document.body.classList.remove('pip-active');
+      if (video)     video.style.opacity = '1';
+      if (navCanvas) navCanvas.style.opacity = '1';
+      if (pipOverlay) pipOverlay.style.display = 'none';
       updateNavigation();
     }
   }
@@ -433,7 +367,7 @@
       document.exitPictureInPicture().catch(()=>{});
     }
     pipActive = false;
-    if (pipBtn) pipBtn.textContent = 'PiP 모드';
+    if (pipBtn) pipBtn.textContent = 'PIP 모드로 보기';
 
     setMainOverlayForPip(false);
   }
@@ -464,7 +398,6 @@
 
       video.onloadedmetadata = () => {
         video.play().catch(()=>{});
-        console.log('video size:', video.videoWidth, video.videoHeight);
         if (navCanvas) {
           navCanvas.width  = video.videoWidth;
           navCanvas.height = video.videoHeight;
@@ -478,91 +411,9 @@
 
   window.addEventListener('beforeunload', cleanupCapture);
 
-  // ===== 2. 층 경로 정의 / 자동 층 전환 =====
-  const FLOOR_PATHS = {
-    "1F": {
-      label: "미로 1층",
-      raw: [
-        {e:4,s:6},{e:4,s:12},{e:10,s:12},{e:10,s:35},{e:16,s:35},{e:16,s:12},
-        {e:36,s:12},{e:36,s:18},{e:22,s:18},{e:22,s:24},{e:36,s:24},{e:36,s:30},
-        {e:22,s:30},{e:22,s:36},{e:45,s:36},{e:45,s:42},{e:30,s:42},{e:30,s:48},
-        {e:51,s:48},{e:51,s:42},{e:78,s:42},{e:78,s:36},{e:84,s:36},{e:84,s:48},
-        {e:108,s:48},{e:108,s:66},{e:114,s:66},{e:114,s:48},{e:120,s:48},{e:120,s:57},
-        {e:138,s:57},{e:138,s:48},{e:162,s:48},{e:162,s:18},{e:156,s:18},{e:156,s:6},
-        {e:198,s:6},{e:198,s:27},{e:204,s:27},{e:204,s:6},{e:240,s:6},{e:240,s:18},
-        {e:264,s:18},{e:264,s:12},{e:246,s:12},{e:246,s:6},{e:270,s:6},{e:270,s:24},
-        {e:276,s:24},{e:276,s:6},{e:288,s:6},{e:288,s:36},{e:270,s:36},{e:270,s:42},
-        {e:288,s:42},{e:288,s:72},{e:264,s:72},{e:264,s:78},{e:288,s:78},{e:288,s:121},
-        {e:252,s:121},{e:252,s:133},{e:258,s:133},{e:258,s:127},{e:288,s:127},{e:288,s:133},
-        {e:264,s:133},{e:264,s:139},{e:240,s:140},{e:240,s:152},{e:246,s:152},{e:246,s:146},
-        {e:270,s:146},{e:270,s:140},{e:288,s:140},{e:288,s:158},{e:282,s:158},{e:282,s:146},
-        {e:276,s:146},{e:276,s:164},{e:288,s:164},{e:289,s:168}
-      ]
-    },
-    "2F": {
-      label: "미로 2층",
-      raw: [
-        {e:232,s:12},{e:231,s:87},{e:225,s:87},{e:225,s:63},{e:219,s:63},{e:219,s:81},
-        {e:213,s:81},{e:213,s:57},{e:207,s:57},{e:207,s:75},{e:201,s:75},{e:201,s:57},
-        {e:195,s:57},{e:195,s:75},{e:183,s:75},{e:183,s:105},{e:195,s:105},{e:195,s:117},
-        {e:201,s:117},{e:201,s:135},{e:195,s:135},{e:195,s:123},{e:189,s:123},{e:189,s:135},
-        {e:183,s:135},{e:183,s:111},{e:177,s:111},{e:177,s:87},{e:171,s:87},{e:171,s:99},
-        {e:165,s:99},{e:165,s:87},{e:147,s:87},{e:147,s:75},{e:141,s:75},{e:141,s:98},
-        {e:153,s:99},{e:153,s:105},{e:135,s:105},{e:135,s:75},{e:129,s:75},{e:129,s:111},
-        {e:132,s:111},{e:132,s:120},{e:126,s:120},{e:126,s:117},{e:123,s:117},{e:123,s:93},
-        {e:99,s:93},{e:99,s:99},{e:117,s:99},{e:117,s:123},{e:120,s:123},{e:120,s:135},
-        {e:114,s:135},{e:114,s:129},{e:111,s:129},{e:111,s:123},{e:87,s:123},{e:87,s:117},
-        {e:111,s:117},{e:111,s:105},{e:93,s:105},{e:93,s:93},{e:87,s:93},{e:87,s:105},
-        {e:81,s:105},{e:81,s:87},{e:75,s:87},{e:75,s:99},{e:63,s:99},{e:63,s:105},
-        {e:75,s:105},{e:75,s:117},{e:69,s:117},{e:69,s:129},{e:63,s:129},{e:63,s:123},
-        {e:51,s:123},{e:51,s:129},{e:33,s:129},{e:33,s:147},{e:27,s:147},{e:27,s:123},
-        {e:45,s:123},{e:45,s:117},{e:63,s:117},{e:63,s:111},{e:45,s:111},{e:45,s:81},
-        {e:57,s:81},{e:57,s:75},{e:33,s:75},{e:33,s:69},{e:57,s:69},{e:57,s:63},
-        {e:81,s:63},{e:81,s:75},{e:87,s:75},{e:87,s:51},{e:75,s:51},{e:75,s:57},
-        {e:45,s:57},{e:45,s:51},{e:69,s:51},{e:69,s:45},{e:81,s:45},{e:81,s:39},
-        {e:69,s:39},{e:69,s:21},{e:57,s:21},{e:57,s:39},{e:51,s:39},{e:51,s:15},
-        {e:69,s:15},{e:69,s:9},{e:45,s:9},{e:45,s:18},{e:39,s:18},{e:39,s:9},
-        {e:13,s:8}
-      ]
-    },
-    "3F": {
-      label: "미로 3층",
-      raw: [
-        {e:96,s:4},{e:96,s:10},{e:137,s:11},{e:147,s:23},{e:150,s:27},{e:155,s:39},
-        {e:150,s:44},{e:154,s:51},{e:157,s:61},{e:164,s:71},{e:171,s:84},{e:176,s:93},
-        {e:173,s:101},{e:165,s:114},{e:170,s:118},{e:164,s:129},{e:156,s:140},{e:144,s:153},
-        {e:132,s:165},{e:59,s:165},{e:64,s:158},{e:121,s:158},{e:120,s:144},{e:76,s:144},
-        {e:76,s:136},{e:74,s:132},{e:67,s:122},{e:60,s:111},{e:64,s:106},{e:59,s:92},
-        {e:51,s:82},{e:57,s:73},{e:63,s:63},{e:69,s:52},{e:72,s:46},{e:76,s:42},
-        {e:96,s:42},{e:117,s:42},{e:122,s:46},{e:123,s:53},{e:119,s:58},{e:121,s:62},
-        {e:126,s:70},{e:131,s:80},{e:135,s:89},{e:126,s:102},{e:117,s:113},{e:110,s:122},
-        {e:91,s:123},{e:87,s:120},{e:80,s:110},{e:73,s:100},{e:68,s:92},{e:65,s:85},
-        {e:68,s:79},{e:72,s:75},{e:71,s:73},{e:75,s:68},{e:79,s:64},{e:106,s:63},
-        {e:110,s:75},{e:106,s:79},{e:96,s:71},{e:90,s:72},{e:86,s:80},{e:87,s:88},
-        {e:95,s:88},{e:102,s:93}
-      ]
-    },
-    "4F": {
-      label: "끈돌",
-      raw: [
-        {e:4,s:6},{e:4,s:12},{e:10,s:12},{e:10,s:35},{e:16,s:35},{e:16,s:12},
-        {e:36,s:12},{e:36,s:18},{e:22,s:18},{e:22,s:24},{e:36,s:24},{e:36,s:30},
-        {e:22,s:30},{e:22,s:36},{e:45,s:36},{e:45,s:42},{e:30,s:42},{e:30,s:48},
-        {e:51,s:48},{e:51,s:42},{e:78,s:42},{e:78,s:36},{e:84,s:36},{e:84,s:48},
-        {e:108,s:48},{e:108,s:66},{e:114,s:66},{e:114,s:48},{e:120,s:48},{e:120,s:57},
-        {e:138,s:57},{e:138,s:48},{e:162,s:48},{e:162,s:18},{e:156,s:18},{e:156,s:6},
-        {e:198,s:6},{e:198,s:27},{e:204,s:27},{e:204,s:6},{e:240,s:6},{e:240,s:18},
-        {e:264,s:18},{e:264,s:12},{e:246,s:12},{e:246,s:6},{e:270,s:6},{e:270,s:24},
-        {e:276,s:24},{e:276,s:6},{e:288,s:6},{e:288,s:36},{e:270,s:36},{e:270,s:42},
-        {e:264,s:42},{e:264,s:30},{e:258,s:30},{e:258,s:48},{e:281,s:48},{e:252,s:48},
-        {e:252,s:24},{e:234,s:24},{e:234,s:14},{e:216,s:14},{e:216,s:21},{e:210,s:21},
-        {e:210,s:33},{e:180,s:33},{e:180,s:48},{e:174,s:48},{e:174,s:27},{e:186,s:27},
-        {e:186,s:12},{e:180,s:12},{e:180,s:21},{e:174,s:21},{e:174,s:12},{e:163,s:12},
-        {e:168,s:12},{e:168,s:54},{e:145,s:54}
-      ]
-    }
-  };
-
+  // ===============================
+  // 3. 네비 경로 / 층 자동 전환 로직
+  // ===============================
   function expandPath(nodes) {
     const out = [];
     for (let i = 0; i < nodes.length - 1; i++) {
@@ -592,7 +443,7 @@
   }
 
   let currentFloorId = "1F";
-  let pathPoints     = FLOOR_PATH_POINTS[currentFloorId];
+  let pathPoints     = FLOOR_PATH_POINTS[currentFloorId] || [];
 
   function clearNavPath() {
     if (!navCanvas || !navCtx) return;
@@ -602,7 +453,7 @@
   function applyFloor(newFloorId, resetHistory = true) {
     const pts = FLOOR_PATH_POINTS[newFloorId];
     if (!pts || !pts.length) {
-      console.warn("정의되지 않은 층:", newFloorId);
+      console.warn("정의되지 않은 층 또는 경로 없음:", newFloorId);
       return;
     }
     currentFloorId = newFloorId;
@@ -630,7 +481,11 @@
   const AUTO_FLOORS         = ["1F", "2F", "3F"];
   const AUTO_FLOOR_MAX_DIST = 3;
   const FLOOR_CHANGE_MARGIN = 1;
-  const FLOOR_ORDER = { "1F":1, "2F":2, "3F":3 };
+  const FLOOR_ORDER = {
+    "1F": 1,
+    "2F": 2,
+    "3F": 3
+  };
 
   const CHAR_OFFSET_X = 0;
   const CHAR_OFFSET_Y = 14;
@@ -675,6 +530,7 @@
       if (!pts || !pts.length) continue;
 
       const res = findClosestIndexOnPath(e, s, pts);
+
       if (res.dist + FLOOR_CHANGE_MARGIN < bestDist) {
         bestDist  = res.dist;
         bestFloor = floorId;
@@ -683,8 +539,13 @@
 
     if (bestFloor === currentFloorId) return false;
     if (bestDist > AUTO_FLOOR_MAX_DIST) return false;
-    if (FLOOR_ORDER[bestFloor] < FLOOR_ORDER[currentFloorId]) return false;
-    if (Math.abs(FLOOR_ORDER[bestFloor] - FLOOR_ORDER[currentFloorId]) > 1) return false;
+
+    if (FLOOR_ORDER[bestFloor] < FLOOR_ORDER[currentFloorId]) {
+      return false;
+    }
+    if (Math.abs(FLOOR_ORDER[bestFloor] - FLOOR_ORDER[currentFloorId]) > 1) {
+      return false;
+    }
 
     console.log(
       `auto floor change: ${currentFloorId} → ${bestFloor} (curDist=${curDist}, bestDist=${bestDist})`
@@ -702,6 +563,7 @@
 
   function drawNavPathFrom(idxStart) {
     if (!navCanvas || !navCtx) return;
+    if (!pathPoints || !pathPoints.length) return;
     clearNavPath();
     if (currentEast == null || currentSouth == null) return;
     if (idxStart < 0 || idxStart >= pathPoints.length) return;
@@ -731,7 +593,7 @@
   }
 
   function updateNavigation() {
-    if (currentEast == null || currentSouth == null || !pathPoints.length) {
+    if (currentEast == null || currentSouth == null || !pathPoints || !pathPoints.length) {
       clearNavPath();
       return;
     }
@@ -743,149 +605,15 @@
     drawNavPathFrom(idx);
   }
 
-function collectAllServerDataToJson() {
-  const servers = {};
-  if (!serverSelect) return { version: 1, servers: {} };
-
-  const serverIds = Array.from(serverSelect.options).map(o => o.value);
-
-  for (const id of serverIds) {
-    // rect
-    let rect = null;
-    try {
-      const rectText = localStorage.getItem(RECT_STORAGE_PREFIX + id);
-      if (rectText) rect = JSON.parse(rectText);
-    } catch (e) {
-      console.error('rect parse error for', id, e);
-    }
-
-    // templates
-    let templates = null;
-    try {
-      const tmplText = localStorage.getItem(TEMPLATE_STORAGE_PREFIX + id);
-      if (tmplText) templates = JSON.parse(tmplText);
-    } catch (e) {
-      console.error('tmpl parse error for', id, e);
-    }
-
-    if (rect || templates) {
-      servers[id] = {};
-      if (rect)      servers[id].rect      = rect;
-      if (templates) servers[id].templates = templates;
-    }
-  }
-
-  return {
-    version: 1,
-    servers
-  };
-}
-
-function exportConfigJson() {
-  const data = collectAllServerDataToJson();
-  const json = JSON.stringify(data, null, 2);
-
-  const blob = new Blob([json], { type: 'application/json' });
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href = url;
-  a.download = 'majyu_ocr_servers.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-
-  alert('현재 localStorage에 저장된 서버별 설정을 JSON으로 내보냈습니다.');
-}
-function applyImportedServerData(data) {
-  if (!data || !data.servers) {
-    alert('JSON에 "servers" 항목이 없습니다.');
-    return;
-  }
-
-  const servers = data.servers;
-  const serverIds = Object.keys(servers);
-
-  if (!serverIds.length) {
-    alert('불러올 서버 설정이 없습니다.');
-    return;
-  }
-
-  for (const id of serverIds) {
-    const entry = servers[id];
-    if (!entry) continue;
-
-    // rect 복원
-    if (entry.rect) {
-      try {
-        localStorage.setItem(
-          RECT_STORAGE_PREFIX + id,
-          JSON.stringify(entry.rect)
-        );
-        if (id === currentServerId) {
-          applyRectConfigToInputs(entry.rect);
-        }
-      } catch (e) {
-        console.error('import rect error for', id, e);
-      }
-    }
-
-    // templates 복원
-    if (entry.templates) {
-      try {
-        localStorage.setItem(
-          TEMPLATE_STORAGE_PREFIX + id,
-          JSON.stringify(entry.templates)
-        );
-
-        if (id === currentServerId) {
-          // digitTemplates 배열에도 반영
-          for (let d = 0; d <= 9; d++) {
-            const key = String(d);
-            if (entry.templates[key]) {
-              digitTemplates[d] = new Uint8Array(entry.templates[key]);
-            } else {
-              digitTemplates[d] = null;
-            }
-          }
-        }
-      } catch (e) {
-        console.error('import templates error for', id, e);
-      }
-    }
-  }
-
-  // 현재 서버 템플릿 상태 업데이트
-  updateTemplateStatus();
-  alert('JSON 설정을 불러와서 localStorage에 적용했습니다.');
-}
-
-function importConfigJsonFromFile(file) {
-  const reader = new FileReader();
-  reader.onload = (e) => {
-    try {
-      const text = e.target.result;
-      const data = JSON.parse(text);
-      applyImportedServerData(data);
-    } catch (err) {
-      console.error('JSON import error:', err);
-      alert('JSON 파싱 중 오류가 발생했습니다.\n' + err.message);
-    }
-  };
-  reader.readAsText(file, 'utf-8');
-}
-
-
-  
-
-  
-  // ===== 3. OCR 공통 및 템플릿 =====
+  // =======================
+  // 4. OCR / 템플릿 관련 로직
+  // =======================
   let currentEast  = null;
   let currentSouth = null;
   let ocrLoopTimer = null;
   let ocrBusy      = false;
 
-  const MAX_STEP     = 20;
+  const MAX_STEP     = 15;
   const HISTORY_SIZE = 5;
   let eastHistory  = [];
   let southHistory = [];
@@ -923,19 +651,6 @@ function importConfigJsonFromFile(file) {
   const DIGIT_W = 8;
   const DIGIT_H = 14;
 
-  const BUILTIN_TEMPLATES = { 
-    "0":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "1":[0,0,0,0,255,255,0,0,0,0,255,255,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "2":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,255,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "3":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,255,255,0,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "4":[0,0,0,0,0,255,0,0,0,0,0,0,255,255,0,0,0,0,0,0,255,255,0,0,0,0,0,255,0,255,0,0,0,0,0,255,0,255,0,0,0,0,255,0,0,255,0,0,0,0,255,0,0,255,0,0,0,0,255,255,255,255,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "5":[0,0,255,255,255,255,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "6":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "7":[0,0,255,255,255,255,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "8":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-    "9":[0,0,0,255,255,255,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,255,0,0,0,0,0,0,0,255,0,0,0,0,0,0,0,255,0,0,0,255,0,0,0,255,0,0,0,0,255,255,255,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-  };
-
   const digitTemplates = { 0:null,1:null,2:null,3:null,4:null,5:null,6:null,7:null,8:null,9:null };
 
   function updateTemplateStatus() {
@@ -945,42 +660,7 @@ function importConfigJsonFromFile(file) {
       if (digitTemplates[d]) have.push(d);
     }
     templateStatus.textContent =
-      '템플릿 상태 [' + currentServerId + ']: ' +
-      (have.length ? have.join(', ') + ' 학습됨' : '없음');
-  }
-
-  function saveTemplatesToStorage() {
-    try {
-      const obj = {};
-      for (let d = 0; d <= 9; d++) {
-        const tmpl = digitTemplates[d];
-        if (tmpl) obj[d] = Array.from(tmpl);
-      }
-      localStorage.setItem(TEMPLATE_STORAGE_PREFIX + currentServerId, JSON.stringify(obj));
-    } catch (e) {
-      console.error('saveTemplatesToStorage error:', e);
-    }
-  }
-
-  function loadTemplatesFromStorage() {
-    for (let d = 0; d <= 9; d++) digitTemplates[d] = null;
-    try {
-      let source = null;
-      const text = localStorage.getItem(TEMPLATE_STORAGE_PREFIX + currentServerId);
-      if (text) {
-        source = JSON.parse(text);
-        console.log('templates loaded from localStorage for', currentServerId);
-      } else if (BUILTIN_TEMPLATES) {
-        source = BUILTIN_TEMPLATES;
-        console.log('templates loaded from BUILTIN_TEMPLATES for', currentServerId);
-      }
-      if (!source) return;
-      for (let d = 0; d <= 9; d++) {
-        if (source[d]) digitTemplates[d] = new Uint8Array(source[d]);
-      }
-    } catch (e) {
-      console.error('loadTemplatesFromStorage error:', e);
-    }
+      '템플릿 상태: ' + (have.length ? have.join(', ') + ' 학습됨' : '없음');
   }
 
   const ocrCanvas = document.createElement('canvas');
@@ -1119,8 +799,8 @@ function importConfigJsonFromFile(file) {
       }
     }
     updateTemplateStatus();
-    saveTemplatesToStorage();
-    alert(`숫자 ${valueStr} 에 대한 템플릿을 갱신했습니다.\n(서버: ${currentServerId})`);
+    syncTemplatesToConfig();
+    alert(`숫자 ${valueStr} 에 대한 템플릿을 갱신했습니다.`);
   }
 
   function readNumberByTemplate(rect, preview=false) {
@@ -1144,7 +824,9 @@ function importConfigJsonFromFile(file) {
     return { value, digits, segments };
   }
 
-  // ===== 4. OCR 1회 / 자동 추적 =====
+  // ===========================
+  // 5. OCR 1회 / 자동 추적 루프
+  // ===========================
   async function ocrOnce(doPreview = true) {
     if (!video.srcObject) {
       if (doPreview) alert('먼저 캡쳐를 시작해주세요.');
@@ -1152,16 +834,16 @@ function importConfigJsonFromFile(file) {
     }
 
     const eastRect = {
-      x:Number(document.getElementById('eastX').value),
-      y:Number(document.getElementById('eastY').value),
-      w:Number(document.getElementById('eastW').value),
-      h:Number(document.getElementById('eastH').value)
+      x:Number(eastXInput.value),
+      y:Number(eastYInput.value),
+      w:Number(eastWInput.value),
+      h:Number(eastHInput.value)
     };
     const southRect = {
-      x:Number(document.getElementById('southX').value),
-      y:Number(document.getElementById('southY').value),
-      w:Number(document.getElementById('southW').value),
-      h:Number(document.getElementById('southH').value)
+      x:Number(southXInput.value),
+      y:Number(southYInput.value),
+      w:Number(southWInput.value),
+      h:Number(southHInput.value)
     };
 
     try {
@@ -1193,7 +875,6 @@ function importConfigJsonFromFile(file) {
       }
 
       ocrResultDiv.textContent =
-        `서버: ${currentServerId}\n` +
         `동 digits: ${east.digits.join('')} → raw=${rawEastVal}, maj=${eastMaj.value}\n` +
         `남 digits: ${south.digits.join('')} → raw=${rawSouthVal}, maj=${southMaj.value}\n` +
         `적용 좌표: 동 ${currentEast}, 남 ${currentSouth}`;
@@ -1246,110 +927,9 @@ function importConfigJsonFromFile(file) {
     else startAutoOcr();
   });
 
-  // 템플릿 학습/초기화
-  learnEastBtn.addEventListener('click', () => {
-    if (!video.srcObject) {
-      alert('먼저 캡쳐를 시작해주세요.');
-      return;
-    }
-    const eastRect = {
-      x:Number(document.getElementById('eastX').value),
-      y:Number(document.getElementById('eastY').value),
-      w:Number(document.getElementById('eastW').value),
-      h:Number(document.getElementById('eastH').value)
-    };
-    const valStr = learnEastInput.value;
-    learnFromRect(eastRect, valStr);
-  });
-
-  clearTemplatesBtn.addEventListener('click', () => {
-    for (let d = 0; d <= 9; d++) digitTemplates[d] = null;
-    eastHistory  = [];
-    southHistory = [];
-    currentEast  = null;
-    currentSouth = null;
-    updateTemplateStatus();
-    saveTemplatesToStorage();
-    alert(`모든 숫자 템플릿을 초기화했습니다.\n(서버: ${currentServerId})`);
-  });
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'l' || e.key === 'L') {
-      if (currentEast != null && currentSouth != null) {
-        console.log(`{ e: ${currentEast}, s: ${currentSouth} },`);
-      } else {
-        console.log('현재 좌표 없음 (OCR 대기 중)');
-      }
-    }
-  });
-
-  // ===== 4.y 네비게이션 Picture-in-Picture(PiP) =====
-  async function enterNavPiP() {
-    if (!('pictureInPictureEnabled' in document)) {
-      alert('이 브라우저는 Picture-in-Picture 기능을 지원하지 않습니다.');
-      return;
-    }
-    if (!video.srcObject) {
-      alert('먼저 캡쳐를 시작해주세요.');
-      return;
-    }
-
-    try {
-      startPipRenderingLoop();
-
-      if (!pipVideo) {
-        pipVideo = document.createElement('video');
-        pipVideo.muted = true;
-        pipVideo.playsInline = true;
-        pipVideo.srcObject = pipCanvas.captureStream(30);
-
-        pipVideo.addEventListener('leavepictureinpicture', () => {
-          exitNavPiP(true);
-        });
-      }
-
-      await pipVideo.play();
-      await pipVideo.requestPictureInPicture();
-
-      pipActive = true;
-      pipBtn.textContent = 'PiP 닫기';
-      setMainOverlayForPip(true);
-    } catch (err) {
-      console.error(err);
-      alert('PiP 진입 중 오류가 발생했습니다.\n' + err.message);
-      stopPipRenderingLoop();
-    }
-  }
-
-  async function exitNavPiP(fromEvent = false) {
-    try {
-      if (!fromEvent && document.pictureInPictureElement === pipVideo) {
-        await document.exitPictureInPicture();
-      }
-    } catch (err) {
-      console.error(err);
-    } finally {
-      pipActive = false;
-      pipBtn.textContent = 'PiP 모드';
-      stopPipRenderingLoop();
-      setMainOverlayForPip(false);
-    }
-  }
-
-  pipBtn.addEventListener('click', () => {
-    if (document.pictureInPictureElement &&
-        document.pictureInPictureElement !== pipVideo) {
-      document.exitPictureInPicture().catch(()=>{});
-      return;
-    }
-
-    if (!pipActive) {
-      enterNavPiP();
-    } else {
-      exitNavPiP(false);
-    }
-  });
-
+  // =====================
+  // 6. PiP(그림 속 그림) 모드
+  // =====================
   function startPipRenderingLoop() {
     if (pipAnimating) return;
     pipAnimating = true;
@@ -1383,7 +963,292 @@ function importConfigJsonFromFile(file) {
     pipAnimating = false;
   }
 
-  // ===== 5. 관리자 모드  =====
+  async function enterNavPiP() {
+    if (!('pictureInPictureEnabled' in document)) {
+      alert('이 브라우저는 Picture-in-Picture 기능을 지원하지 않습니다.');
+      return;
+    }
+    if (!video.srcObject) {
+      alert('먼저 캡쳐를 시작해주세요.');
+      return;
+    }
+
+    try {
+      startPipRenderingLoop();
+
+      if (!pipVideo) {
+        pipVideo = document.createElement('video');
+        pipVideo.muted = true;
+        pipVideo.playsInline = true;
+        pipVideo.srcObject = pipCanvas.captureStream(30);
+
+        pipVideo.addEventListener('leavepictureinpicture', () => {
+          exitNavPiP(true);
+        });
+      }
+
+      await pipVideo.play();
+      await pipVideo.requestPictureInPicture();
+
+      pipActive = true;
+      pipBtn.textContent = 'PIP 닫기';
+      setMainOverlayForPip(true);
+    } catch (err) {
+      console.error(err);
+      alert('PiP 진입 중 오류가 발생했습니다.\n' + err.message);
+      stopPipRenderingLoop();
+    }
+  }
+
+  async function exitNavPiP(fromEvent = false) {
+    try {
+      if (!fromEvent && document.pictureInPictureElement === pipVideo) {
+        await document.exitPictureInPicture();
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      pipActive = false;
+      pipBtn.textContent = 'PIP 모드로 보기';
+      stopPipRenderingLoop();
+      setMainOverlayForPip(false);
+    }
+  }
+
+  pipBtn.addEventListener('click', () => {
+    if (document.pictureInPictureElement &&
+        document.pictureInPictureElement !== pipVideo) {
+      document.exitPictureInPicture().catch(()=>{});
+      return;
+    }
+
+    if (!pipActive) {
+      enterNavPiP();
+    } else {
+      exitNavPiP(false);
+    }
+  });
+
+  // =====================
+  // 7. 서버 설정 <-> UI 동기화
+  // =====================
+  function ensureServerEntry(id) {
+    if (!serverConfig.servers[id]) {
+      serverConfig.servers[id] = {
+        rect: {
+          east: { x:880, y:780, w:20, h:17 },
+          south:{ x:930, y:780, w:20, h:17 }
+        },
+        templates: {}
+      };
+    }
+    return serverConfig.servers[id];
+  }
+
+  function syncRectInputsToConfig() {
+    const conf = ensureServerEntry(currentServerId);
+    conf.rect = {
+      east: {
+        x: Number(eastXInput.value),
+        y: Number(eastYInput.value),
+        w: Number(eastWInput.value),
+        h: Number(eastHInput.value)
+      },
+      south: {
+        x: Number(southXInput.value),
+        y: Number(southYInput.value),
+        w: Number(southWInput.value),
+        h: Number(southHInput.value)
+      }
+    };
+  }
+
+  function syncTemplatesToConfig() {
+    const conf = ensureServerEntry(currentServerId);
+    const tmpl = {};
+    for (let d = 0; d <= 9; d++) {
+      if (digitTemplates[d]) {
+        tmpl[d] = Array.from(digitTemplates[d]);
+      }
+    }
+    conf.templates = tmpl;
+  }
+
+  function applyServerConfigToUI(serverId) {
+    const conf = serverConfig.servers[serverId];
+    if (!conf) return;
+
+    const east  = conf.rect?.east;
+    const south = conf.rect?.south;
+
+    if (east) {
+      eastXInput.value = east.x ?? eastXInput.value;
+      eastYInput.value = east.y ?? eastYInput.value;
+      eastWInput.value = east.w ?? eastWInput.value;
+      eastHInput.value = east.h ?? eastHInput.value;
+    }
+    if (south) {
+      southXInput.value = south.x ?? southXInput.value;
+      southYInput.value = south.y ?? southYInput.value;
+      southWInput.value = south.w ?? southWInput.value;
+      southHInput.value = south.h ?? southHInput.value;
+    }
+
+    for (let d = 0; d <= 9; d++) {
+      digitTemplates[d] = null;
+    }
+
+    if (conf.templates) {
+      for (let d = 0; d <= 9; d++) {
+        const arr = conf.templates[String(d)];
+        if (arr) {
+          digitTemplates[d] = new Uint8Array(arr);
+        }
+      }
+    }
+
+    updateTemplateStatus();
+  }
+
+  async function loadConfigFromServer() {
+    try {
+      const res = await fetch(CONFIG_URL, { cache: 'no-store' });
+      if (!res.ok) {
+        throw new Error('설정 JSON 로드 실패: ' + res.status);
+      }
+      const data = await res.json();
+
+      serverConfig = {
+        version: data.version || 1,
+        servers: data.servers || {}
+      };
+
+      const serverIds = Object.keys(serverConfig.servers);
+      if (!serverIds.length) {
+        console.warn('서버 설정이 비어 있습니다. 기본값으로 시작합니다.');
+        serverConfig.servers["NOVA&HAPPY"] = {
+          rect: {
+            east: { x:880, y:780, w:20, h:17 },
+            south:{ x:930, y:780, w:20, h:17 }
+          },
+          templates: {}
+        };
+      }
+
+      if (!serverConfig.servers[currentServerId]) {
+        currentServerId = Object.keys(serverConfig.servers)[0];
+      }
+
+      if (serverSelect) {
+        serverSelect.value = currentServerId;
+      }
+
+      applyServerConfigToUI(currentServerId);
+    } catch (e) {
+      console.error(e);
+      alert('서버 설정 JSON을 불러오지 못했습니다.\n새 설정을 만든 뒤 JSON으로 내보내서 GitHub에 올려 주세요.');
+      // 실패 시: 현재 serverConfig 그대로(초기 빈값) 사용
+      ensureServerEntry(currentServerId);
+      if (serverSelect) serverSelect.value = currentServerId;
+      applyServerConfigToUI(currentServerId);
+    }
+  }
+
+  serverSelect.addEventListener('change', () => {
+    currentServerId = serverSelect.value;
+    localStorage.setItem('saMajyu:lastServer', currentServerId);
+    applyServerConfigToUI(currentServerId);
+  });
+
+  [
+    eastXInput, eastYInput, eastWInput, eastHInput,
+    southXInput, southYInput, southWInput, southHInput
+  ].forEach(input => {
+    input.addEventListener('change', () => {
+      syncRectInputsToConfig();
+    });
+  });
+
+  learnEastBtn.addEventListener('click', () => {
+    if (!video.srcObject) {
+      alert('먼저 캡쳐를 시작해주세요.');
+      return;
+    }
+    const eastRect = {
+      x:Number(eastXInput.value),
+      y:Number(eastYInput.value),
+      w:Number(eastWInput.value),
+      h:Number(eastHInput.value)
+    };
+    const valStr = learnEastInput.value;
+    learnFromRect(eastRect, valStr);
+  });
+
+  clearTemplatesBtn.addEventListener('click', () => {
+    for (let d = 0; d <= 9; d++) digitTemplates[d] = null;
+    eastHistory  = [];
+    southHistory = [];
+    currentEast  = null;
+    currentSouth = null;
+    updateTemplateStatus();
+    syncTemplatesToConfig();
+    alert('모든 숫자 템플릿을 초기화했습니다.');
+  });
+
+  // JSON 내보내기
+  function buildExportJson() {
+    return JSON.stringify(serverConfig, null, 2);
+  }
+
+  exportConfigBtn.addEventListener('click', () => {
+    const blob = new Blob([buildExportJson()], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'majyu_ocr_servers.json';
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // JSON 불러오기
+  importConfigInput.addEventListener('change', async (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    try {
+      const text = await file.text();
+      const obj  = JSON.parse(text);
+
+      serverConfig = {
+        version: obj.version || 1,
+        servers: obj.servers || {}
+      };
+
+      const ids = Object.keys(serverConfig.servers);
+      if (!ids.length) {
+        alert('servers 항목이 비어 있습니다.');
+        return;
+      }
+
+      if (!serverConfig.servers[currentServerId]) {
+        currentServerId = ids[0];
+      }
+
+      if (serverSelect) serverSelect.value = currentServerId;
+      applyServerConfigToUI(currentServerId);
+
+      alert('설정을 불러왔습니다.\n이 JSON을 GitHub data/majyu_ocr_servers.json 위치에 업로드하면 공유됩니다.');
+    } catch (err) {
+      console.error(err);
+      alert('JSON 파싱에 실패했습니다: ' + err.message);
+    } finally {
+      importConfigInput.value = '';
+    }
+  });
+
+  // =================
+  // 8. 관리자 모드
+  // =================
   const adminToggleBtn = document.getElementById('adminToggle');
   let isAdmin = false;
 
@@ -1430,81 +1295,27 @@ function importConfigJsonFromFile(file) {
     else enableAdmin();
   });
 
-  // ===== 서버 선택 초기화 / 전환 처리 =====
-  function initServerSelection(){
-    try{
-      const saved = localStorage.getItem(SERVER_ID_KEY);
-      if (saved) currentServerId = saved;
-    }catch(e){
-      console.error('read SERVER_ID_KEY error:', e);
-    }
+  // =================
+  // 9. 초기화
+  // =================
+  (async () => {
+    const last = localStorage.getItem('saMajyu:lastServer');
+    if (last) currentServerId = last;
+    if (serverSelect) serverSelect.value = currentServerId;
 
-    if (serverSelect){
-      const has = Array.from(serverSelect.options).some(o => o.value === currentServerId);
-      if (!has && serverSelect.options.length){
-        currentServerId = serverSelect.options[0].value;
+    await loadConfigFromServer();
+    updateTemplateStatus();
+  })();
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'l' || e.key === 'L') {
+      if (currentEast != null && currentSouth != null) {
+        console.log(`{ e: ${currentEast}, s: ${currentSouth} },`);
+      } else {
+        console.log('현재 좌표 없음 (OCR 대기 중)');
       }
-      serverSelect.value = currentServerId;
-
-      serverSelect.addEventListener('change', () => {
-        const newId = serverSelect.value;
-        if (newId === currentServerId) return;
-
-        // 이전 서버 데이터 저장
-        saveRectsToStorage(currentServerId);
-        saveTemplatesToStorage();
-
-        // 서버 전환
-        currentServerId = newId;
-        try{
-          localStorage.setItem(SERVER_ID_KEY, currentServerId);
-        }catch(e){
-          console.error('write SERVER_ID_KEY error:', e);
-        }
-
-        // 새 서버 설정 로드
-        loadRectsFromStorage(currentServerId);
-        loadTemplatesFromStorage();
-        updateTemplateStatus();
-
-        if (exportConfigBtn) {
-  exportConfigBtn.addEventListener('click', () => {
-    exportConfigJson();
-  });
-}
-
-if (importConfigBtn && configFileInput) {
-  importConfigBtn.addEventListener('click', () => {
-    configFileInput.click();
-  });
-
-  configFileInput.addEventListener('change', (e) => {
-    const file = e.target.files && e.target.files[0];
-    if (!file) return;
-    importConfigJsonFromFile(file);
-    // 한 번 사용 후 value 초기화 (같은 파일 다시 선택 가능하게)
-    e.target.value = '';
-  });
-}
-
-
-        // 상태 초기화
-        eastHistory  = [];
-        southHistory = [];
-        currentEast  = null;
-        currentSouth = null;
-        clearNavPath();
-        if (coordLive) coordLive.textContent = '현재 좌표: -';
-        if (ocrResultDiv) ocrResultDiv.textContent = 'OCR 결과가 여기 표시됩니다.';
-      });
     }
-  }
-
-  // ===== 초기 실행 =====
-  initServerSelection();
-  loadRectsFromStorage(currentServerId);
-  loadTemplatesFromStorage();
-  updateTemplateStatus();
+  });
 </script>
 </body>
 </html>
