@@ -258,6 +258,7 @@
     }
     .hint-strong{
       font-weight:600;
+      color:#FDFBF6;
     }
   </style>
 </head>
@@ -267,7 +268,7 @@
       <div class="title-wrap">
         <h1>StoneAge 마쥬의 미로 네비게이션</h1>
         <p class="subtitle">
-          게임 화면 우측 하단 좌표를 OCR로 읽어, 현재 위치 기준으로 미로 이동 경로를 안내하는 도우미입니다.
+          게임 화면의 좌표를 OCR로 읽어, 현재 위치 기준으로 미로 이동 경로를 안내하는 도우미입니다.
         </p>
       </div>
     </header>
@@ -323,10 +324,10 @@
 
     <!-- 관리자 전용 OCR 상세 설정 -->
     <section class="ocr-section">
-      <h2 class="section-title">관리자 설정 (OCR 좌표 & 템플릿)</h2>
+      <h2 class="section-title">필독</h2>
       <p class="section-note">
-        관리자 모드에서만 세부 좌표 영역과 숫자 템플릿을 수정할 수 있습니다.
-        서버별 설정은 별도의 JSON(<code>majyu_ocr_servers.json</code>)로 관리됩니다.
+        WIND서버의 경우, 반드시 미니맵을 켜고 진행해 주세요.
+        HAPPY, NOVA서버는 미니맵을 키지 않고 진행해도 됩니다.
       </p>
 
       <div class="ocr-panel">
@@ -1467,3 +1468,4 @@
 </script>
 </body>
 </html>
+
