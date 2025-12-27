@@ -675,52 +675,43 @@ function petCard(p) {
   return card;
 }
 
-/* ====== 문턱(최소치) 우선 정렬 ====== */
 function sortRows(rows, f, sortMode) {
   const mode = sortMode || "name";
 
   const getGrow = (p) => p.sg || p.grow || {};
   const safeNum = (v) => (Number.isFinite(v) ? v : Infinity);
 
-  // === 1) 가나다 순 ===
-  if (mode === "name") {
-    return rows.slice().sort((a, b) =>
-      (a.name || "").localeCompare(b.name || "", "ko")
-    );
-  }
-
-  // === 2) 성장 공격력 내림차순 ===
+  // === 1) 성장 공격력 내림차순 ===
   if (mode === "grow_atk") {
     return rows.slice().sort((a, b) => {
       const ga = getGrow(a), gb = getGrow(b);
       const va = safeNum(ga.atk), vb = safeNum(gb.atk);
-      if (va !== vb) return vb - va; // ⬅️ 내림차순
+      if (va !== vb) return vb - va;  // ↓ 내림차순
       return (a.name || "").localeCompare(b.name || "", "ko");
     });
   }
 
-  // === 3) 성장 방어력 내림차순 ===
+  // === 2) 성장 방어력 내림차순 ===
   if (mode === "grow_def") {
     return rows.slice().sort((a, b) => {
       const ga = getGrow(a), gb = getGrow(b);
       const va = safeNum(ga.def), vb = safeNum(gb.def);
-      if (va !== vb) return vb - va; // ⬅️ 내림차순
+      if (va !== vb) return vb - va;
       return (a.name || "").localeCompare(b.name || "", "ko");
     });
   }
 
-  // === 4) 성장 순발력 내림차순 ===
+  // === 3) 성장 순발력 내림차순 ===
   if (mode === "grow_agi") {
     return rows.slice().sort((a, b) => {
       const ga = getGrow(a), gb = getGrow(b);
       const va = safeNum(ga.agi), vb = safeNum(gb.agi);
-      if (va !== vb) return vb - va; // ⬅️ 내림차순
+      if (va !== vb) return vb - va;
       return (a.name || "").localeCompare(b.name || "", "ko");
     });
   }
 
-
-  // === 5) 기본: 기존 "문턱 우선 + 주속성/이름" 추천 정렬 ===
+  // === 4) 문턱(최소치) 필터가 있는 경우: 기존 "문턱 우선 + 주속성/이름" 정렬 ===
   const anyMin =
     f.min_init_hp  > 0 || f.min_init_atk > 0 || f.min_init_def > 0 || f.min_init_agi > 0 ||
     f.min_grow_hp  > 0 || f.min_grow_atk > 0 || f.min_grow_def > 0 || f.min_grow_agi > 0;
@@ -751,13 +742,35 @@ function sortRows(rows, f, sortMode) {
 
       const key = f.attrPick;
       if (key && key !== "전체" && key !== "듀얼") {
-        const getv = (p) => (p.attr && typeof p.attr[key] === "number") ? p.attr[key] : 0;
+        const getv = (p) =>
+          (p.attr && typeof p.attr[key] === "number") ? p.attr[key] : 0;
         const dv = getv(b) - getv(a); // 큰 값 우선
         if (dv !== 0) return dv;
       }
+
       return (a.name || "").localeCompare(b.name || "", "ko");
     });
   }
+
+  // === 5) 문턱 없음: 주 속성 필터가 있으면 그 속성 내림차순 → 이름순 ===
+  const key = f.attrPick;
+  if (key && key !== "전체" && key !== "듀얼") {
+    const getv = (p) =>
+      (p.attr && typeof p.attr[key] === "number") ? p.attr[key] : 0;
+
+    return rows.slice().sort((a, b) => {
+      const dv = getv(b) - getv(a); // 해당 속성 높은 순
+      if (dv !== 0) return dv;
+      return (a.name || "").localeCompare(b.name || "", "ko");
+    });
+  }
+
+  // === 6) 기본: 가나다 순 ===
+  return rows.slice().sort((a, b) =>
+    (a.name || "").localeCompare(b.name || "", "ko")
+  );
+}
+
 
   // 문턱이 없으면: 주 속성 강한 순 → 이름 (기존 로직)
   const key = f.attrPick;
