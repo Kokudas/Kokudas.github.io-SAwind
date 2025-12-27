@@ -505,7 +505,7 @@ function attrOval(k, v, isDom){
 function gradeOval(grade){
   if(!grade) return null;
   const span = document.createElement("span");
-  span.className = "g-oval " + (grade==="일반" ? "g-normal" : grade==="상급" ? "g-adv" : "g-top");
+  span.className = "g-oval " + (grade==="0" ? "g-normal" : grade==="1" ? "g-adv" : "g-top");
   span.textContent = grade;
   return span;
 }
