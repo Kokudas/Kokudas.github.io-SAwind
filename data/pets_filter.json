@@ -2940,7 +2940,7 @@
     "route": "베르가 포획 퀘스트 보상",
     "mount": false,
     "img": "https://wind01.net/info/img/100321.gif",
-    "routeType": "포획"
+    "routeType": "퀘스트"
   },
   {
     "name": "쿠아",
