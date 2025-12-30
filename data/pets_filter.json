@@ -2889,6 +2889,33 @@
     "routeType": "포획"
   },
   {
+    "name": "쿠로로",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 51.635,
+      "atk": 8.918,
+      "def": 6.848,
+      "agi": 7.705
+    },
+    "sg": {
+      "hp": 10.663,
+      "atk": 1.841,
+      "def": 1.414,
+      "agi": 1.591
+    },
+    "route": "초기 페트",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105217.gif",
+    "routeType": "기타"
+  },
+  {
     "name": "쿠링",
     "searchable": true,
     "grade": "일반",
