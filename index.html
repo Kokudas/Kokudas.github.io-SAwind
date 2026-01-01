@@ -15,7 +15,7 @@
     pointer-events:none; white-space:normal; word-break:keep-all;
     opacity:0; transform: translateY(4px);
     transition: opacity .12s ease, transform .12s ease;
-    white-space: pre-line;
+     white-space: pre-line;
   }
   .floating-tip.show{ opacity:1; transform: translateY(0); }
   .floating-tip::after{
@@ -335,6 +335,26 @@ svg{ display:block; width:100%; height:100%; }
     border-color:#3b79ff;
   }
 
+
+  /* 알림음 설정 */
+  .ph-sound-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin:8px 6px 0;
+  }
+  .ph-sound-slider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex:1 1 260px;
+    min-width: 220px;
+  }
+  .ph-sound-slider input[type="range"]{
+    width: min(360px, 100%);
+  }
+
 </style>
 </head>
 <body>
@@ -610,7 +630,7 @@ svg{ display:block; width:100%; height:100%; }
         </div>
         <div class="col">
           <label class="muted">잡을 페트(선택, 여러 개 가능)</label>
-          <input type="text" id="phTargetPet" placeholder="예 : 푸푸, 우푸 / 투투" />
+          <input type="text" id="phTargetPet" placeholder="예: 두리, 우리 / 투투" />
           <div class="mini" style="margin-top:6px">가방 0칸 감지만 할 경우 입력 필요 X</div>
           <div id="phPetChips" class="ph-chips" aria-label="감지 대상 펫 목록"></div>
         </div>
@@ -637,6 +657,20 @@ svg{ display:block; width:100%; height:100%; }
               <span class="label">정석 포획 감지(닉네임+페트 모두 입력)</span>
             </label>
           </div>
+          <div class="ph-sound-row">
+            <label class="ph-switch">
+              <input type="checkbox" id="phSoundEnable" checked />
+              <span class="slider" aria-hidden="true"></span>
+              <span class="label">알림음</span>
+            </label>
+
+            <div class="ph-sound-slider">
+              <span class="muted">볼륨</span>
+              <input type="range" id="phSoundVol" min="0" max="100" step="1" value="70" />
+              <span id="phSoundVolVal" class="mini">70%</span>
+            </div>
+          </div>
+
         <span class="mini" style="margin-left:auto">최근 10줄만 유지</span>
       </div>
 
@@ -645,10 +679,10 @@ svg{ display:block; width:100%; height:100%; }
         <div class="row" style="margin-top:10px">
           <label><input type="checkbox" id="phUseDiscord" /> 디스코드도 전송</label>
           <input type="text" id="phClientKey" placeholder="연동키 (디스코드 /link 로 발급)" />
-<!--          <button class="btn ghost" type="button" id="phDiscordTestBtn">가방 테스트</button>            
-          <button class="btn ghost" type="button" id="phDiscordTestCatchBtn">정석 테스트</button>           -->
+   <!--       <button class="btn ghost" type="button" id="phDiscordTestBtn">가방 테스트</button>
+          <button class="btn ghost" type="button" id="phDiscordTestCatchBtn">정석 테스트</button> -->
         </div>
-        <p class="mini" style="margin-top:8px">※ 디스코드 봇에서 받은<b>연동키를 먼저 입력하고</b> 로그 폴더를 선택해 주세요.</p>
+        <p class="mini" style="margin-top:8px">※ 디스코드 봇에서 받은 <b>연동키를 먼저 입력하고</b> 로그 폴더를 선택해 주세요.</p>
       </details>
 
       <div class="row" style="margin-top:10px">
@@ -658,7 +692,7 @@ svg{ display:block; width:100%; height:100%; }
 
       <pre id="phLogBox" style="margin-top:10px"></pre>
 
-      <p class="mini" style="margin-top:8px">※ 크롬/엣지 계열(PC)에서 폴더 접근이 가능합니다. (아이디어 제공)thanks to.. 지원 </p>
+      <p class="mini" style="margin-top:8px">※ 크롬/엣지 계열(PC)에서 폴더 접근이 가능합니다. \n (아이디어 제공)thanks to.. 지원 </p>
     </details>
   </section>
 
@@ -1536,6 +1570,7 @@ btnClear.addEventListener('click', ()=>{
   const CATCH_COOLDOWN_MS = 5000;
 
 
+  const BEEP_URL = "sam_02.wav"; // 깃허브에 wav를 함께 올리고, index.html과 같은 폴더에 두면 됩니다.
   const WORKER_BASE = "https://pethunterworker.cjswo316.workers.dev";
   let dirHandle = null;
   let currentFileName = null;
@@ -1574,7 +1609,59 @@ btnClear.addEventListener('click', ()=>{
     return (countFFFD(tK) < countFFFD(tUtf8)) ? tK : tUtf8;
   }
 
-  function beep(){
+  let soundEnabled = true;
+  let soundVolume = 0.7; // 0.0 ~ 1.0
+
+  let _beepAudio = null;
+  let _audioUnlocked = false;
+
+  function getBeepAudio(){
+    if (_beepAudio) return _beepAudio;
+    const a = new Audio(BEEP_URL);
+    a.preload = "auto";
+    a.volume = soundVolume;
+    _beepAudio = a;
+    return a;
+  }
+
+  function applySoundSettings(){
+    const en = el('phSoundEnable');
+    const vol = el('phSoundVol');
+    const val = el('phSoundVolVal');
+    if (en) soundEnabled = !!en.checked;
+    if (vol){
+      const v = Number(vol.value);
+      const pct = Number.isFinite(v) ? Math.max(0, Math.min(100, v)) : 70;
+      soundVolume = pct / 100;
+      if (val) val.textContent = pct + '%';
+    }
+    // 오디오 객체가 이미 있으면 즉시 반영
+    if (_beepAudio){
+      _beepAudio.volume = soundVolume;
+    }
+  }
+
+  function unlockAudioOnce(){
+    if (_audioUnlocked) return;
+    _audioUnlocked = true;
+    try{
+      const a = getBeepAudio();
+      // 사용자 제스처(버튼 클릭) 안에서 호출되면 대부분 여기서 언락됨
+      a.muted = true;
+      const p = a.play();
+      if (p && p.then){
+        p.then(()=>{
+          a.pause();
+          a.currentTime = 0;
+          a.muted = false;
+        }).catch(()=>{ a.muted = false; });
+      }else{
+        a.muted = false;
+      }
+    }catch{}
+  }
+
+  function beepOsc(){
     try{
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
       const o = ctx.createOscillator();
@@ -1582,10 +1669,25 @@ btnClear.addEventListener('click', ()=>{
       o.connect(g); g.connect(ctx.destination);
       o.frequency.value = 880;
       o.start();
-      g.gain.setValueAtTime(0.18, ctx.currentTime);
+      g.gain.setValueAtTime(0.18 * Math.max(0.0, Math.min(1.0, soundVolume)), ctx.currentTime);
       g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
       o.stop(ctx.currentTime + 0.25);
     }catch{}
+  }
+
+  function beep(){
+    if (!soundEnabled || soundVolume <= 0) return;
+    // 1) wav 재생 시도 -> 2) 실패하면 기존 삐- 소리로 폴백
+    try{
+      const a = getBeepAudio();
+      try{ a.pause(); }catch{}
+      try{ a.currentTime = 0; }catch{}
+      const p = a.play();
+      if (p && p.catch) p.catch(()=> beepOsc());
+      return;
+    }catch{
+      beepOsc();
+    }
   }
 
   function notifyLocal(title, body){
@@ -1702,6 +1804,7 @@ function detectBagNum(line){
 
 
   async function requestNotify(){
+    unlockAudioOnce();
     if (!("Notification" in window)) return toast("이 브라우저는 알림을 지원하지 않아요.");
     const p = await Notification.requestPermission();
     if (p !== "granted") toast("알림이 허용되지 않았어요.");
@@ -1729,6 +1832,7 @@ function detectBagNum(line){
   }
 
   async function pickDirectory(){
+    unlockAudioOnce();
     if (!window.showDirectoryPicker){
       toast("이 기능은 크롬/엣지(PC)에서 동작합니다. (File System Access API 필요)");
       return;
@@ -1921,6 +2025,8 @@ function detectBagNum(line){
     setV("phDetectCatch", get("ph_det_catch","1"));
     setV("phUseDiscord", get("ph_use_discord","0"));
     setV("phClientKey", get("ph_key",""));
+    setV("phSoundEnable", get("ph_sound_en","1"));
+    setV("phSoundVol", get("ph_sound_vol","70"));
     // 모바일이면 기본 접기
     const details = el("phMainDetails");
     if (details){
@@ -1945,7 +2051,9 @@ function detectBagNum(line){
     bind("phDetectBag", "ph_det_bag");
     bind("phDetectCatch", "ph_det_catch");
     bind("phUseDiscord", "ph_use_discord");
-    bind("phClientKey", "ph_key");  }
+    bind("phClientKey", "ph_key");
+    bind("phSoundEnable", "ph_sound_en");
+    bind("phSoundVol", "ph_sound_vol");  }
 
   
   // ===== PC 뱃지/도움말용 바디 플로팅 툴팁 =====
@@ -2024,6 +2132,9 @@ function detectBagNum(line){
     });
     bindSave();
     restore();
+    applySoundSettings();
+    el('phSoundEnable')?.addEventListener('change', ()=>{ applySoundSettings(); });
+    el('phSoundVol')?.addEventListener('input', ()=>{ applySoundSettings(); });
     setupFloatingTip();
     el('phTargetPet')?.addEventListener('input', updatePetChips);
     el('phPetChips')?.addEventListener('click', chipRemoveHandler);
