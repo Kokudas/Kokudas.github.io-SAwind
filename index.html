@@ -217,6 +217,123 @@ svg{ display:block; width:100%; height:100%; }
   gap:8px;
 }
   
+
+/* === 펫잡이 알리미(웹) === */
+.stack{display:flex; flex-direction:column; gap:16px;}
+.pethunter details{border:1px solid #223252; border-radius:12px; padding:10px 12px; background:rgba(8,12,20,.35)}
+.pethunter details > summary{cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:10px; user-select:none}
+.pethunter details > summary::-webkit-details-marker{display:none}
+.pethunter .mini{font-size:12px; color: var(--muted);}
+.pethunter .row.tight{gap:8px}
+.pethunter pre{background:#0b1220; border:1px solid #223252; color:#cfe3ff; padding:10px; border-radius:12px; overflow:auto; max-height:220px; white-space:pre-wrap; word-break:break-word;}
+.pethunter .pill{font-size:12px; padding:3px 8px; border-radius:999px; border:1px solid #2a3a59; background:#0b1220; color:#cfe3ff}
+.pethunter select{padding:10px 12px; border-radius:10px; border:1px solid #2a3a59; background:#0f172a; color:#cfe3ff;}
+@media (max-width: 720px){
+  .pethunter pre{max-height:180px;}
+}
+
+
+  /* 펫잡이 알리미: 감지 옵션 정렬/스위치 */
+  .ph-detect-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    margin:0 6px;
+  }
+  .ph-detect-row label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0;
+  }
+
+  /* 스위치 UI */
+  .ph-switch{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    user-select:none;
+  }
+  .ph-switch input{
+    position:absolute;
+    opacity:0;
+    pointer-events:none;
+  }
+  .ph-switch .slider{
+    width:38px;
+    height:20px;
+    border-radius:999px;
+    background:#2b3a55;
+    border:1px solid #3a4a6b;
+    position:relative;
+    flex:0 0 auto;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .ph-switch .slider::before{
+    content:"";
+    position:absolute;
+    top:2px; left:2px;
+    width:16px; height:16px;
+    border-radius:50%;
+    background:#cfe1ff;
+    box-shadow:0 2px 10px rgba(0,0,0,.25);
+    transition:transform .15s ease;
+  }
+  .ph-switch input:checked + .slider{
+    background:#2a6bff;
+    border-color:#2a6bff;
+  }
+  .ph-switch input:checked + .slider::before{
+    transform:translateX(18px);
+  }
+  .ph-switch .label{
+    color:#b9c7de;
+    font-size:12px;
+  }
+
+  /* PC pill에 사용법 툴팁 커서 */
+  .pethunter .pill[data-ftip]{ cursor: help; }
+
+
+  /* 감지 대상 펫 칩(태그) */
+  .ph-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
+    min-height: 0;
+  }
+  .ph-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:4px 8px;
+    border-radius:999px;
+    border:1px solid #2b3a55;
+    background:#0b1320;
+    color:#cfe1ff;
+    font-size:12px;
+    line-height:1;
+    user-select:none;
+  }
+  .ph-chip .x{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:16px;
+    height:16px;
+    border-radius:999px;
+    border:1px solid #2b3a55;
+    color:#b9c7de;
+    background:transparent;
+    cursor:pointer;
+  }
+  .ph-chip .x:hover{
+    color:#ffffff;
+    border-color:#3b79ff;
+  }
+
 </style>
 </head>
 <body>
@@ -448,14 +565,101 @@ svg{ display:block; width:100%; height:100%; }
   </details>
 </section>
 
-  <!-- 우하단: 이미지 공간 -->
-  <section class="card">
+  <!-- 우하단: 정보/이미지 + 알리미 -->
+  <div class="stack">
+    <section class="card">
     <h3>본 계산기는 오픈 소스로 만들어졌습니다.</h3>
     <div class="imgbox">
       <img id="dinoImg" src="https://raw.githubusercontent.com/Kokudas/SAwind/refs/heads/main/patch_note.png" alt="ptch note png" loading="lazy" decoding="async"/>
     </div>
     <p class="muted" style="margin-top:8px">Made by. 과장 (kokodas#0339) </p>
   </section>
+
+  <!-- 우하단: 펫잡이 알리미(PC) -->
+  <section class="card pethunter" id="pethunterCard">
+    <details id="phMainDetails" open>
+      <summary>
+        <span style="display:flex; align-items:center; gap:8px">
+          <span style="font-weight:700">펫잡이 알리미 (웹)</span>
+          <span class="pill" data-ftip="이 기능은 PC(크롬/엣지)에서 폴더/파일을 선택해 로그를 모니터링합니다.
+            1) ctrl+Q 설정에서 채팅 설정 - 대화 저장 ON(필수)
+            2) 닉네임 및 추적 페트 입력. ※ 닉네임만 입력 : 가방 칸수만 알림받고 싶을 때.\
+            3-1) (디스코드 알림을 원하는 사람의 경우) 디스코드 봇에게 /link 명령어로 연동키 발급.
+            3-2) 해당 연동키를 연동키 입력란에 기입.
+            4) 로그 폴더 선택
+            5) 자동 감지/알림 확인
+            ※ 해당 기능은 PC에서만 이용 가능해요.">How to Use</span>
+        </span>
+        <span class="mini" id="phSummaryState">대기중…</span>
+      </summary>
+
+      <div class="row tight" style="margin-top:10px">
+        <button class="btn" id="phPickDirBtn">로그 폴더 선택</button>
+        <button class="btn ghost" id="phNotifyBtn">알림 허용</button>
+        <button class="btn ghost" id="phStopBtn">중지</button>
+        <span class="muted" id="phDirInfo">폴더 미선택</span>
+      </div>
+
+      <div class="row" style="margin-top:10px">
+        <div class="col">
+          <label class="muted">캐릭터 닉네임(필수)</label>
+          <input type="text" id="phIgn" placeholder="예: 과장" />
+        </div>
+        <div class="col">
+          <label class="muted">잡을 페트(선택, 여러 개 가능)</label>
+          <input type="text" id="phTargetPet" placeholder="예 : 푸푸, 우푸 / 투투" />
+          <div class="mini" style="margin-top:6px">가방 0칸 감지만 할 경우 입력 필요 X</div>
+          <div id="phPetChips" class="ph-chips" aria-label="감지 대상 펫 목록"></div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:8px; align-items:flex-end">
+        <div class="col" style="max-width:220px">
+          <label class="muted">인코딩</label>
+          <select id="phEncoding">
+            <option value="auto">자동(권장)</option>
+            <option value="cp949">CP949 / EUC-KR</option>
+            <option value="utf8">UTF-8</option>
+          </select>
+        </div>
+          <div class="ph-detect-row">
+            <label class="ph-switch">
+              <input type="checkbox" id="phDetectBag" checked />
+              <span class="slider" aria-hidden="true"></span>
+              <span class="label">가방 꽉참 감지</span>
+            </label>
+            <label class="ph-switch">
+              <input type="checkbox" id="phDetectCatch" checked />
+              <span class="slider" aria-hidden="true"></span>
+              <span class="label">정석 포획 감지(닉네임+페트 모두 입력)</span>
+            </label>
+          </div>
+        <span class="mini" style="margin-left:auto">최근 10줄만 유지</span>
+      </div>
+
+      <details id="phDiscordDetails" style="margin-top:10px">
+        <summary><span class="muted">디스코드 연동(선택)</span></summary>
+        <div class="row" style="margin-top:10px">
+          <label><input type="checkbox" id="phUseDiscord" /> 디스코드도 전송</label>
+          <input type="text" id="phClientKey" placeholder="연동키 (디스코드 /link 로 발급)" />
+<!--          <button class="btn ghost" type="button" id="phDiscordTestBtn">가방 테스트</button>            
+          <button class="btn ghost" type="button" id="phDiscordTestCatchBtn">정석 테스트</button>           -->
+        </div>
+        <p class="mini" style="margin-top:8px">※ 디스코드 봇에서 받은<b>연동키를 먼저 입력하고</b> 로그 폴더를 선택해 주세요.</p>
+      </details>
+
+      <div class="row" style="margin-top:10px">
+        <span>현재 파일:</span> <b id="phCurrentFile">-</b>
+        <span class="muted" id="phLastTick" style="margin-left:auto">대기중…</span>
+      </div>
+
+      <pre id="phLogBox" style="margin-top:10px"></pre>
+
+      <p class="mini" style="margin-top:8px">※ 크롬/엣지 계열(PC)에서 폴더 접근이 가능합니다. 모바일(특히 iOS)은 제한될 수 있어요.</p>
+    </details>
+  </section>
+
+  </div>
 </div>
 
 <div class="footer">
@@ -1316,6 +1520,516 @@ btnClear.addEventListener('click', ()=>{
   console.log("[init] pets:", Object.keys(GLOBAL_TABLE).length, "rank8 keys:", Object.keys(R8MAP).length);
   renderPetList();
 })();
+
+/* ================== 펫잡이 알리미 (웹/PC) ================== */
+(function(){
+  const el = (id)=> document.getElementById(id);
+
+  // index.html에 showToast가 있으면 그걸 활용
+  const toast = (msg)=> (typeof window.showToast === "function") ? window.showToast(msg) : console.log("[toast]", msg);
+
+  const POLL_MS = 1200;
+  const BAG_COOLDOWN_MS = 60000;
+  const CATCH_COOLDOWN_MS = 5000;
+
+
+  const WORKER_BASE = "https://pethunterworker.cjswo316.workers.dev";
+  let dirHandle = null;
+  let currentFileName = null;
+  let prevLen = 0;
+  let recentLines = [];
+  let bagFullState = false;
+  let lastBagAlertAt = 0;
+  let lastCatchAlertAt = 0;
+  let lastCatchKey = "";
+  let primed = false;
+
+  function countFFFD(s){ return (s.match(/\uFFFD/g) || []).length; }
+
+  async function readFileText(file){
+    const buf = await file.arrayBuffer();
+    const mode = (el("phEncoding")?.value || "auto");
+
+    // 명시 모드
+    if (mode === "utf8"){
+      return new TextDecoder("utf-8").decode(buf);
+    }
+    if (mode === "cp949"){
+      // 브라우저 TextDecoder에서는 보통 'euc-kr'로 지원됨
+      return new TextDecoder("euc-kr").decode(buf);
+    }
+
+    // 자동: UTF-8과 EUC-KR 둘 다 시도 → 깨짐(�)이 더 적은 쪽 선택
+    let tUtf8 = "";
+    try { tUtf8 = new TextDecoder("utf-8").decode(buf); } catch { tUtf8 = ""; }
+    let tK = "";
+    try { tK = new TextDecoder("euc-kr").decode(buf); } catch { tK = ""; }
+
+    if (!tK) return tUtf8;
+    if (!tUtf8) return tK;
+
+    return (countFFFD(tK) < countFFFD(tUtf8)) ? tK : tUtf8;
+  }
+
+  function beep(){
+    try{
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = 880;
+      o.start();
+      g.gain.setValueAtTime(0.18, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+      o.stop(ctx.currentTime + 0.25);
+    }catch{}
+  }
+
+  function notifyLocal(title, body){
+    if ("Notification" in window && Notification.permission === "granted"){
+      try{ new Notification(title, { body }); }catch{}
+    }
+    beep();
+    toast(body);
+  }
+
+  function detectBagNum(line){
+    const m = line.match(/\[(\d+)\]칸/);
+    if (!m) return null;
+    return Number(m[1]);
+  }
+
+function detectBagNum(line){
+    const m = line.match(/\[(\d+)\]칸/);
+    if (!m) return null;
+    return Number(m[1]);
+  }
+
+  function parseSeokCatch(line){
+    // 예:
+    // "[ 사탄 ]플레이어가 정석 [ 푸푸 ]을(를) 포획했습니다."
+    // "[ 맹구 ]플레이어가 정석 이상의 [ 푸푸, +3 ]을(를) 포획했습니다."
+    // (+숫자 는 +1~+4 등 변동 가능)
+    const re = /\[\s*([^\]]+?)\s*\]\s*플레이어가\s*정석(\s*이상의)?\s*\[\s*([^\]]+?)\s*\]\s*을\(를\)\s*포획했습니다/;
+    const m = String(line || "").match(re);
+    if (!m) return null;
+
+    const nick = m[1].trim();
+    const above = !!m[2]; // " 이상의" 포함 여부
+    const inside = String(m[3] || "").trim(); // "푸푸" or "푸푸, +3"
+    const parts = inside.split(",").map(s => s.trim()).filter(Boolean);
+    const petBase = parts[0] || "";
+    let plus = null;
+    if (parts.length >= 2){
+      const pm = parts[1].match(/\+?\s*(\d+)/);
+      if (pm) plus = Number(pm[1]);
+    }
+
+    return { nick, pet: petBase, plus, grade: above ? "above" : "seok", rawPet: inside };
+  }
+
+  function normalizeName(s){
+    return String(s || "").trim();
+  }
+
+  function parseTargetPets(raw){
+    const q = normalizeName(raw);
+    if (!q) return [];
+    // 콤마/슬래시로 여러 개 입력 허용
+    const parts = q.split(/[,\/]/).map(x=>x.trim()).filter(Boolean);
+    // 중복 제거(순서 유지)
+    const seen = new Set();
+    const out = [];
+    for (const p of parts){
+      if (!seen.has(p)) { seen.add(p); out.push(p); }
+    }
+    return out;
+  }
+
+  function matchTargetPet(input, caughtPet){
+    const parts = parseTargetPets(input);
+    if (!parts.length) return true; // 펫 미입력 시: 닉네임만으로 필터
+    const pet = normalizeName(caughtPet);
+    return parts.some(x => x === pet);
+  }
+
+  function chipRemoveHandler(e){
+    const btn = e.target.closest?.('.ph-chip .x');
+    if (!btn) return;
+    const chip = btn.closest('.ph-chip');
+    const name = chip?.getAttribute('data-name') || '';
+    const input = el('phTargetPet');
+    if (!input || !name) return;
+    const parts = parseTargetPets(input.value).filter(x => x !== name);
+    input.value = parts.join(', ');
+    // 저장 이벤트 트리거(사용자 입력과 동일하게)
+    input.dispatchEvent(new Event('input', { bubbles:true }));
+    updatePetChips();
+  }
+
+  function updatePetChips(){
+    const box = el("phPetChips");
+    const input = el("phTargetPet");
+    if (!box || !input) return;
+
+    const parts = parseTargetPets(input.value);
+    box.innerHTML = "";
+
+    if (!parts.length) return;
+
+    for (const name of parts){
+      const chip = document.createElement("span");
+      chip.className = "ph-chip";
+      chip.setAttribute("data-name", name);
+
+      const t = document.createElement("span");
+      t.textContent = name;
+
+      const x = document.createElement("button");
+      x.type = "button";
+      x.className = "x";
+      x.setAttribute("aria-label", name + " 제거");
+      x.textContent = "×";
+
+      chip.appendChild(t);
+      chip.appendChild(x);
+      box.appendChild(chip);
+    }
+  }
+
+
+  async function requestNotify(){
+    if (!("Notification" in window)) return toast("이 브라우저는 알림을 지원하지 않아요.");
+    const p = await Notification.requestPermission();
+    if (p !== "granted") toast("알림이 허용되지 않았어요.");
+    else toast("알림이 허용되었습니다.");
+  }
+
+  function resetState(){
+    prevLen = 0;
+    recentLines = [];
+    bagFullState = false;
+    lastBagAlertAt = 0;
+    lastCatchAlertAt = 0;
+    lastCatchKey = "";
+    
+    primed = false;
+    render();
+  }
+
+  function render(){
+    if (!el("phLogBox")) return;
+    el("phLogBox").textContent = recentLines.slice(-10).join("\n");
+    el("phCurrentFile").textContent = currentFileName || "-";
+    const st = dirHandle ? (currentFileName ? `실행중 · ${currentFileName}` : "실행중") : "대기중…";
+    el("phSummaryState").textContent = st;
+  }
+
+  async function pickDirectory(){
+    if (!window.showDirectoryPicker){
+      toast("이 기능은 크롬/엣지(PC)에서 동작합니다. (File System Access API 필요)");
+      return;
+    }
+    try{
+      dirHandle = await window.showDirectoryPicker();
+      el("phDirInfo").textContent = "선택됨";
+      currentFileName = null;
+      resetState();
+      toast("로그 폴더를 선택했습니다.");
+    }catch(e){
+      toast("폴더 선택이 취소되었어요.");
+    }
+  }
+
+  function stop(){
+    dirHandle = null;
+    currentFileName = null;
+    el("phDirInfo").textContent = "폴더 미선택";
+    resetState();
+    toast("중지했습니다.");
+  }
+
+  async function sendDiscordEvent(eventName, payload = {}, opts = {}){
+    const use = el("phUseDiscord")?.checked;
+    const key = (el("phClientKey")?.value || "").trim();
+    if (!use || !key){
+      if (opts.toastIfSkip) toast("디스코드 전송을 켜고(체크) 연동키를 입력해 주세요.");
+      return;
+    }
+
+    const ign = (el("phIgn")?.value || "").trim();
+
+    try{
+      const body = { event: eventName, file: currentFileName || "test", ign, ...payload };
+
+      const r = await fetch(WORKER_BASE + "/alarm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "X-Client-Key": key },
+        body: JSON.stringify(body)
+      });
+
+      // 204: 쿨다운/무시 처리(정상 흐름)
+      if (r.status === 204){
+        if (opts.toastOnOk) toast("디스코드 전송: 완료(쿨다운/무시 가능)");
+        return;
+      }
+
+      const raw = await r.text().catch(()=> "");
+      let j = null;
+      try{ j = raw ? JSON.parse(raw) : null; }catch{}
+
+      // Worker가 200으로 ok:false를 줄 수도 있음
+      const ok = r.ok && (!j || j.ok !== false);
+      if (!ok){
+        const reason = (j && (j.reason || j.detail || j.message)) ? (j.reason || j.detail || j.message) : raw;
+        toast("디스코드 전송 실패: " + (reason ? String(reason).slice(0,120) : ("HTTP " + r.status)));
+        return;
+      }
+
+      if (opts.toastOnOk) toast("디스코드 전송: 성공!");
+    }catch(e){
+      toast("디스코드 전송 오류: " + (e?.message || e));
+    }
+  }
+
+  async function sendDiscordBagFull(opts = {}){
+    return sendDiscordEvent("bag_full", {}, opts);
+  }
+
+  async function sendDiscordCatchSuccess(caught, opts = {}){
+    if (!caught) return;
+    const payload = {
+      nick: caught.nick,
+      pet: caught.pet,
+      plus: (caught.plus == null ? null : Number(caught.plus)),
+      grade: caught.grade || "seok",
+      rawPet: caught.rawPet || ""
+    };
+    return sendDiscordEvent("catch_success", payload, opts);
+  }
+
+  async function poll(){
+    try{
+      if (!dirHandle) return;
+
+      // YYMMDD.txt 중 가장 큰 값(최신) 선택
+      let latest = null;
+      for await (const [name, handle] of dirHandle.entries()){
+        if (handle.kind !== "file") continue;
+        if (!/^\d{6}\.txt$/i.test(name)) continue;
+        if (!latest || name > latest.name) latest = { name, handle };
+      }
+      if (!latest) return;
+
+      if (currentFileName !== latest.name){
+        currentFileName = latest.name;
+        resetState();
+      }
+
+      const file = await latest.handle.getFile();
+      const text = await readFileText(file);
+
+      if (text.length < prevLen){ prevLen = 0; primed = false; } // truncate/rotate
+
+      // 최초 시작/파일 변경 시: 기존 로그를 '최근 10줄 표시'만 하고, 과거 로그로 알림을 쏘지 않음(초기 오탐 방지)
+      if (!primed){
+        const all = text.split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+        recentLines = all.slice(-10);
+        render();
+        prevLen = text.length;
+        primed = true;
+
+        // 시작 안내(토스트만) — 디스코드/알림음 없음
+        toast(`펫잡이 알리미 시작: ${currentFileName || "-"}`);
+        el("phLastTick").textContent = "마지막 체크: " + new Date().toLocaleTimeString();
+        return;
+      }
+
+      const newPart = text.slice(prevLen);
+      prevLen = text.length;
+
+      if (!newPart) {
+        el("phLastTick").textContent = "마지막 체크: " + new Date().toLocaleTimeString();
+        render();
+        return;
+      }
+
+      const ign = (el("phIgn")?.value || "").trim();
+      const targetPet = (el("phTargetPet")?.value || "").trim();
+      const detectBag = !!el("phDetectBag")?.checked;
+      const detectCatch = !!el("phDetectCatch")?.checked;
+
+      const lines = newPart.split(/\r?\n/).filter(x => x.length);
+      for (const line of lines){
+        recentLines.push(line);
+        if (recentLines.length > 10) recentLines.shift();
+
+        // 가방 상태 리셋(0→1 이상으로 돌아오면 다시 감지 가능)
+        const bagNum = detectBagNum(line);
+        if (bagNum !== null && bagNum > 0) bagFullState = false;
+
+        // [0]칸 감지
+        if (detectBag && line.includes("[0]칸")){
+          const now = Date.now();
+          if (!bagFullState && (now - lastBagAlertAt) > BAG_COOLDOWN_MS){
+            bagFullState = true;
+            lastBagAlertAt = now;
+            notifyLocal("⚠️ 가방 가득 참", "남은 페트 가방이 [0]칸입니다!");
+            sendDiscordBagFull();
+          }
+        }
+
+        // 정석 포획 감지(정석/정석 이상의) — 닉네임 필터 필수, 펫 필터 선택
+        if (detectCatch){
+          const cfgIgn = normalizeName(ign);
+          if (cfgIgn){ // 닉네임이 있어야 내 로그/내 포획만 안전하게 필터 가능
+            const caught = parseSeokCatch(line);
+            if (caught && normalizeName(caught.nick) === cfgIgn && matchTargetPet(targetPet, caught.pet)){
+              const now = Date.now();
+              const key = cfgIgn + "|" + normalizeName(caught.pet) + "|" + line;
+              if (key !== lastCatchKey && (now - lastCatchAlertAt) > CATCH_COOLDOWN_MS){
+                lastCatchKey = key;
+                lastCatchAlertAt = now;
+                // 요구: 토스트 문구 고정 + 알림음
+                notifyLocal("정석 포획", "정석 이상의 펫을 잡았습니다!");
+                sendDiscordCatchSuccess(caught);
+              }
+            }
+          }
+        }
+      }
+
+      el("phLastTick").textContent = "마지막 체크: " + new Date().toLocaleTimeString();
+      render();
+    }catch(e){
+      if (el("phLastTick")) el("phLastTick").textContent = "오류: " + (e?.message || e);
+    }
+  }
+
+  // 설정 저장/복원
+  function restore(){
+    const get = (k, d="")=> localStorage.getItem(k) ?? d;
+    const setV = (id, v)=> { const x=el(id); if(!x) return; if(x.type==="checkbox") x.checked = (v==="1"); else x.value = v; };
+
+    setV("phIgn", get("ph_ign",""));
+    setV("phTargetPet", get("ph_pet",""));
+    setV("phEncoding", get("ph_enc","cp949"));
+    setV("phDetectBag", get("ph_det_bag","1"));
+    setV("phDetectCatch", get("ph_det_catch","1"));
+    setV("phUseDiscord", get("ph_use_discord","0"));
+    setV("phClientKey", get("ph_key",""));
+    // 모바일이면 기본 접기
+    const details = el("phMainDetails");
+    if (details){
+      const isMobile = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
+      if (isMobile) details.removeAttribute("open");
+    }
+  }
+
+  function bindSave(){
+    const bind = (id, key)=> {
+      const x = el(id); if(!x) return;
+      const save = ()=> {
+        if (x.type==="checkbox") localStorage.setItem(key, x.checked ? "1" : "0");
+        else localStorage.setItem(key, x.value || "");
+      };
+      x.addEventListener("input", save);
+      x.addEventListener("change", save);
+    };
+    bind("phIgn", "ph_ign");
+    bind("phTargetPet", "ph_pet");
+    bind("phEncoding", "ph_enc");
+    bind("phDetectBag", "ph_det_bag");
+    bind("phDetectCatch", "ph_det_catch");
+    bind("phUseDiscord", "ph_use_discord");
+    bind("phClientKey", "ph_key");  }
+
+  
+  // ===== PC 뱃지/도움말용 바디 플로팅 툴팁 =====
+  function setupFloatingTip(){
+    let tip = document.getElementById("floatingTip");
+    if (!tip){
+      tip = document.createElement("div");
+      tip.id = "floatingTip";
+      tip.className = "floating-tip";
+      document.body.appendChild(tip);
+    }
+    let activeEl = null;
+    const show = (el, text)=>{
+      activeEl = el;
+      tip.textContent = text || "";
+      tip.classList.add("show");
+    };
+    const hide = ()=>{
+      activeEl = null;
+      tip.classList.remove("show");
+    };
+    const move = (x, y)=>{
+      const pad = 14;
+      const w = tip.offsetWidth || 260;
+      const h = tip.offsetHeight || 60;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      let left = x + 14;
+      let top = y + 14;
+      if (left + w + pad > vw) left = Math.max(pad, vw - w - pad);
+      if (top + h + pad > vh) top = Math.max(pad, vh - h - pad);
+      tip.style.left = left + "px";
+      tip.style.top = top + "px";
+    };
+
+    document.addEventListener("pointerover", (e)=>{
+      const t = e.target.closest("[data-ftip]");
+      if (!t) return;
+      show(t, (t.getAttribute("data-ftip") || "").replace(/\\n/g, "\n"));
+    });
+    document.addEventListener("pointerout", (e)=>{
+      if (!activeEl) return;
+      const related = e.relatedTarget;
+      if (related && activeEl.contains(related)) return;
+      if (e.target && activeEl.contains(e.target)) hide();
+    });
+    document.addEventListener("pointermove", (e)=>{
+      if (!activeEl) return;
+      move(e.clientX, e.clientY);
+    });
+
+    // 키보드 접근성
+    document.addEventListener("focusin", (e)=>{
+      const t = e.target.closest("[data-ftip]");
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      show(t, (t.getAttribute("data-ftip") || "").replace(/\\n/g, "\n"));
+      move(r.left + r.width/2, r.bottom);
+    });
+    document.addEventListener("focusout", (e)=>{
+      const t = e.target.closest("[data-ftip]");
+      if (t) hide();
+    });
+  }
+
+  // init
+  if (el("phPickDirBtn")){
+    el("phPickDirBtn").addEventListener("click", pickDirectory);
+    el("phNotifyBtn").addEventListener("click", requestNotify);
+    el("phStopBtn").addEventListener("click", stop);
+    el("phDiscordTestBtn")?.addEventListener("click", ()=> sendDiscordBagFull({ toastIfSkip:true, toastOnOk:true }));
+    el("phDiscordTestCatchBtn")?.addEventListener("click", ()=> {
+      const nick = ((el("phNick")?.value)||"테스트").trim() || "테스트";
+      const pet  = ((el("phPet")?.value)||"푸푸").trim() || "푸푸";
+      sendDiscordCatchSuccess({ nick, pet, plus: 4, grade: "above", rawPet: pet + ", +4" }, { toastIfSkip:true, toastOnOk:true });
+    });
+    bindSave();
+    restore();
+    setupFloatingTip();
+    el('phTargetPet')?.addEventListener('input', updatePetChips);
+    el('phPetChips')?.addEventListener('click', chipRemoveHandler);
+    updatePetChips();
+    setInterval(poll, POLL_MS);
+    render();
+  }
+})();
+
 </script>
 </body>
 </html>
