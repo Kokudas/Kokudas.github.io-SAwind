@@ -4696,5 +4696,275 @@
     "mount": true,
     "img": "https://wind01.net/info/img/105321.gif",
     "routeType": "복권"
+  },
+            {
+    "name": "우라노스",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 0,
+      "화": 0,
+      "풍": 2
+    },
+    "s0": {
+      "hp": 52.625,
+      "atk": 11.068,
+      "def": 7.468,
+      "agi": 8.375
+    },
+    "sg": {
+      "hp": 9.998,
+      "atk": 2.103,
+      "def": 1.419,
+      "agi": 1.591
+    },
+    "route": "얼음성 페트병",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103248.gif",
+    "routeType": "레이드"
+  },
+              {
+    "name": "흑기린",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 1,
+      "화": 9,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 58.11,
+      "atk": 13.305,
+      "def": 7.923,
+      "agi": 6.11
+    },
+    "sg": {
+      "hp": 10.616,
+      "atk": 2.43,
+      "def": 1.447,
+      "agi": 1.116
+    },
+    "route": "얼음성 페트병",
+    "mount": true,
+    "img": "https://wind01.net/info/img/102640.gif",
+    "routeType": "레이드"
+  },
+              {
+    "name": "흑룡",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "s0": {
+      "hp": 51.875,
+      "atk": 11.493,
+      "def": 6.768,
+      "agi": 8.875
+    },
+    "sg": {
+      "hp": 9.856,
+      "atk": 2.183,
+      "def": 1.286,
+      "agi": 1.686
+    },,
+    "route": "얼음성 페트병",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102639.gif",
+    "routeType": "레이드"
+  },
+              {
+    "name": "라이쿠스",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9,
+      "화": 0,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 62.875,
+      "atk": 10.956,
+      "def": 10.956,
+      "agi": 2.625
+    },
+    "sg": {
+      "hp": 11.946,
+      "atk": 2.081,
+      "def": 2.081,
+      "agi": 0.498
+    },
+    "route": "얼음성 페트병",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102634.gif",
+    "routeType": "레이드"
+  },
+              {
+    "name": "아르마루",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 50.714,
+      "atk": 10.896,
+      "def": 7.17,
+      "agi": 6.325
+    },
+    "sg": {
+      "hp": 10.473,
+      "atk": 2.25,
+      "def": 1.48,
+      "agi": 1.306
+    },
+    "route": "얼음성 페트병",
+    "mount": true,
+    "img": "https://wind01.net/info/img/102630.gif",
+    "routeType": "레이드"
+  },
+              {
+    "name": "테로노돈",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 45.045,
+      "atk": 7.985,
+      "def": 4.394,
+      "agi": 8.505
+    },
+    "sg": {
+      "hp": 10.617,
+      "atk": 1.882,
+      "def": 1.035,
+      "agi": 2.004
+    },
+    "route": "전리품의 방 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102629.gif",
+    "routeType": "포획"
+  },
+              {
+    "name": "바라쿠스",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 57.96,
+      "atk": 10.494,
+      "def": 10.926,
+      "agi": 2.52
+    },
+    "sg": {
+      "hp": 11.471,
+      "atk": 2.076,
+      "def": 2.162,
+      "agi": 0.498
+    },
+    "route": "질투의 방 복도 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103169.gif",
+    "routeType": "포획"
+  },
+              {
+    "name": "그램고르",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 61.23,
+      "atk": 11.472,
+      "def": 9.6,
+      "agi": 5.33
+    },
+    "sg": {
+      "hp": 11.186,
+      "atk": 2.095,
+      "def": 1.753,
+      "agi": 0.973
+    },
+    "route": "그램고르의 방 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102626.gif",
+    "routeType": "포획"
+  },
+              {
+    "name": "타키온",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 6,
+      "화": 4,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 44.99,
+      "atk": 9.212,
+      "def": 5.648,
+      "agi": 7.37
+    },
+    "sg": {
+      "hp": 10.122,
+      "atk": 2.072,
+      "def": 1.27,
+      "agi": 1.658
+    },
+    "route": "오만의 방 복도 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102627.gif",
+    "routeType": "포획"
+  },
+              {
+    "name": "크로아치",
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 4,
+      "화": 6,
+      "풍": 0
+    },
+    "s0": {
+      "hp": 56.03,
+      "atk": 12.993,
+      "def": 7.611,
+      "agi": 6.63
+    },
+    "sg": {
+      "hp": 10.236,
+      "atk": 2.373,
+      "def": 1.39,
+      "agi": 1.211
+    },
+    "route": "얼음성 크로아치의 방 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102635.gif",
+    "routeType": "포획"
   }
 ]
