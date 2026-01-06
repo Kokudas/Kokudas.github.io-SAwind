@@ -1,135 +1,165 @@
 {
   "우리": {
     "s0": {
-      "hp": 16.35,
-      "atk": 2.237,
-      "def": 2.507,
-      "agi": 2.95
+      "atk": 3,
+      "def": 3,
+      "agi": 2,
+      "hp": 20
     },
     "sg": {
-      "hp": 9.401,
-      "atk": 1.286,
-      "def": 1.441,
-      "agi": 1.696
+      "atk": 1.77,
+      "def": 1.77,
+      "agi": 1.46,
+      "hp": 9.92
     },
-    "k": 10,
-    "u": {
-      "hp": 20,
-      "atk": 12,
-      "def": 15,
-      "agi": 25
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "마리너스 앞마당 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100250.gif",
+    "routeType": "포획"
   },
   "두리": {
     "s0": {
-      "hp": 35.3,
-      "atk": 6.615,
-      "def": 4.455,
-      "agi": 5.5
+      "atk": 7,
+      "def": 5,
+      "agi": 6,
+      "hp": 39
     },
     "sg": {
-      "hp": 10.148,
-      "atk": 1.901,
-      "def": 1.28,
-      "agi": 1.581
+      "atk": 2.05,
+      "def": 1.3,
+      "agi": 1.57,
+      "hp": 10.27
     },
-    "k": 20,
-    "u": {
-      "hp": 22,
-      "atk": 23,
-      "def": 11,
-      "agi": 23
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 4,
+      "화": 6,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "쿠오 해저통로 2층 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100251.gif",
+    "routeType": "포획"
   },
   "얼룩우리": {
     "s0": {
-      "hp": 25.875,
-      "atk": 4.136,
-      "def": 4.406,
-      "agi": 3.225
+      "atk": 5,
+      "def": 6,
+      "agi": 3,
+      "hp": 28
     },
     "sg": {
-      "hp": 9.918,
-      "atk": 1.585,
-      "def": 1.689,
-      "agi": 1.236
+      "atk": 1.84,
+      "def": 2.12,
+      "agi": 1.11,
+      "hp": 9.81
     },
-    "k": 15,
-    "u": {
-      "hp": 22,
-      "atk": 17,
-      "def": 19,
-      "agi": 17
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "마리너스 앞마당 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100252.gif",
+    "routeType": "포획"
   },
   "불그리": {
     "s0": {
-      "hp": 20.65,
-      "atk": 3.467,
-      "def": 3.107,
-      "agi": 3.75
+      "atk": 4,
+      "def": 2,
+      "agi": 3,
+      "hp": 19
     },
     "sg": {
-      "hp": 9.808,
-      "atk": 1.647,
-      "def": 1.476,
-      "agi": 1.781
+      "atk": 2.07,
+      "def": 1.26,
+      "agi": 1.71,
+      "hp": 9.78
     },
-    "k": 10,
-    "u": {
-      "hp": 25,
-      "atk": 23,
-      "def": 19,
-      "agi": 33
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 7,
+      "풍": 3
     },
-    "ku_override": true
+    "route": "출시예정",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100253.gif",
+    "routeType": "기타"
   },
   "실버우리": {
     "s0": {
-      "hp": 38.5,
-      "atk": 6.715,
-      "def": 7.075,
-      "agi": 6.3
+      "atk": 8,
+      "def": 6,
+      "agi": 7,
+      "hp": 41
     },
     "sg": {
-      "hp": 9.528,
-      "atk": 1.661,
-      "def": 1.751,
-      "agi": 1.559
+      "atk": 1.92,
+      "def": 1.5,
+      "agi": 1.69,
+      "hp": 9.81
     },
-    "k": 20,
-    "u": {
-      "hp": 22,
-      "atk": 22,
-      "def": 24,
-      "agi": 27
+    "ku_override": true,
+    "searchable": true,
+    "grade": "최상급",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
     },
-    "ku_override": true
+    "route": "카루타나 복권 1등",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100388.gif",
+    "routeType": "복권"
   },
   "환생얼룩우리": {
     "s0": {
-      "hp": 56.625,
-      "atk": 9.131,
-      "def": 9.806,
-      "agi": 7.125
+      "atk": 10,
+      "def": 8,
+      "agi": 8,
+      "hp": 51
     },
     "sg": {
-      "hp": 10.758,
-      "atk": 1.734,
-      "def": 1.863,
-      "agi": 1.353
+      "atk": 1.92,
+      "def": 1.54,
+      "agi": 1.64,
+      "hp": 9.81
     },
-    "k": 25,
-    "u": {
-      "hp": 30,
-      "atk": 24,
-      "def": 27,
-      "agi": 24
+    "ku_override": true,
+    "searchable": true,
+    "grade": "최상급",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
     },
-    "ku_override": true
+    "route": "1환생 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100252.gif",
+    "routeType": "퀘스트"
   },
   "복우리": {
     "s0": {
@@ -151,7 +181,19 @@
       "def": 14,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "route": "샴기르 경비병 시험 퀘스트",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100820.gif",
+    "routeType": "퀘스트"
   },
   "푸우리": {
     "s0": {
@@ -173,205 +215,262 @@
       "def": 16,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
+    },
+    "route": "300명 이벤트 페트",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100821.gif",
+    "routeType": "이벤트"
   },
   "부비": {
     "s0": {
-      "hp": 37.125,
-      "atk": 4.803,
-      "def": 4.263,
-      "agi": 2.475
+      "atk": 6,
+      "def": 4,
+      "agi": 2,
+      "hp": 44
     },
     "sg": {
-      "hp": 12.746,
-      "atk": 1.649,
-      "def": 1.463,
-      "agi": 0.849
+      "atk": 2.18,
+      "def": 1.45,
+      "agi": 0.78,
+      "hp": 14.08
     },
-    "k": 15,
-    "u": {
-      "hp": 42,
-      "atk": 20,
-      "def": 16,
-      "agi": 12
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "사이너스 섬(동608 남208) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100254.gif",
+    "routeType": "포획"
   },
   "골드부비": {
     "s0": {
-      "hp": 54.875,
-      "atk": 8.131,
-      "def": 10.831,
-      "agi": 4.125
+      "atk": 11,
+      "def": 7,
+      "agi": 4,
+      "hp": 72
     },
     "sg": {
-      "hp": 10.865,
-      "atk": 1.609,
-      "def": 2.144,
-      "agi": 0.816
+      "atk": 2.26,
+      "def": 1.36,
+      "agi": 0.83,
+      "hp": 13.75
     },
-    "k": 25,
-    "u": {
-      "hp": 31,
-      "atk": 20,
-      "def": 32,
-      "agi": 12
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 3,
+      "풍": 7
     },
-    "ku_override": true
+    "route": "퀴즈 마스터(모가로스) 퀘스트",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100255.gif",
+    "routeType": "퀘스트"
   },
   "부이": {
     "s0": {
-      "hp": 56.65,
-      "atk": 7.32,
-      "def": 6.33,
-      "agi": 3.85
+      "atk": 10,
+      "def": 6,
+      "agi": 3,
+      "hp": 65
     },
     "sg": {
-      "hp": 13.261,
-      "atk": 1.713,
-      "def": 1.481,
-      "agi": 0.901
+      "atk": 2.18,
+      "def": 1.41,
+      "agi": 0.78,
+      "hp": 14.23
     },
-    "k": 22,
-    "u": {
-      "hp": 44,
-      "atk": 21,
-      "def": 16,
-      "agi": 13
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "사이너스 섬(동608 남208) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100256.gif",
+    "routeType": "포획"
   },
   "부이비": {
     "s0": {
-      "hp": 34.96,
-      "atk": 5.955,
-      "def": 4.372,
-      "agi": 3.6
+      "atk": 7,
+      "def": 4,
+      "agi": 2,
+      "hp": 48
     },
     "sg": {
-      "hp": 11.252,
-      "atk": 1.917,
-      "def": 1.407,
-      "agi": 1.158
+      "atk": 2.32,
+      "def": 1.38,
+      "agi": 0.78,
+      "hp": 14.32
     },
-    "k": 16,
-    "u": {
-      "hp": 32,
-      "atk": 26,
-      "def": 15,
-      "agi": 18
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 4,
+      "화": 6,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "쟈루 섬(동357 남183) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100257.gif",
+    "routeType": "포획"
   },
   "얼룩부이비": {
     "s0": {
-      "hp": 49.105,
-      "atk": 8.975,
-      "def": 6.077,
-      "agi": 5.635
+      "atk": 10,
+      "def": 7,
+      "agi": 3,
+      "hp": 66
     },
     "sg": {
-      "hp": 10.995,
-      "atk": 2.009,
-      "def": 1.36,
-      "agi": 1.261
+      "atk": 2.18,
+      "def": 1.54,
+      "agi": 0.78,
+      "hp": 13.8
     },
-    "k": 23,
-    "u": {
-      "hp": 30,
-      "atk": 28,
-      "def": 14,
-      "agi": 20
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "퀴즈 마스터(오르곤) 퀘스트",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100258.gif",
+    "routeType": "퀘스트"
   },
   "꼬미": {
     "s0": {
-      "hp": 40.589,
-      "atk": 7.452,
-      "def": 6.66,
-      "agi": 6.05
+      "atk": 8,
+      "def": 6,
+      "agi": 6,
+      "hp": 41
     },
     "sg": {
-      "hp": 9.87,
-      "atk": 1.812,
-      "def": 1.619,
-      "agi": 1.471
+      "atk": 1.95,
+      "def": 1.44,
+      "agi": 1.62,
+      "hp": 9.76
     },
-    "k": 22,
-    "u": {
-      "hp": 22,
-      "atk": 23,
-      "def": 19,
-      "agi": 23
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 6,
+      "풍": 4
     },
-    "ku_override": true
+    "route": "라토토 대복도(동196 남123) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100259.gif",
+    "routeType": "포획"
   },
   "꼬비": {
     "s0": {
-      "hp": 36.7,
-      "atk": 6.585,
-      "def": 5.865,
-      "agi": 6.5
+      "atk": 7,
+      "def": 6,
+      "agi": 6,
+      "hp": 38
     },
     "sg": {
-      "hp": 9.817,
-      "atk": 1.761,
-      "def": 1.568,
-      "agi": 1.738
+      "atk": 1.86,
+      "def": 1.58,
+      "agi": 1.62,
+      "hp": 9.81
     },
-    "k": 20,
-    "u": {
-      "hp": 21,
-      "atk": 22,
-      "def": 18,
-      "agi": 28
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
     },
-    "ku_override": true
+    "route": "라토토 대복도(동147 남42) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100260.gif",
+    "routeType": "포획"
   },
   "꼬비오": {
     "s0": {
-      "hp": 33.75,
-      "atk": 5.944,
-      "def": 5.296,
-      "agi": 5.85
+      "atk": 6,
+      "def": 5,
+      "agi": 6,
+      "hp": 34
     },
     "sg": {
-      "hp": 9.656,
-      "atk": 1.7,
-      "def": 1.515,
-      "agi": 1.673
+      "atk": 1.85,
+      "def": 1.48,
+      "agi": 1.73,
+      "hp": 9.81
     },
-    "k": 18,
-    "u": {
-      "hp": 22,
-      "atk": 22,
-      "def": 18,
-      "agi": 28
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
     },
-    "ku_override": true
+    "route": "라토토 동굴 3 - 3 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100261.gif",
+    "routeType": "포획"
   },
   "꼬꼬비": {
     "s0": {
-      "hp": 28.88,
-      "atk": 5.244,
-      "def": 4.668,
-      "agi": 4.72
+      "atk": 5,
+      "def": 4,
+      "agi": 5,
+      "hp": 30
     },
     "sg": {
-      "hp": 9.656,
-      "atk": 1.753,
-      "def": 1.56,
-      "agi": 1.578
+      "atk": 1.9,
+      "def": 1.43,
+      "agi": 1.67,
+      "hp": 9.76
     },
-    "k": 16,
-    "u": {
-      "hp": 21,
-      "atk": 22,
-      "def": 18,
-      "agi": 25
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 3,
+      "풍": 7
     },
-    "ku_override": true
+    "route": "라토토 동굴 3 - 4층(동8 남19) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100262.gif",
+    "routeType": "포획"
   },
   "푸푸": {
     "s0": {
@@ -393,7 +492,19 @@
       "def": 10,
       "agi": 32
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 0,
+      "화": 0,
+      "풍": 7
+    },
+    "route": "쟈쟈마을 앞마당 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100263.gif",
+    "routeType": "포획"
   },
   "우푸": {
     "s0": {
@@ -415,51 +526,73 @@
       "def": 7,
       "agi": 33
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 6,
+      "풍": 4
+    },
+    "route": "쟈쟈마을 앞마당 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100264.gif",
+    "routeType": "포획"
   },
   "투투": {
     "s0": {
-      "hp": 30.514,
-      "atk": 4.985,
-      "def": 3.761,
-      "agi": 5.185
+      "atk": 5,
+      "def": 3,
+      "agi": 6,
+      "hp": 32
     },
     "sg": {
-      "hp": 10.321,
-      "atk": 1.686,
-      "def": 1.272,
-      "agi": 1.753
+      "atk": 1.75,
+      "def": 1.22,
+      "agi": 2.01,
+      "hp": 10.14
     },
-    "k": 17,
-    "u": {
-      "hp": 23,
-      "atk": 19,
-      "def": 11,
-      "agi": 26
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "쟈루 섬(동295 남368) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100265.gif",
+    "routeType": "포획"
   },
   "오투투": {
     "s0": {
-      "hp": 32.299,
-      "atk": 5.654,
-      "def": 5.115,
-      "agi": 6.7
+      "atk": 6,
+      "def": 5,
+      "agi": 7,
+      "hp": 35
     },
     "sg": {
-      "hp": 9.286,
-      "atk": 1.625,
-      "def": 1.47,
-      "agi": 1.926
+      "atk": 1.74,
+      "def": 1.36,
+      "agi": 2.01,
+      "hp": 9.44
     },
-    "k": 20,
-    "u": {
-      "hp": 17,
-      "atk": 18,
-      "def": 15,
-      "agi": 29
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 0,
+      "화": 0,
+      "풍": 4
     },
-    "ku_override": true
+    "route": "쿠오 해저통로 2층 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100266.gif",
+    "routeType": "포획"
   },
   "베론": {
     "s0": {
@@ -481,7 +614,19 @@
       "def": 30,
       "agi": 15
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쿠링마을가는 동굴1층(동12 남21) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100267.gif",
+    "routeType": "포획"
   },
   "베로로크": {
     "s0": {
@@ -503,7 +648,19 @@
       "def": 32,
       "agi": 13
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쿠링마을가는 동굴1층(동9 남12) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100268.gif",
+    "routeType": "포획"
   },
   "베로보크": {
     "s0": {
@@ -525,7 +682,19 @@
       "def": 31,
       "agi": 14
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "아름산의 동굴 지하7층(동42 남21) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100269.gif",
+    "routeType": "포획"
   },
   "베로포리": {
     "s0": {
@@ -547,7 +716,19 @@
       "def": 30,
       "agi": 15
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 3,
+      "화": 7,
+      "풍": 0
+    },
+    "route": "속임수의 동굴 3번(동22 남21) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100270.gif",
+    "routeType": "포획"
   },
   "노북이": {
     "s0": {
@@ -569,7 +750,19 @@
       "def": 34,
       "agi": 9
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 0,
+      "화": 0,
+      "풍": 7
+    },
+    "route": "사이너스(동545 남389)포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100271.gif",
+    "routeType": "포획"
   },
   "북이": {
     "s0": {
@@ -591,7 +784,19 @@
       "def": 35,
       "agi": 8
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 0,
+      "화": 0,
+      "풍": 4
+    },
+    "route": "사이너스(동570 남416) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100272.gif",
+    "routeType": "포획"
   },
   "깡북이": {
     "s0": {
@@ -613,7 +818,19 @@
       "def": 33,
       "agi": 10
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "쿠오산소동굴 3층(동15 남20) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100273.gif",
+    "routeType": "포획"
   },
   "돌북이": {
     "s0": {
@@ -635,95 +852,127 @@
       "def": 41,
       "agi": 4
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 0,
+      "화": 0,
+      "풍": 1
+    },
+    "route": "쿠오산소동굴 4층(동23 남38) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100274.gif",
+    "routeType": "포획"
   },
   "아고아": {
     "s0": {
-      "hp": 36.9,
-      "atk": 6.584,
-      "def": 6.404,
-      "agi": 4.5
+      "atk": 9,
+      "def": 5,
+      "agi": 5,
+      "hp": 41
     },
     "sg": {
-      "hp": 10.239,
-      "atk": 1.827,
-      "def": 1.777,
-      "agi": 1.248
+      "atk": 2.27,
+      "def": 1.47,
+      "agi": 1.31,
+      "hp": 10.17
     },
-    "k": 20,
-    "u": {
-      "hp": 23,
-      "atk": 22,
-      "def": 21,
-      "agi": 18
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 3,
+      "화": 7,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "진홍동굴(나) 6층 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100275.gif",
+    "routeType": "포획"
   },
   "네고스": {
     "s0": {
-      "hp": 33.21,
-      "atk": 5.557,
-      "def": 5.557,
-      "agi": 3.87
+      "atk": 8,
+      "def": 6,
+      "agi": 5,
+      "hp": 44
     },
     "sg": {
-      "hp": 10.239,
-      "atk": 1.713,
-      "def": 1.713,
-      "agi": 1.193
+      "atk": 2.12,
+      "def": 1.61,
+      "agi": 1.31,
+      "hp": 10.47
     },
-    "k": 18,
-    "u": {
-      "hp": 24,
-      "atk": 20,
-      "def": 20,
-      "agi": 17
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "쟈루 섬(동275 남495) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100276.gif",
+    "routeType": "포획"
   },
   "타로곤": {
     "s0": {
-      "hp": 31.365,
-      "atk": 5.452,
-      "def": 5.758,
-      "agi": 3.655
+      "atk": 7,
+      "def": 6,
+      "agi": 4,
+      "hp": 35
     },
     "sg": {
-      "hp": 10.239,
-      "atk": 1.78,
-      "def": 1.88,
-      "agi": 1.193
+      "atk": 2.11,
+      "def": 1.69,
+      "agi": 1.35,
+      "hp": 9.86
     },
-    "k": 17,
-    "u": {
-      "hp": 23,
-      "atk": 21,
-      "def": 23,
-      "agi": 17
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 7,
+      "풍": 3
     },
-    "ku_override": true
+    "route": "사이너스(동186 남153) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100277.gif",
+    "routeType": "포획"
   },
   "다고스": {
     "s0": {
-      "hp": 33.93,
-      "atk": 5.944,
-      "def": 5.782,
-      "agi": 4.05
+      "atk": 8,
+      "def": 5,
+      "agi": 4,
+      "hp": 40
     },
     "sg": {
-      "hp": 10.084,
-      "atk": 1.766,
-      "def": 1.718,
-      "agi": 1.203
+      "atk": 2.16,
+      "def": 1.48,
+      "agi": 1.31,
+      "hp": 10.76
     },
-    "k": 18,
-    "u": {
-      "hp": 24,
-      "atk": 22,
-      "def": 21,
-      "agi": 18
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 8,
+      "화": 2,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "사이너스(동186 남153) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100278.gif",
+    "routeType": "포획"
   },
   "보크곤": {
     "s0": {
@@ -745,7 +994,19 @@
       "def": 21,
       "agi": 18
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "route": "몽환의 동굴(동45 남55) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100393.gif",
+    "routeType": "포획"
   },
   "라고고": {
     "s0": {
@@ -767,7 +1028,19 @@
       "def": 20,
       "agi": 26
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 10,
+      "풍": 0
+    },
+    "route": "가우린 섬(동461 남523) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100279.gif",
+    "routeType": "포획"
   },
   "후바바": {
     "s0": {
@@ -789,29 +1062,46 @@
       "def": 19,
       "agi": 27
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 6,
+      "풍": 4
+    },
+    "route": "사이너스(동526 남144) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100280.gif",
+    "routeType": "포획"
   },
   "토루루": {
     "s0": {
-      "hp": 37.144,
-      "atk": 6.74,
-      "def": 6.569,
-      "agi": 5.605
+      "atk": 7,
+      "def": 6,
+      "agi": 6,
+      "hp": 37
     },
     "sg": {
-      "hp": 9.677,
-      "atk": 1.756,
-      "def": 1.711,
-      "agi": 1.46
+      "atk": 1.86,
+      "def": 1.68,
+      "agi": 1.61,
+      "hp": 9.88
     },
-    "k": 19,
-    "u": {
-      "hp": 23,
-      "atk": 24,
-      "def": 23,
-      "agi": 25
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 0,
+      "화": 0,
+      "풍": 4
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100281.gif",
+    "routeType": "코스"
   },
   "루니": {
     "s0": {
@@ -833,7 +1123,19 @@
       "def": 25,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "사이너스(동526 남144) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100282.gif",
+    "routeType": "포획"
   },
   "카타르카스": {
     "s0": {
@@ -855,73 +1157,100 @@
       "def": 40,
       "agi": 6
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "동쿠링 광산 1층(동30 남45) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100283.gif",
+    "routeType": "포획"
   },
   "쿠카스": {
     "s0": {
-      "hp": 43.23,
-      "atk": 7.32,
-      "def": 10.884,
-      "agi": 2.09
+      "atk": 7,
+      "def": 10,
+      "agi": 2,
+      "hp": 44
     },
     "sg": {
-      "hp": 10.119,
-      "atk": 1.713,
-      "def": 2.547,
-      "agi": 0.489
+      "atk": 1.82,
+      "def": 2.57,
+      "agi": 0.54,
+      "hp": 10.48
     },
-    "k": 22,
-    "u": {
-      "hp": 25,
-      "atk": 21,
-      "def": 39,
-      "agi": 5
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "동쿠링 광산 2층(동5 남7) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100284.gif",
+    "routeType": "포획"
   },
   "코로카스": {
     "s0": {
-      "hp": 34.595,
-      "atk": 6.166,
-      "def": 8.155,
-      "agi": 1.955
+      "atk": 7,
+      "def": 8,
+      "agi": 1,
+      "hp": 37
     },
     "sg": {
-      "hp": 10.48,
-      "atk": 1.868,
-      "def": 2.47,
-      "agi": 0.592
+      "atk": 2.02,
+      "def": 2.32,
+      "agi": 0.55,
+      "hp": 10.52
     },
-    "k": 17,
-    "u": {
-      "hp": 26,
-      "atk": 24,
-      "def": 37,
-      "agi": 7
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 4,
+      "화": 6,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "도둑의 동굴 지하 4층(동15 남4) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100285.gif",
+    "routeType": "포획"
   },
   "로기안": {
     "s0": {
-      "hp": 45.195,
-      "atk": 7.641,
-      "def": 11.16,
-      "agi": 2.415
+      "atk": 8,
+      "def": 11,
+      "agi": 2,
+      "hp": 46
     },
     "sg": {
-      "hp": 10.119,
-      "atk": 1.711,
-      "def": 2.499,
-      "agi": 0.54
+      "atk": 1.82,
+      "def": 2.56,
+      "agi": 0.59,
+      "hp": 10.33
     },
-    "k": 23,
-    "u": {
-      "hp": 25,
-      "atk": 21,
-      "def": 38,
-      "agi": 6
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 0,
+      "화": 0,
+      "풍": 2
     },
-    "ku_override": true
+    "route": "유리의 동굴 13층 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100286.gif",
+    "routeType": "포획"
   },
   "램가스": {
     "s0": {
@@ -943,73 +1272,100 @@
       "def": 43,
       "agi": 10
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
+    },
+    "route": "300명 이벤트 페트",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100389.gif",
+    "routeType": "이벤트"
   },
   "아이카스": {
     "s0": {
-      "hp": 44.33,
-      "atk": 6.891,
-      "def": 10.455,
-      "agi": 2.31
+      "atk": 8,
+      "def": 10,
+      "agi": 2,
+      "hp": 48
     },
     "sg": {
-      "hp": 10.78,
-      "atk": 1.675,
-      "def": 2.542,
-      "agi": 0.561
+      "atk": 1.82,
+      "def": 2.44,
+      "agi": 0.57,
+      "hp": 10.91
     },
-    "k": 22,
-    "u": {
-      "hp": 27,
-      "atk": 19,
-      "def": 37,
-      "agi": 6
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "칠흑의 동굴 9층(동40 남42) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100390.gif",
+    "routeType": "포획"
   },
   "쿠타스": {
     "s0": {
-      "hp": 44.99,
-      "atk": 7.881,
-      "def": 9.267,
-      "agi": 2.31
+      "atk": 9,
+      "def": 10,
+      "agi": 2,
+      "hp": 51
     },
     "sg": {
-      "hp": 10.94,
-      "atk": 1.916,
-      "def": 2.253,
-      "agi": 0.561
+      "atk": 1.99,
+      "def": 2.33,
+      "agi": 0.55,
+      "hp": 11.04
     },
-    "k": 22,
-    "u": {
-      "hp": 28,
-      "atk": 24,
-      "def": 31,
-      "agi": 6
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 6,
+      "화": 4,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "칠흑의 동굴 11층(동56 남38) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100391.gif",
+    "routeType": "포획"
   },
   "카르기안": {
     "s0": {
-      "hp": 39.9,
-      "atk": 6.465,
-      "def": 9.344,
-      "agi": 3.3
+      "atk": 7,
+      "def": 7,
+      "agi": 3,
+      "hp": 38
     },
     "sg": {
-      "hp": 10.274,
-      "atk": 1.664,
-      "def": 2.406,
-      "agi": 0.849
+      "atk": 1.9,
+      "def": 2.04,
+      "agi": 0.88,
+      "hp": 10.41
     },
-    "k": 20,
-    "u": {
-      "hp": 25,
-      "atk": 20,
-      "def": 36,
-      "agi": 12
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
     },
-    "ku_override": true
+    "route": "칠흑의 동굴 5층(동13 남56) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100392.gif",
+    "routeType": "포획"
   },
   "리비노": {
     "s0": {
@@ -1031,7 +1387,19 @@
       "def": 19,
       "agi": 17
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "유리의 동굴 13층(동29 남19) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100287.gif",
+    "routeType": "포획"
   },
   "얀기로": {
     "s0": {
@@ -1053,7 +1421,19 @@
       "def": 16,
       "agi": 20
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 3,
+      "화": 7,
+      "풍": 0
+    },
+    "route": "가우린 섬(동526 남101) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100288.gif",
+    "routeType": "포획"
   },
   "반보로": {
     "s0": {
@@ -1075,7 +1455,19 @@
       "def": 15,
       "agi": 21
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 5,
+      "풍": 5
+    },
+    "route": "가우린 섬(동 398 남277) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100289.gif",
+    "routeType": "포획"
   },
   "반기노": {
     "s0": {
@@ -1097,7 +1489,19 @@
       "def": 16,
       "agi": 20
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 10,
+      "풍": 0
+    },
+    "route": "가우린 섬(동441 남104) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100290.gif",
+    "routeType": "포획"
   },
   "부르돈": {
     "s0": {
@@ -1119,7 +1523,19 @@
       "def": 14,
       "agi": 24
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "가우린 섬(동410 남355) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100394.gif",
+    "routeType": "포획"
   },
   "쿠링": {
     "s0": {
@@ -1141,7 +1557,19 @@
       "def": 20,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "카루타나 마을 근처 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100291.gif",
+    "routeType": "포획"
   },
   "쿠쿠르": {
     "s0": {
@@ -1163,7 +1591,19 @@
       "def": 17,
       "agi": 24
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
+    },
+    "route": "쿠오 해저통로 2층 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100292.gif",
+    "routeType": "포획"
   },
   "포링": {
     "s0": {
@@ -1185,7 +1625,19 @@
       "def": 18,
       "agi": 24
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 4,
+      "화": 6,
+      "풍": 0
+    },
+    "route": "쟈루 섬(동480 남313) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100293.gif",
+    "routeType": "포획"
   },
   "리스키": {
     "s0": {
@@ -1207,7 +1659,19 @@
       "def": 19,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "카루타나 마을 근처 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100294.gif",
+    "routeType": "포획"
   },
   "카비트": {
     "s0": {
@@ -1229,7 +1693,19 @@
       "def": 19,
       "agi": 27
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 7,
+      "풍": 3
+    },
+    "route": "사이너스 섬(동304 남328) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100295.gif",
+    "routeType": "포획"
   },
   "케이비": {
     "s0": {
@@ -1251,7 +1727,19 @@
       "def": 19,
       "agi": 27
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "route": "쿠오 해저통로 2층 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100296.gif",
+    "routeType": "포획"
   },
   "큐이": {
     "s0": {
@@ -1273,7 +1761,19 @@
       "def": 17,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 5,
+      "풍": 5
+    },
+    "route": "샴기르 마을 앞마당 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100297.gif",
+    "routeType": "포획"
   },
   "골드카비트": {
     "s0": {
@@ -1295,7 +1795,19 @@
       "def": 16,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "샴기르 마을 앞마당 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100298.gif",
+    "routeType": "포획"
   },
   "고르돈": {
     "s0": {
@@ -1317,7 +1829,19 @@
       "def": 28,
       "agi": 18
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "가우린 섬(동166 남356) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100307.gif",
+    "routeType": "포획"
   },
   "기라돈": {
     "s0": {
@@ -1339,7 +1863,19 @@
       "def": 25,
       "agi": 19
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 2,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "폐허가 된 탄광 4층(동47 남27) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100308.gif",
+    "routeType": "포획"
   },
   "투르돈": {
     "s0": {
@@ -1361,7 +1897,19 @@
       "def": 19,
       "agi": 20
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 3,
+      "화": 7,
+      "풍": 0
+    },
+    "route": "가우린 섬(동237 남80) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100309.gif",
+    "routeType": "포획"
   },
   "고르고": {
     "s0": {
@@ -1383,7 +1931,19 @@
       "def": 20,
       "agi": 21
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 9,
+      "풍": 1
+    },
+    "route": "폐허가 된 탄광 4층(동45 남27) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100310.gif",
+    "routeType": "포획"
   },
   "휴보": {
     "s0": {
@@ -1405,7 +1965,19 @@
       "def": 25,
       "agi": 16
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 8,
+      "수": 2,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "황금색 페트(카난) 퀘스트 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100319.gif",
+    "routeType": "퀘스트"
   },
   "포보": {
     "s0": {
@@ -1427,7 +1999,19 @@
       "def": 26,
       "agi": 14
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "고야산 동굴 4층 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100320.gif",
+    "routeType": "포획"
   },
   "쿠보": {
     "s0": {
@@ -1449,7 +2033,19 @@
       "def": 26,
       "agi": 17
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
+    },
+    "route": "베르가 포획 퀘스트 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100321.gif",
+    "routeType": "퀘스트"
   },
   "토로쟈": {
     "s0": {
@@ -1471,7 +2067,19 @@
       "def": 25,
       "agi": 16
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 3,
+      "화": 7,
+      "풍": 0
+    },
+    "route": "속임수의 동굴 최하층 입구 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100322.gif",
+    "routeType": "포획"
   },
   "부르보": {
     "s0": {
@@ -1493,7 +2101,19 @@
       "def": 24,
       "agi": 20
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 4,
+      "풍": 6
+    },
+    "route": "마쥬의 미로 3층 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100395.gif",
+    "routeType": "포획"
   },
   "카쿠": {
     "s0": {
@@ -1515,7 +2135,19 @@
       "def": 16,
       "agi": 24
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쟈루 섬(동81 남1140) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100323.gif",
+    "routeType": "포획"
   },
   "바카": {
     "s0": {
@@ -1537,7 +2169,19 @@
       "def": 16,
       "agi": 26
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 4,
+      "풍": 6
+    },
+    "route": "쟈루 섬(동90 남1090) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100324.gif",
+    "routeType": "포획"
   },
   "바우": {
     "s0": {
@@ -1559,7 +2203,19 @@
       "def": 16,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "route": "숲의 동굴 2층(동27 남34) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100325.gif",
+    "routeType": "포획"
   },
   "카우": {
     "s0": {
@@ -1581,7 +2237,19 @@
       "def": 19,
       "agi": 26
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 0,
+      "화": 0,
+      "풍": 3
+    },
+    "route": "숲의 동굴 4층(동14 남8) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100326.gif",
+    "routeType": "포획"
   },
   "베르가": {
     "s0": {
@@ -1603,7 +2271,19 @@
       "def": 16,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쟈루 섬(동442 남634) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100327.gif",
+    "routeType": "포획"
   },
   "베루루": {
     "s0": {
@@ -1625,7 +2305,19 @@
       "def": 13,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 3,
+      "풍": 7
+    },
+    "route": "쟈루 섬(동357 남680) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100328.gif",
+    "routeType": "포획"
   },
   "고르고르": {
     "s0": {
@@ -1647,7 +2339,19 @@
       "def": 13,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "가우린 섬(동225 남353) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100329.gif",
+    "routeType": "포획"
   },
   "노르노르": {
     "s0": {
@@ -1669,95 +2373,127 @@
       "def": 18,
       "agi": 31
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 3,
+      "수": 0,
+      "화": 0,
+      "풍": 7
+    },
+    "route": "마리너스 복권 1등",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100330.gif",
+    "routeType": "복권"
   },
   "토리노프스": {
     "s0": {
-      "hp": 23.34,
-      "atk": 3.891,
-      "def": 4.431,
-      "agi": 1.98
+      "atk": 5,
+      "def": 5,
+      "agi": 1,
+      "hp": 25
     },
     "sg": {
-      "hp": 10.405,
-      "atk": 1.734,
-      "def": 1.975,
-      "agi": 0.882
+      "atk": 2.01,
+      "def": 2.22,
+      "agi": 0.78,
+      "hp": 10.09
     },
-    "k": 12,
-    "u": {
-      "hp": 26,
-      "atk": 21,
-      "def": 26,
-      "agi": 12
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 3,
+      "화": 7,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "쟈루 섬(동485 남165) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100335.gif",
+    "routeType": "포획"
   },
   "펜타스": {
     "s0": {
-      "hp": 31.92,
-      "atk": 4.604,
-      "def": 6.188,
-      "agi": 2.48
+      "atk": 6,
+      "def": 7,
+      "agi": 2,
+      "hp": 36
     },
     "sg": {
-      "hp": 11.072,
-      "atk": 1.597,
-      "def": 2.146,
-      "agi": 0.86
+      "atk": 1.8,
+      "def": 2.32,
+      "agi": 0.74,
+      "hp": 10.85
     },
-    "k": 16,
-    "u": {
-      "hp": 28,
-      "atk": 17,
-      "def": 28,
-      "agi": 11
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "마리너스 마을 근처 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100336.gif",
+    "routeType": "포획"
   },
   "토리케라": {
     "s0": {
-      "hp": 35.19,
-      "atk": 5.332,
-      "def": 6.952,
-      "agi": 2.61
+      "atk": 6,
+      "def": 9,
+      "agi": 2,
+      "hp": 36
     },
     "sg": {
-      "hp": 10.85,
-      "atk": 1.644,
-      "def": 2.143,
-      "agi": 0.804
+      "atk": 1.81,
+      "def": 2.53,
+      "agi": 0.72,
+      "hp": 10.17
     },
-    "k": 18,
-    "u": {
-      "hp": 27,
-      "atk": 18,
-      "def": 28,
-      "agi": 10
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "마리너스 마을 근처 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100337.gif",
+    "routeType": "포획"
   },
   "토르프스": {
     "s0": {
-      "hp": 26.95,
-      "atk": 4.28,
-      "def": 5.54,
-      "agi": 1.89
+      "atk": 5,
+      "def": 7,
+      "agi": 2,
+      "hp": 27
     },
     "sg": {
-      "hp": 10.683,
-      "atk": 1.696,
-      "def": 2.196,
-      "agi": 0.749
+      "atk": 1.81,
+      "def": 2.61,
+      "agi": 0.72,
+      "hp": 9.88
     },
-    "k": 14,
-    "u": {
-      "hp": 26,
-      "atk": 19,
-      "def": 29,
-      "agi": 9
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100338.gif",
+    "routeType": "코스"
   },
   "고반케스": {
     "s0": {
@@ -1779,7 +2515,19 @@
       "def": 19,
       "agi": 16
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쟈루 섬(동231 남557) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100339.gif",
+    "routeType": "포획"
   },
   "쟈그라": {
     "s0": {
@@ -1801,7 +2549,19 @@
       "def": 17,
       "agi": 17
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
+    },
+    "route": "쿠오해저터널 1층[쿠오](동20 남35) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100340.gif",
+    "routeType": "포획"
   },
   "쟈그": {
     "s0": {
@@ -1823,7 +2583,19 @@
       "def": 17,
       "agi": 16
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쿠오해저터널 1층[쟈루](동11 남31) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100341.gif",
+    "routeType": "포획"
   },
   "판지": {
     "s0": {
@@ -1845,7 +2617,19 @@
       "def": 18,
       "agi": 16
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쟈루 섬(동157 남704) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100342.gif",
+    "routeType": "포획"
   },
   "기가로스": {
     "s0": {
@@ -1867,29 +2651,46 @@
       "def": 30,
       "agi": 13
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 0,
+      "화": 0,
+      "풍": 7
+    },
+    "route": "몽환의 동굴(동 34 남39) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100343.gif",
+    "routeType": "포획"
   },
   "메가로스": {
     "s0": {
-      "hp": 58.2,
-      "atk": 10.026,
-      "def": 10.458,
-      "agi": 3.72
+      "atk": 10,
+      "def": 10,
+      "agi": 3,
+      "hp": 57
     },
     "sg": {
-      "hp": 11.518,
-      "atk": 1.984,
-      "def": 2.069,
-      "agi": 0.736
+      "atk": 2.12,
+      "def": 2.08,
+      "agi": 0.74,
+      "hp": 11.47
     },
-    "k": 24,
-    "u": {
-      "hp": 35,
-      "atk": 29,
-      "def": 31,
-      "agi": 11
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "4환생 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100344.gif",
+    "routeType": "퀘스트"
   },
   "비트로스": {
     "s0": {
@@ -1911,7 +2712,19 @@
       "def": 28,
       "agi": 12
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 3,
+      "풍": 7
+    },
+    "route": "아르마르 광산 6층(동6 남6) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100345.gif",
+    "routeType": "포획"
   },
   "가가로스": {
     "s0": {
@@ -1933,7 +2746,19 @@
       "def": 27,
       "agi": 11
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 2,
+      "화": 8,
+      "풍": 0
+    },
+    "route": "몽환의 동굴(동 34 남39) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100346.gif",
+    "routeType": "포획"
   },
   "루이": {
     "s0": {
@@ -1955,7 +2780,19 @@
       "def": 24,
       "agi": 9
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 8,
+      "화": 2,
+      "풍": 0
+    },
+    "route": "벽청의 동굴B 8층(동19 남13) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100347.gif",
+    "routeType": "포획"
   },
   "무이": {
     "s0": {
@@ -1977,7 +2814,19 @@
       "def": 24,
       "agi": 9
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쿠르의 해저통로(동47 남32) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100348.gif",
+    "routeType": "포획"
   },
   "씨보스": {
     "s0": {
@@ -1999,7 +2848,19 @@
       "def": 26,
       "agi": 9
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쿠르의 해저통로(동47 남32) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100349.gif",
+    "routeType": "포획"
   },
   "투이": {
     "s0": {
@@ -2021,7 +2882,19 @@
       "def": 23,
       "agi": 9
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
+    },
+    "route": "3환생 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100350.gif",
+    "routeType": "퀘스트"
   },
   "다이노": {
     "s0": {
@@ -2043,7 +2916,19 @@
       "def": 36,
       "agi": 6
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "유리의 동굴 14층 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100351.gif",
+    "routeType": "포획"
   },
   "다이노스": {
     "s0": {
@@ -2065,7 +2950,19 @@
       "def": 32,
       "agi": 7
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "칠흑의 동굴 18층 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100352.gif",
+    "routeType": "포획"
   },
   "프라키토스": {
     "s0": {
@@ -2087,7 +2984,19 @@
       "def": 28,
       "agi": 6
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 2,
+      "화": 8,
+      "풍": 0
+    },
+    "route": "세르노스 섬 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100353.gif",
+    "routeType": "포획"
   },
   "스텐토스": {
     "s0": {
@@ -2109,7 +3018,19 @@
       "def": 35,
       "agi": 5
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100354.gif",
+    "routeType": "코스"
   },
   "프리토스": {
     "s0": {
@@ -2131,7 +3052,19 @@
       "def": 27,
       "agi": 10
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "샴기르 복권 1등",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100396.gif",
+    "routeType": "복권"
   },
   "만모": {
     "s0": {
@@ -2153,7 +3086,19 @@
       "def": 25,
       "agi": 8
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "가우린 채석장 3층(동21 남15) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100355.gif",
+    "routeType": "포획"
   },
   "만모르": {
     "s0": {
@@ -2175,7 +3120,19 @@
       "def": 20,
       "agi": 10
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 2,
+      "화": 8,
+      "풍": 0
+    },
+    "route": "가우린 채석장 5층(동25 남26) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100356.gif",
+    "routeType": "포획"
   },
   "마모나스": {
     "s0": {
@@ -2197,7 +3154,19 @@
       "def": 24,
       "agi": 10
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "가우린 섬(동133 남47) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100357.gif",
+    "routeType": "포획"
   },
   "만모로스": {
     "s0": {
@@ -2219,7 +3188,19 @@
       "def": 20,
       "agi": 11
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
+    },
+    "route": "가우린 섬(동105 남145) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100358.gif",
+    "routeType": "포획"
   },
   "테라곤": {
     "s0": {
@@ -2241,7 +3222,19 @@
       "def": 18,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100359.gif",
+    "routeType": "코스"
   },
   "카르곤": {
     "s0": {
@@ -2263,7 +3256,19 @@
       "def": 16,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "2환생 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100360.gif",
+    "routeType": "퀘스트"
   },
   "포이비스": {
     "s0": {
@@ -2285,7 +3290,19 @@
       "def": 20,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
+    },
+    "route": "비룡의 동굴 지하 2층(동35 남15) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100361.gif",
+    "routeType": "포획"
   },
   "도라비스": {
     "s0": {
@@ -2307,7 +3324,19 @@
       "def": 20,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "황금색 페트(카난) 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100362.gif",
+    "routeType": "퀘스트"
   },
   "푸테라": {
     "s0": {
@@ -2329,7 +3358,19 @@
       "def": 15,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 9,
+      "화": 1,
+      "풍": 0
+    },
+    "route": "도티의 눈을 뜨게하자 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100898.gif",
+    "routeType": "퀘스트"
   },
   "타키": {
     "s0": {
@@ -2351,7 +3392,19 @@
       "def": 12,
       "agi": 35
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 3,
+      "풍": 7
+    },
+    "route": "사이너스 섬(동549 남146) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100367.gif",
+    "routeType": "포획"
   },
   "쿠쿠": {
     "s0": {
@@ -2373,7 +3426,19 @@
       "def": 11,
       "agi": 36
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "쟈루 섬(동669 남652) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100368.gif",
+    "routeType": "포획"
   },
   "호르쿠": {
     "s0": {
@@ -2395,7 +3460,19 @@
       "def": 13,
       "agi": 34
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 0,
+      "화": 0,
+      "풍": 7
+    },
+    "route": "쟈루 섬(동668 남651) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100369.gif",
+    "routeType": "포획"
   },
   "카키": {
     "s0": {
@@ -2417,7 +3494,19 @@
       "def": 11,
       "agi": 33
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "사이너스 섬(동608 남206) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100370.gif",
+    "routeType": "포획"
   },
   "오가로스": {
     "s0": {
@@ -2439,7 +3528,19 @@
       "def": 25,
       "agi": 20
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 4,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "아스마르 광산 6층(동37 남38) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100371.gif",
+    "routeType": "포획"
   },
   "오르곤": {
     "s0": {
@@ -2461,7 +3562,19 @@
       "def": 21,
       "agi": 21
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 8,
+      "화": 2,
+      "풍": 0
+    },
+    "route": "퀴즈 마스터(카루타나) 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100372.gif",
+    "routeType": "퀘스트"
   },
   "모가로스": {
     "s0": {
@@ -2483,7 +3596,19 @@
       "def": 20,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 2,
+      "화": 8,
+      "풍": 0
+    },
+    "route": "퀴즈 마스터(마리너스) 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100373.gif",
+    "routeType": "퀘스트"
   },
   "골로스": {
     "s0": {
@@ -2505,7 +3630,19 @@
       "def": 25,
       "agi": 21
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "최상급",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 7,
+      "풍": 3
+    },
+    "route": "5환생 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100374.gif",
+    "routeType": "퀘스트"
   },
   "프이토": {
     "s0": {
@@ -2527,293 +3664,370 @@
       "def": 25,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "route": "쟈쟈 복권 1등",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100375.gif",
+    "routeType": "복권"
   },
   "모나시프": {
     "s0": {
-      "hp": 49.625,
-      "atk": 8.681,
-      "def": 8.906,
-      "agi": 8.125
+      "atk": 10,
+      "def": 7,
+      "agi": 9,
+      "hp": 49
     },
     "sg": {
-      "hp": 9.825,
-      "atk": 1.718,
-      "def": 1.763,
-      "agi": 1.608
+      "atk": 1.96,
+      "def": 1.45,
+      "agi": 1.73,
+      "hp": 9.48
     },
-    "k": 25,
-    "u": {
-      "hp": 23,
-      "atk": 23,
-      "def": 24,
-      "agi": 28
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
     },
-    "ku_override": true
+    "route": "채석장의 비밀 퀘스트 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100376.gif",
+    "routeType": "퀘스트"
   },
   "라나프": {
     "s0": {
-      "hp": 51.1,
-      "atk": 10.437,
-      "def": 9.933,
-      "agi": 9.38
+      "atk": 11,
+      "def": 8,
+      "agi": 9,
+      "hp": 51
     },
     "sg": {
-      "hp": 9.033,
-      "atk": 1.845,
-      "def": 1.756,
-      "agi": 1.658
+      "atk": 2.02,
+      "def": 1.48,
+      "agi": 1.66,
+      "hp": 9.13
     },
-    "k": 28,
-    "u": {
-      "hp": 18,
-      "atk": 26,
-      "def": 24,
-      "agi": 29
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100377.gif",
+    "routeType": "코스"
   },
   "라이혼": {
     "s0": {
-      "hp": 57.45,
-      "atk": 10.987,
-      "def": 10.987,
-      "agi": 10.35
+      "atk": 11,
+      "def": 10,
+      "agi": 10,
+      "hp": 63
     },
     "sg": {
-      "hp": 9.096,
-      "atk": 1.739,
-      "def": 1.739,
-      "agi": 1.638
+      "atk": 1.9,
+      "def": 1.73,
+      "agi": 1.59,
+      "hp": 10.09
     },
-    "k": 30,
-    "u": {
-      "hp": 20,
-      "atk": 25,
-      "def": 25,
-      "agi": 30
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "미출시",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100378.gif",
+    "routeType": "기타"
   },
   "타이혼": {
     "s0": {
-      "hp": 57.45,
-      "atk": 11.767,
-      "def": 9.607,
-      "agi": 10.95
+      "atk": 12,
+      "def": 8,
+      "agi": 10,
+      "hp": 60
     },
     "sg": {
-      "hp": 9.096,
-      "atk": 1.863,
-      "def": 1.521,
-      "agi": 1.733
+      "atk": 2.05,
+      "def": 1.41,
+      "agi": 1.73,
+      "hp": 9.52
     },
-    "k": 30,
-    "u": {
-      "hp": 20,
-      "atk": 28,
-      "def": 20,
-      "agi": 32
+    "ku_override": true,
+    "searchable": true,
+    "grade": "최상급",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 5,
+      "풍": 5
     },
-    "ku_override": true
+    "route": "후르도 복권 1등",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100430.gif",
+    "routeType": "복권"
   },
   "스토라지": {
     "s0": {
-      "hp": 47.985,
-      "atk": 6.567,
-      "def": 7.323,
-      "agi": 4.935
+      "atk": 8,
+      "def": 5,
+      "agi": 4,
+      "hp": 60
     },
     "sg": {
-      "hp": 11.31,
-      "atk": 1.548,
-      "def": 1.726,
-      "agi": 1.163
+      "atk": 2.03,
+      "def": 1.35,
+      "agi": 1.12,
+      "hp": 13.61
     },
-    "k": 21,
-    "u": {
-      "hp": 34,
-      "atk": 19,
-      "def": 23,
-      "agi": 19
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100379.gif",
+    "routeType": "코스"
   },
   "아토라지": {
     "s0": {
-      "hp": 47.9,
-      "atk": 6.515,
-      "def": 7.055,
-      "agi": 5.1
+      "atk": 8,
+      "def": 5,
+      "agi": 4,
+      "hp": 57
     },
     "sg": {
-      "hp": 11.376,
-      "atk": 1.547,
-      "def": 1.675,
-      "agi": 1.211
+      "atk": 2.03,
+      "def": 1.31,
+      "agi": 1.12,
+      "hp": 13.75
     },
-    "k": 20,
-    "u": {
-      "hp": 36,
-      "atk": 20,
-      "def": 23,
-      "agi": 21
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "출시 예정",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100380.gif",
+    "routeType": "기타"
   },
   "아리노스": {
     "s0": {
-      "hp": 58.63,
-      "atk": 8.144,
-      "def": 9.548,
-      "agi": 5.85
+      "atk": 11,
+      "def": 7,
+      "agi": 6,
+      "hp": 72
     },
     "sg": {
-      "hp": 11.162,
-      "atk": 1.55,
-      "def": 1.817,
-      "agi": 1.113
+      "atk": 2.03,
+      "def": 1.39,
+      "agi": 1.12,
+      "hp": 13.28
     },
-    "k": 26,
-    "u": {
-      "hp": 33,
-      "atk": 19,
-      "def": 25,
-      "agi": 18
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100381.gif",
+    "routeType": "코스"
   },
   "다이노로스": {
     "s0": {
-      "hp": 55.32,
-      "atk": 8.453,
-      "def": 8.238,
-      "agi": 6.36
+      "atk": 10,
+      "def": 6,
+      "agi": 5,
+      "hp": 68
     },
     "sg": {
-      "hp": 10.948,
-      "atk": 1.673,
-      "def": 1.63,
-      "agi": 1.258
+      "atk": 2.16,
+      "def": 1.26,
+      "agi": 1.12,
+      "hp": 13.47
     },
-    "k": 24,
-    "u": {
-      "hp": 33,
-      "atk": 23,
-      "def": 22,
-      "agi": 22
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100382.gif",
+    "routeType": "코스"
   },
   "타르노로스": {
     "s0": {
-      "hp": 53.015,
-      "atk": 7.641,
-      "def": 7.848,
-      "agi": 5.635
+      "atk": 10,
+      "def": 6,
+      "agi": 5,
+      "hp": 65
     },
     "sg": {
-      "hp": 11.409,
-      "atk": 1.644,
-      "def": 1.689,
-      "agi": 1.212
+      "atk": 2.12,
+      "def": 1.26,
+      "agi": 1.12,
+      "hp": 13.61
     },
-    "k": 23,
-    "u": {
-      "hp": 34,
-      "atk": 21,
-      "def": 22,
-      "agi": 20
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100383.gif",
+    "routeType": "코스"
   },
   "바로로크스": {
     "s0": {
-      "hp": 41.47,
-      "atk": 6.671,
-      "def": 7.661,
-      "agi": 4.95
+      "atk": 9,
+      "def": 8,
+      "agi": 4,
+      "hp": 49
     },
     "sg": {
-      "hp": 10.084,
-      "atk": 1.622,
-      "def": 1.863,
-      "agi": 1.203
+      "atk": 2.01,
+      "def": 1.88,
+      "agi": 1.07,
+      "hp": 10.76
     },
-    "k": 22,
-    "u": {
-      "hp": 24,
-      "atk": 19,
-      "def": 24,
-      "agi": 18
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "사이너스 섬(동382 남479) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100384.gif",
+    "routeType": "포획"
   },
   "란베르스": {
     "s0": {
-      "hp": 41.894,
-      "atk": 6.809,
-      "def": 6.809,
-      "agi": 5.565
+      "atk": 9,
+      "def": 7,
+      "agi": 4,
+      "hp": 48
     },
     "sg": {
-      "hp": 10.274,
-      "atk": 1.669,
-      "def": 1.669,
-      "agi": 1.364
+      "atk": 2.22,
+      "def": 1.62,
+      "agi": 1.02,
+      "hp": 11.04
     },
-    "k": 21,
-    "u": {
-      "hp": 26,
-      "atk": 21,
-      "def": 21,
-      "agi": 22
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "도둑의 동굴 지하 2층(동42 남9) 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100385.gif",
+    "routeType": "포획"
   },
   "코리토르스": {
     "s0": {
-      "hp": 36.005,
-      "atk": 5.932,
-      "def": 6.274,
-      "agi": 4.655
+      "atk": 8,
+      "def": 7,
+      "agi": 4,
+      "hp": 42
     },
     "sg": {
-      "hp": 10.138,
-      "atk": 1.67,
-      "def": 1.766,
-      "agi": 1.31
+      "atk": 2.01,
+      "def": 1.97,
+      "agi": 1.02,
+      "hp": 10.62
     },
-    "k": 19,
-    "u": {
-      "hp": 24,
-      "atk": 20,
-      "def": 22,
-      "agi": 20
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 3,
+      "화": 0,
+      "풍": 0
     },
-    "ku_override": true
+    "route": "고야산 동굴 5층 전역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100386.gif",
+    "routeType": "포획"
   },
   "노스토로스": {
     "s0": {
-      "hp": 43.56,
-      "atk": 8.346,
-      "def": 7.266,
-      "agi": 6.6
+      "atk": 11,
+      "def": 8,
+      "agi": 5,
+      "hp": 51
     },
     "sg": {
-      "hp": 9.71,
-      "atk": 1.86,
-      "def": 1.619,
-      "agi": 1.471
+      "atk": 2.34,
+      "def": 1.61,
+      "agi": 1.12,
+      "hp": 10.14
     },
-    "k": 24,
-    "u": {
-      "hp": 21,
-      "atk": 24,
-      "def": 19,
-      "agi": 23
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 9,
+      "풍": 1
     },
-    "ku_override": true
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100387.gif",
+    "routeType": "코스"
   },
   "카우거": {
     "s0": {
@@ -2835,7 +4049,19 @@
       "def": 16,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 0,
+      "화": 0,
+      "풍": 3
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105312.gif",
+    "routeType": "VIP"
   },
   "샤크론": {
     "s0": {
@@ -2857,7 +4083,19 @@
       "def": 16,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/150827.gif",
+    "routeType": "VIP"
   },
   "크랩": {
     "s0": {
@@ -2879,7 +4117,19 @@
       "def": 32,
       "agi": 5
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "포우렌의 섬(동491 남717) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103096.gif",
+    "routeType": "포획"
   },
   "킹크랩": {
     "s0": {
@@ -2901,7 +4151,19 @@
       "def": 32,
       "agi": 5
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "포우렌의 섬(동500 남833) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103095.gif",
+    "routeType": "포획"
   },
   "페르페": {
     "s0": {
@@ -2923,7 +4185,19 @@
       "def": 15,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "코스 포인트 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105081.gif",
+    "routeType": "코스"
   },
   "쿠팡": {
     "s0": {
@@ -2945,7 +4219,19 @@
       "def": 15,
       "agi": 32
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "포우렌 (동488 남850) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103211.gif",
+    "routeType": "포획"
   },
   "쿠아": {
     "s0": {
@@ -2967,7 +4253,19 @@
       "def": 15,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 6,
+      "화": 4,
+      "풍": 0
+    },
+    "route": "포우렌 (동488 남850) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103210.gif",
+    "routeType": "포획"
   },
   "밍코": {
     "s0": {
@@ -2989,7 +4287,19 @@
       "def": 15,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
+    },
+    "route": "포우렌 (동455 남710) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103104.gif",
+    "routeType": "포획"
   },
   "슈우": {
     "s0": {
@@ -3011,7 +4321,19 @@
       "def": 17,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "포우렌 (동202 남562) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/160193.gif",
+    "routeType": "포획"
   },
   "킹고르": {
     "s0": {
@@ -3033,7 +4355,19 @@
       "def": 22,
       "agi": 17
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
+    },
+    "route": "스라인 지하동굴 1층 (에레보스 방향) 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103090.gif",
+    "routeType": "포획"
   },
   "칼로스": {
     "s0": {
@@ -3055,7 +4389,19 @@
       "def": 19,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100906.gif",
+    "routeType": "퀘스트"
   },
   "흑귀": {
     "s0": {
@@ -3077,7 +4423,19 @@
       "def": 18,
       "agi": 24
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 7,
+      "수": 0,
+      "화": 0,
+      "풍": 3
+    },
+    "route": "다섯 석상을 찾아 비밀을 풀어라 퀘스트 랜덤 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102738.gif",
+    "routeType": "퀘스트"
   },
   "토라": {
     "s0": {
@@ -3099,7 +4457,19 @@
       "def": 15,
       "agi": 32
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "마함마의 증표 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105084.gif",
+    "routeType": "퀘스트"
   },
   "산타베르가": {
     "s0": {
@@ -3121,7 +4491,19 @@
       "def": 15,
       "agi": 26
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "쟈루 섬(동442 남634) 희귀 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/160006.gif",
+    "routeType": "포획"
   },
   "스노밍코": {
     "s0": {
@@ -3143,7 +4525,19 @@
       "def": 17,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "포우렌의 섬(동433 남711) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103103.gif",
+    "routeType": "포획"
   },
   "키파": {
     "s0": {
@@ -3165,7 +4559,19 @@
       "def": 12,
       "agi": 39
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
+    },
+    "route": "포우렌섬의 황금나무 퀘스트 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102622.gif",
+    "routeType": "퀘스트"
   },
   "바우트": {
     "s0": {
@@ -3187,7 +4593,19 @@
       "def": 29,
       "agi": 3
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 1,
+      "화": 9,
+      "풍": 0
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105154.gif",
+    "routeType": "VIP"
   },
   "갈푸스": {
     "s0": {
@@ -3209,7 +4627,19 @@
       "def": 13,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 9,
+      "풍": 1
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105079.gif",
+    "routeType": "VIP"
   },
   "아이스만모": {
     "s0": {
@@ -3231,7 +4661,19 @@
       "def": 23,
       "agi": 8
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105125.gif",
+    "routeType": "VIP"
   },
   "구루마루": {
     "s0": {
@@ -3253,7 +4695,19 @@
       "def": 15,
       "agi": 24
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 0,
+      "화": 0,
+      "풍": 4
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/105204.gif",
+    "routeType": "VIP"
   },
   "차크론": {
     "s0": {
@@ -3275,7 +4729,19 @@
       "def": 13,
       "agi": 32
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102739.gif",
+    "routeType": "VIP"
   },
   "노르곤": {
     "s0": {
@@ -3297,7 +4763,19 @@
       "def": 16,
       "agi": 26
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 1,
+      "풍": 9
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100907.gif",
+    "routeType": "VIP"
   },
   "봉봉": {
     "s0": {
@@ -3319,7 +4797,19 @@
       "def": 16,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "VP 코인 상점",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103246.gif",
+    "routeType": "VIP"
   },
   "보르비스": {
     "s0": {
@@ -3341,7 +4831,19 @@
       "def": 18,
       "agi": 27
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 진입 퀘스트 보상",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103204.gif",
+    "routeType": "퀘스트"
   },
   "포레스트크랩": {
     "s0": {
@@ -3363,7 +4865,19 @@
       "def": 35,
       "agi": 5
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 섬(동260 남635) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103097.gif",
+    "routeType": "포획"
   },
   "포루나": {
     "s0": {
@@ -3385,7 +4899,19 @@
       "def": 13,
       "agi": 27
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 섬(동140 남830) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103077.gif",
+    "routeType": "포획"
   },
   "피피아": {
     "s0": {
@@ -3407,7 +4933,19 @@
       "def": 15,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 섬(동325 남545) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103079.gif",
+    "routeType": "포획"
   },
   "그린고르": {
     "s0": {
@@ -3429,7 +4967,19 @@
       "def": 25,
       "agi": 17
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 신전 진입 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/103092.gif",
+    "routeType": "퀘스트"
   },
   "아코로비": {
     "s0": {
@@ -3451,7 +5001,19 @@
       "def": 16,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 8,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 섬 (동298 남462) 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/160195.gif",
+    "routeType": "포획"
   },
   "황호": {
     "s0": {
@@ -3473,7 +5035,19 @@
       "def": 15,
       "agi": 31
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 0,
+      "화": 0,
+      "풍": 7
+    },
+    "route": "마리너스 목장의 의뢰 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/160118.gif",
+    "routeType": "퀘스트"
   },
   "이블티거": {
     "s0": {
@@ -3495,7 +5069,19 @@
       "def": 17,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 9,
+      "풍": 1
+    },
+    "route": "마리너스 목장의 의뢰 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/160119.gif",
+    "routeType": "퀘스트"
   },
   "청호": {
     "s0": {
@@ -3517,7 +5103,19 @@
       "def": 17,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "마리너스 목장의 의뢰 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/160121.gif",
+    "routeType": "퀘스트"
   },
   "흑호": {
     "s0": {
@@ -3539,7 +5137,19 @@
       "def": 14,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 5,
+      "풍": 5
+    },
+    "route": "마리너스 목장의 의뢰 퀘스트 보상",
+    "mount": true,
+    "img": "https://wind01.net/info/img/160122.gif",
+    "routeType": "퀘스트"
   },
   "킹북이": {
     "s0": {
@@ -3561,7 +5171,19 @@
       "def": 44,
       "agi": 5
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
+    },
+    "route": "아부의 지하동굴 6층 전지역",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100839.gif",
+    "routeType": "포획"
   },
   "노스키": {
     "s0": {
@@ -3583,7 +5205,19 @@
       "def": 18,
       "agi": 35
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "천지 2층 전지역",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100852.gif",
+    "routeType": "포획"
   },
   "라스키": {
     "s0": {
@@ -3605,7 +5239,19 @@
       "def": 18,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 6,
+      "풍": 4
+    },
+    "route": "진홍 2층 전지역",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100853.gif",
+    "routeType": "포획"
   },
   "토끼": {
     "s0": {
@@ -3627,7 +5273,19 @@
       "def": 23,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "벽청 2층 전지역",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100854.gif",
+    "routeType": "포획"
   },
   "범링": {
     "s0": {
@@ -3649,7 +5307,19 @@
       "def": 25,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 6,
+      "수": 0,
+      "화": 0,
+      "풍": 4
+    },
+    "route": "유리 2층 전지역",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100855.gif",
+    "routeType": "포획"
   },
   "쿠로로": {
     "s0": {
@@ -3671,7 +5341,19 @@
       "def": 17,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "초기 페트",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105217.gif",
+    "routeType": "기타"
   },
   "흑카키": {
     "s0": {
@@ -3693,7 +5375,19 @@
       "def": 8,
       "agi": 34
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 0,
+      "화": 0,
+      "풍": 5
+    },
+    "route": "펫 코인 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100904.gif",
+    "routeType": "기타"
   },
   "핑코": {
     "s0": {
@@ -3715,7 +5409,19 @@
       "def": 14,
       "agi": 28
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 2,
+      "화": 8,
+      "풍": 0
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103074.gif",
+    "routeType": "VIP"
   },
   "가우": {
     "s0": {
@@ -3737,7 +5443,19 @@
       "def": 16,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
+    },
+    "route": "듀얼 포인트 상점",
+    "mount": false,
+    "img": "https://wind01.net/info/img/160120.gif",
+    "routeType": "듀얼보상"
   },
   "익시노돈": {
     "s0": {
@@ -3759,7 +5477,19 @@
       "def": 9,
       "agi": 36
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102610.gif",
+    "routeType": "VIP"
   },
   "라그노스": {
     "s0": {
@@ -3781,7 +5511,19 @@
       "def": 31,
       "agi": 6
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/103163.gif",
+    "routeType": "VIP"
   },
   "모사크": {
     "s0": {
@@ -3803,7 +5545,19 @@
       "def": 15,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103213.gif",
+    "routeType": "VIP"
   },
   "크루거": {
     "s0": {
@@ -3825,7 +5579,19 @@
       "def": 18,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "상급",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "스라인 복권 1등",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105321.gif",
+    "routeType": "복권"
   },
   "우라노스": {
     "s0": {
@@ -3847,7 +5613,19 @@
       "def": 17,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 8,
+      "수": 0,
+      "화": 0,
+      "풍": 2
+    },
+    "route": "얼음성 페트병",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103248.gif",
+    "routeType": "레이드"
   },
   "흑기린": {
     "s0": {
@@ -3869,7 +5647,19 @@
       "def": 17,
       "agi": 19
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 1,
+      "화": 9,
+      "풍": 0
+    },
+    "route": "얼음성 페트병",
+    "mount": true,
+    "img": "https://wind01.net/info/img/102640.gif",
+    "routeType": "레이드"
   },
   "흑룡": {
     "s0": {
@@ -3891,7 +5681,19 @@
       "def": 14,
       "agi": 31
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 2,
+      "수": 0,
+      "화": 0,
+      "풍": 8
+    },
+    "route": "얼음성 페트병",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102639.gif",
+    "routeType": "레이드"
   },
   "라이쿠스": {
     "s0": {
@@ -3913,7 +5715,19 @@
       "def": 31,
       "agi": 6
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 1,
+      "수": 9,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "얼음성 페트병",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102634.gif",
+    "routeType": "레이드"
   },
   "아르마루": {
     "s0": {
@@ -3935,7 +5749,19 @@
       "def": 18,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "얼음성 페트병",
+    "mount": true,
+    "img": "https://wind01.net/info/img/102630.gif",
+    "routeType": "레이드"
   },
   "테로노돈": {
     "s0": {
@@ -3957,7 +5783,19 @@
       "def": 8,
       "agi": 36
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "전리품의 방 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102629.gif",
+    "routeType": "포획"
   },
   "바라쿠스": {
     "s0": {
@@ -3979,7 +5817,19 @@
       "def": 33,
       "agi": 6
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "질투의 방 복도 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103169.gif",
+    "routeType": "포획"
   },
   "그램고르": {
     "s0": {
@@ -4001,7 +5851,19 @@
       "def": 24,
       "agi": 16
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 3,
+      "수": 7,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "그램고르의 방 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102626.gif",
+    "routeType": "포획"
   },
   "타키온": {
     "s0": {
@@ -4023,7 +5885,19 @@
       "def": 13,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 6,
+      "화": 4,
+      "풍": 0
+    },
+    "route": "오만의 방 복도 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102627.gif",
+    "routeType": "포획"
   },
   "크로아치": {
     "s0": {
@@ -4045,7 +5919,19 @@
       "def": 19,
       "agi": 21
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 4,
+      "화": 6,
+      "풍": 0
+    },
+    "route": "얼음성 크로아치의 방 전역 포획",
+    "mount": false,
+    "img": "https://wind01.net/info/img/102635.gif",
+    "routeType": "포획"
   },
   "카이스": {
     "s0": {
@@ -4067,7 +5953,8 @@
       "def": 18,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": false
   },
   "카로스": {
     "s0": {
@@ -4089,7 +5976,8 @@
       "def": 15,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": false
   },
   "케이르": {
     "s0": {
@@ -4111,7 +5999,8 @@
       "def": 15,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": false
   },
   "타비스": {
     "s0": {
@@ -4133,6 +6022,7 @@
       "def": 15,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": false
   }
 }
