@@ -6445,7 +6445,19 @@
       "def": 15,
       "agi": 22
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 8,
+      "화": 2,
+      "풍": 0
+    },
+    "route": "빛의동굴 3층 전역",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103240.gif",
+    "routeType": "포획"
   },
   "지라크": {
     "s0": {
@@ -6467,7 +6479,19 @@
       "def": 16,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 10,
+      "수": 0,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "하이하모 (동175 남498)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103207.gif",
+    "routeType": "포획"
   },
   "타이판": {
     "s0": {
@@ -6489,7 +6513,19 @@
       "def": 12,
       "agi": 23
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 7,
+      "화": 3,
+      "풍": 0
+    },
+    "route": "호피도 (동244 남220)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103206.gif",
+    "routeType": "포획"
   },
   "레이론": {
     "s0": {
@@ -6511,7 +6547,19 @@
       "def": 15,
       "agi": 20
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 4,
+      "수": 6,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "호피도 (동181 남215)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/201035.gif",
+    "routeType": "포획"
   },
   "디메트로돈": {
     "s0": {
@@ -6533,7 +6581,19 @@
       "def": 30,
       "agi": 11
     },
-    "ku_override": true
+    "ku_override": true,
+     "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "호피도 (동122 남108)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103240.gif",
+    "routeType": "포획"
   },
   "파베로스": {
     "s0": {
@@ -6555,6 +6615,18 @@
       "def": 14,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+     "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103028.gif",
+    "routeType": "VIP"
   }
 }
