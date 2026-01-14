@@ -6649,6 +6649,18 @@
       "def": 17,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 5,
+      "수": 5,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "펫 코인 상점",
+    "mount": true,
+    "img": "https://wind01.net/info/img/103125.gif",
+    "routeType": "기타"
   }
 }
