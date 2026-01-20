@@ -6717,7 +6717,19 @@
       "def": 33,
       "agi": 19
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 2,
+      "풍": 8
+    },
+    "route": "쿠링 대광산 8층 전지역 포획",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100834.gif",
+    "routeType": "포획"
   },
   "쥬키": {
     "s0": {
@@ -6739,7 +6751,19 @@
       "def": 13,
       "agi": 40
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 6,
+      "풍": 4
+    },
+    "route": "고야산 동굴 5층 전지역",
+    "mount": false,
+    "img": "https://wind01.net/info/img/100905.gif",
+    "routeType": "포획"
   },
   "고루루": {
     "s0": {
@@ -6761,7 +6785,19 @@
       "def": 13,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 5,
+      "화": 5,
+      "풍": 0
+    },
+    "route": "칠흑의 지하동굴 1층 전지역",
+    "mount": true,
+    "img": "https://wind01.net/info/img/100873.gif",
+    "routeType": "포획"
   },
   "베르푸스": {
     "s0": {
@@ -6783,7 +6819,19 @@
       "def": 14,
       "agi": 31
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 0,
+      "풍": 10
+    },
+    "route": "정령 레이드",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105085.gif",
+    "routeType": "레이드"
   },
   "울푸스": {
     "s0": {
@@ -6805,7 +6853,19 @@
       "def": 15,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 10,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "정령 레이드",
+    "mount": true,
+    "img": "https://wind01.net/info/img/105082.gif",
+    "routeType": "레이드"
   },
   "델푸스": {
     "s0": {
@@ -6827,7 +6887,19 @@
       "def": 17,
       "agi": 29
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 1,
+      "화": 0,
+      "풍": 0
+    },
+    "route": "미정",
+    "mount": false,
+    "img": "https://wind01.net/info/img/105088.gif",
+    "routeType": "기타"
   },
   "카르페": {
     "s0": {
@@ -6849,7 +6921,19 @@
       "def": 13,
       "agi": 30
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "미정",
+    "mount": false,
+    "img": "https://wind01.net/info/img/105078.gif",
+    "routeType": "기타"
   },
   "피닉스": {
     "s0": {
@@ -6871,7 +6955,19 @@
       "def": 10,
       "agi": 39
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 8,
+      "풍": 2
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/201052.gif",
+    "routeType": "VIP"
   },
   "리프톤": {
     "s0": {
@@ -6893,7 +6989,19 @@
       "def": 17,
       "agi": 25
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 9,
+      "수": 0,
+      "화": 0,
+      "풍": 1
+    },
+    "route": "지원 페트(VP 5500)",
+    "mount": true,
+    "img": "https://wind01.net/info/img/200219.gif",
+    "routeType": "VIP"
   },
   "블랙드래곤": {
     "s0": {
@@ -6915,7 +7023,19 @@
       "def": 16,
       "agi": 26
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 2,
+      "화": 8,
+      "풍": 0
+    },
+    "route": "펫 코인 상점",
+    "mount": false,
+    "img": "https://wind01.net/info/img/200219.gif",
+    "routeType": "기타"
   },
   "언딘": {
     "s0": {
@@ -6937,6 +7057,18 @@
       "def": 16,
       "agi": 21
     },
-    "ku_override": true
+    "ku_override": true,
+    "searchable": true,
+    "grade": "일반",
+    "attr": {
+      "지": 0,
+      "수": 0,
+      "화": 10,
+      "풍": 0
+    },
+    "route": "얼음성 언딘 전투시 3%확률로 출현",
+    "mount": false,
+    "img": "https://wind01.net/info/img/103180.gif",
+    "routeType": "포획"
   }
 }
