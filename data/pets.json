@@ -7070,5 +7070,27 @@
     "mount": false,
     "img": "https://wind01.net/info/img/103180.gif",
     "routeType": "포획"
+  },
+  "프로돈": {
+    "s0": {
+      "hp": 59.93,
+      "atk": 12.603,
+      "def": 7.923,
+      "agi": 6.63
+    },
+    "sg": {
+      "hp": 10.948,
+      "atk": 2.302,
+      "def": 1.447,
+      "agi": 1.211
+    },
+    "k": 26,
+    "u": {
+      "hp": 31,
+      "atk": 37,
+      "def": 17,
+      "agi": 21
+    },
+    "ku_override": true
   }
 }
