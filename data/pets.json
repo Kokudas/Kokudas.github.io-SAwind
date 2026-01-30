@@ -7104,5 +7104,27 @@
     "mount": true,
     "img": "https://wind01.net/info/img/100851.gif",
     "routeType": "기타"
+  },
+  "페가수스": {
+    "s0": {
+      "hp": 50.875,
+      "atk": 11.468,
+      "def": 6.743,
+      "agi": 8.875
+    },
+    "sg": {
+      "hp": 9.666,
+      "atk": 2.179,
+      "def": 1.281,
+      "agi": 1.686
+    },
+    "k": 25,
+    "u": {
+      "hp": 23,
+      "atk": 35,
+      "def": 14,
+      "agi": 31
+    },
+    "ku_override": true
   }
 }
